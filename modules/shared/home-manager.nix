@@ -1,8 +1,10 @@
 { config, pkgs, lib, ... }:
 
-let name = "alexdrydew";
-    user = "alexdrydew";
-    email = "alexdrydew@toloka.ai"; in
+let
+  name = "alexdrydew";
+  user = "alexdrydew";
+  email = "alexdrydew@toloka.ai";
+in
 {
   # Shared shell configuration
   zsh = {
@@ -50,6 +52,15 @@ let name = "alexdrydew";
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
+
+      # Use corepack for js package management
+
+      alias yarn="corepack yarn"
+      alias yarnpkg="corepack yarnpkg"
+      alias pnpm="corepack pnpm" 
+      alias pnpx="corepack pnpx"
+      alias npm="corepack npm"
+      alias npx="corepack npx"
     '';
   };
 
@@ -64,7 +75,7 @@ let name = "alexdrydew";
     extraConfig = {
       init.defaultBranch = "main";
       core = {
-	    editor = "vim";
+        editor = "vim";
         autocrlf = "input";
       };
       pull.rebase = true;
@@ -179,8 +190,8 @@ let name = "alexdrydew";
 
       let g:airline_theme='bubblegum'
       let g:airline_powerline_fonts = 1
-      '';
-     };
+    '';
+  };
 
   alacritty = {
     enable = true;
@@ -282,7 +293,7 @@ let name = "alexdrydew";
       {
         plugin = power-theme;
         extraConfig = ''
-           set -g @tmux_power_theme 'gold'
+          set -g @tmux_power_theme 'gold'
         '';
       }
       {
@@ -353,8 +364,8 @@ let name = "alexdrydew";
       bind-key -T copy-mode-vi 'C-k' select-pane -U
       bind-key -T copy-mode-vi 'C-l' select-pane -R
       bind-key -T copy-mode-vi 'C-\' select-pane -l
-      '';
-    };
+    '';
+  };
 
   gh = {
     enable = true;

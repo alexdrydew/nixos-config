@@ -6,6 +6,7 @@ with pkgs; [
   jetbrains.pycharm-professional
   jetbrains.webstorm
   jetbrains.idea-community
+  nixpkgs-fmt
 
   # General packages for development and system management
   # alacritty
