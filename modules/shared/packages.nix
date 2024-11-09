@@ -8,8 +8,9 @@ with pkgs; [
   jetbrains.idea-community
   nixpkgs-fmt
 
+  oh-my-zsh
+
   # General packages for development and system management
-  # alacritty
   aspell
   aspellDicts.en
   bash-completion
@@ -59,7 +60,6 @@ with pkgs; [
   tmux
   unrar
   unzip
-  zsh-powerlevel10k
 
   # Python packages
   python39

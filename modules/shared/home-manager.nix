@@ -11,17 +11,18 @@ in
     enable = true;
     autocd = false;
     plugins = [
-      {
-        name = "powerlevel10k";
-        src = pkgs.zsh-powerlevel10k;
-        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-      }
-      {
-        name = "powerlevel10k-config";
-        src = lib.cleanSource ./config;
-        file = "p10k.zsh";
-      }
     ];
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell";
+
+      plugins = [
+        "git"
+        "kubectl"
+        "helm"
+        "docker"
+      ];
+    };
 
     initExtraFirst = ''
       if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
@@ -52,15 +53,34 @@ in
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
+    '';
 
+    envExtra = ''
       # Use corepack for js package management
 
-      alias yarn="corepack yarn"
-      alias yarnpkg="corepack yarnpkg"
-      alias pnpm="corepack pnpm" 
-      alias pnpx="corepack pnpx"
-      alias npm="corepack npm"
-      alias npx="corepack npx"
+      yarn() {
+        corepack yarn "$@"
+      }
+
+      yarnpkg() {
+        corepack yarnpkg "$@"
+      }
+
+      pnpm() {
+        corepack pnpm "$@"
+      }
+      
+      pnpx() {
+        corepack pnpx "$@"
+      }
+
+      npm() {
+        corepack npm "$@"
+      }
+
+      npx() {
+        corepack npx "$@"
+      }
     '';
   };
 
@@ -191,71 +211,6 @@ in
       let g:airline_theme='bubblegum'
       let g:airline_powerline_fonts = 1
     '';
-  };
-
-  alacritty = {
-    enable = true;
-    settings = {
-      cursor = {
-        style = "Block";
-      };
-
-      window = {
-        opacity = 1.0;
-        padding = {
-          x = 24;
-          y = 24;
-        };
-      };
-
-      font = {
-        normal = {
-          family = "MesloLGS NF";
-          style = "Regular";
-        };
-        size = lib.mkMerge [
-          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux 10)
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin 14)
-        ];
-      };
-
-      dynamic_padding = true;
-      decorations = "full";
-      title = "Terminal";
-      class = {
-        instance = "Alacritty";
-        general = "Alacritty";
-      };
-
-      colors = {
-        primary = {
-          background = "0x1f2528";
-          foreground = "0xc0c5ce";
-        };
-
-        normal = {
-          black = "0x1f2528";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xc0c5ce";
-        };
-
-        bright = {
-          black = "0x65737e";
-          red = "0xec5f67";
-          green = "0x99c794";
-          yellow = "0xfac863";
-          blue = "0x6699cc";
-          magenta = "0xc594c5";
-          cyan = "0x5fb3b3";
-          white = "0xd8dee9";
-        };
-      };
-    };
   };
 
   ssh = {
