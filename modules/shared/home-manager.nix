@@ -14,12 +14,10 @@ in
     ];
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      theme = "af-magic";
 
       plugins = [
         "git"
-        "kubectl"
-        "helm"
         "docker"
       ];
     };
@@ -53,34 +51,12 @@ in
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
+
+      export BASH_ENV=$HOME/.common_env
     '';
 
     envExtra = ''
-      # Use corepack for js package management
-
-      yarn() {
-        corepack yarn "$@"
-      }
-
-      yarnpkg() {
-        corepack yarnpkg "$@"
-      }
-
-      pnpm() {
-        corepack pnpm "$@"
-      }
-      
-      pnpx() {
-        corepack pnpx "$@"
-      }
-
-      npm() {
-        corepack npm "$@"
-      }
-
-      npx() {
-        corepack npx "$@"
-      }
+      source $HOME/.common_env      
     '';
   };
 
