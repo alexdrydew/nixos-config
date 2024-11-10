@@ -7,8 +7,8 @@ with pkgs; [
   jetbrains.webstorm
   jetbrains.idea-community
   nixpkgs-fmt
-
   oh-my-zsh
+  jetbrains-mono
 
   # General packages for development and system management
   aspell
@@ -47,6 +47,7 @@ with pkgs; [
   # Node.js development tools
   nodePackages.npm # globally install npm
   nodePackages.prettier
+  nodePackages.node2nix
   nodejs
 
   # Text and terminal utilities
