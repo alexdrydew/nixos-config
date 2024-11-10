@@ -51,6 +51,9 @@ in
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
+
+      # Toloka
+      alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
     '';
 
     envExtra = ''

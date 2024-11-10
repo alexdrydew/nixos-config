@@ -3,7 +3,6 @@ _:
 [
   # Development Tools
   "homebrew/cask/docker"
-  "dbeaver-community"
 
   # Communication Tools
   "discord"

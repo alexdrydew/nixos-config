@@ -9,6 +9,7 @@ with pkgs; [
   nixpkgs-fmt
   oh-my-zsh
   jetbrains-mono
+  # dbeaver-bin
 
   # General packages for development and system management
   aspell
