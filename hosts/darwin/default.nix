@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let user = "alexdrydew"; in
 
@@ -33,7 +33,7 @@ let user = "alexdrydew"; in
   system.checks.verifyNixPath = false;
 
   environment.systemPackages = with pkgs; [
-  ] ++ (import ../../modules/shared/packages.nix { inherit pkgs; });
+  ] ++ (import ../../modules/shared/packages.nix { inherit pkgs; inherit pkgs-unstable; });
 
   system = {
     stateVersion = 4;

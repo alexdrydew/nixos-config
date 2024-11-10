@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, pkgs-unstable }:
 
 with pkgs; [
   vscode
@@ -9,7 +9,8 @@ with pkgs; [
   nixpkgs-fmt
   oh-my-zsh
   jetbrains-mono
-  # dbeaver-bin
+
+  pkgs-unstable.dbeaver-bin
 
   # General packages for development and system management
   aspell
