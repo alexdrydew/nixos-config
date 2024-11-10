@@ -51,12 +51,9 @@ in
 
       # Always color ls and group directories
       alias ls='ls --color=auto'
-
-      export BASH_ENV=$HOME/.common_env
     '';
 
     envExtra = ''
-      source $HOME/.common_env      
     '';
   };
 

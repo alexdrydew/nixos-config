@@ -48,7 +48,8 @@ with pkgs; [
   nodePackages.npm # globally install npm
   nodePackages.prettier
   nodePackages.node2nix
-  nodejs
+  nodejs-slim
+  pnpm_8
 
   # Text and terminal utilities
   htop
