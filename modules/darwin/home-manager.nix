@@ -67,6 +67,7 @@ in
     { path = "/Applications/Google Chrome.app/"; }
     { path = "${pkgs.jetbrains.pycharm-professional}/Applications/PyCharm.app/"; }
     { path = "${pkgs.jetbrains.webstorm}/Applications/WebStorm.app/"; }
+    { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
     {
       path = "${config.users.users.${user}.home}/.local/share/";
       section = "others";
