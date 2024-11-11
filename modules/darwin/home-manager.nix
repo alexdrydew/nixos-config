@@ -2,6 +2,7 @@
 
 let
   user = "alexdrydew";
+  home = "/Users/${user}";
   sharedFiles = import ../shared/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit user config pkgs; };
 in
@@ -12,7 +13,7 @@ in
 
   users.users.${user} = {
     name = "${user}";
-    home = "/Users/${user}";
+    home = home;
     isHidden = false;
     shell = pkgs.zsh;
   };
@@ -74,5 +75,4 @@ in
       options = "--sort name --view grid --display stack";
     }
   ];
-
 }

@@ -52,6 +52,11 @@ in
       # Always color ls and group directories
       alias ls='ls --color=auto'
 
+      # pyenv
+      export PYENV_ROOT="$HOME/.pyenv"
+      [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+      eval "$(pyenv init -)"
+
       # Toloka
       alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
     '';

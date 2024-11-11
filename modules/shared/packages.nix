@@ -1,5 +1,6 @@
 { pkgs, pkgs-unstable }:
-
+let tlk = ps: ps.callPackage ./toloka/tlk.nix { fetchurl = pkgs.stdenv.fetchurlBoot; };
+in
 with pkgs; [
   vscode
   nil
@@ -59,6 +60,6 @@ with pkgs; [
   unzip
 
   # Python packages
-  python39
-  python39Packages.virtualenv # globally install virtualenv
+  pyenv
+  # (python310.withPackages (python_pkgs: [ (tlk python_pkgs) ]))
 ]
