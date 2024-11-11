@@ -1,4 +1,4 @@
-{ config, pkgs, lib, home-manager, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
   user = "alexdrydew";

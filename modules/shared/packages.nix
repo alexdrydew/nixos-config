@@ -2,6 +2,7 @@
 
 with pkgs; [
   vscode
+  nil
   gh
   jetbrains.pycharm-professional
   jetbrains.webstorm
@@ -13,8 +14,6 @@ with pkgs; [
   pkgs-unstable.dbeaver-bin
 
   # General packages for development and system management
-  aspell
-  aspellDicts.en
   bash-completion
   bat
   btop
@@ -28,7 +27,6 @@ with pkgs; [
 
   # Encryption and security tools
   age
-  age-plugin-yubikey
   gnupg
   libfido2
 
@@ -40,11 +38,6 @@ with pkgs; [
   dejavu_fonts
   ffmpeg
   fd
-  font-awesome
-  hack-font
-  noto-fonts
-  noto-fonts-emoji
-  meslo-lgs-nf
 
   # Node.js development tools
   nodePackages.npm # globally install npm
