@@ -5,6 +5,10 @@ with pkgs; [
   nixpkgs-fmt
   oh-my-zsh
 
+  # Rust
+  cargo
+  rustc
+
   # General packages for development and system management
   bash-completion
   bat
