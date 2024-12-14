@@ -1,6 +1,6 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, userConfig, ... }:
 
-let user = "alexdrydew"; in
+let user = userConfig.userName; in
 
 {
   imports = [

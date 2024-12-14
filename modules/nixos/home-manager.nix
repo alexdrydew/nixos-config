@@ -1,9 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgs-unstable, lib, userConfig, ... }:
 
 let
-  user = "alexdrydew";
+  user = userConfig.userName;
   xdg_configHome = "/home/${user}/.config";
-  shared-programs = import ../shared/home-manager.nix { inherit config pkgs lib; };
+  shared-programs = import ../shared/home-manager.nix { inherit config pkgs lib userConfig; };
   shared-files = import ../shared/files.nix { inherit config pkgs; };
 
   polybar-user_modules = builtins.readFile (pkgs.substituteAll {
@@ -31,7 +31,7 @@ in
     enableNixpkgsReleaseCheck = false;
     username = "${user}";
     homeDirectory = "/home/${user}";
-    packages = pkgs.callPackage ./packages.nix { };
+    packages = pkgs.callPackage ./packages.nix { inherit pkgs; inherit pkgs-unstable; };
     file = shared-files // import ./files.nix { inherit user; };
     stateVersion = "24.05";
   };

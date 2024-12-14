@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, userConfig, ... }:
 
 let
-  user = "alexdrydew";
+  user = userConfig.userName;
   keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOk8iAnIaa1deoc7jw8YACPNVka1ZFJxhnU4G74TmS+p" ];
 in
 {
@@ -33,7 +33,7 @@ in
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking = {
-    hostName = "%HOST%"; # Define your hostname.
+    hostName = userConfig.hostName;
     useDHCP = false;
     interfaces."%INTERFACE%".useDHCP = true;
   };

@@ -1,8 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, userConfig, ... }:
 
 let
-  name = "alexdrydew";
-  user = "alexdrydew";
+  name = userConfig.userName;
+  user = userConfig.userName;
   email = "alexdrydew@toloka.ai";
 in
 {

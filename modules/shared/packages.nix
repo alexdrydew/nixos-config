@@ -1,6 +1,4 @@
 { pkgs, pkgs-unstable }:
-let tlk = ps: ps.callPackage ./toloka/tlk.nix { fetchurl = pkgs.stdenv.fetchurlBoot; };
-in
 with pkgs; [
   vscode
   nil

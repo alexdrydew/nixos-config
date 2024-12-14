@@ -1,7 +1,7 @@
-{ pkgs }:
+{ pkgs, pkgs-unstable }:
 
 with pkgs;
-let shared-packages = import ../shared/packages.nix { inherit pkgs; }; in
+let shared-packages = import ../shared/packages.nix { inherit pkgs; inherit pkgs-unstable; }; in
 shared-packages ++ [
 
   # Security and authentication

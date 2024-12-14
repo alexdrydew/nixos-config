@@ -1,7 +1,7 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, userConfig, ... }:
 
 let
-  user = "alexdrydew";
+  user = userConfig.userName;
   home = "/Users/${user}";
   sharedFiles = import ../shared/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit user config pkgs; };
