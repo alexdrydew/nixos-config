@@ -6,7 +6,6 @@ let
 in
 {
   imports = [
-    ../../modules/nixos/disk-config.nix
     ../../modules/shared
   ];
 

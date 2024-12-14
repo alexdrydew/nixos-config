@@ -36,30 +36,16 @@
 
   outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl } @inputs:
     let
-      userConfig = import ./hosts/user.nix;
-      linuxSystems = {
-        linux-pc = "x86_64-linux";
-      };
-      darwinSystems =
-        {
-          toloka-macbook = "aarch64-darwin";
-        };
-      wslSystems =
-        {
-          wsl = "x86_64-linux";
-        };
+      userConfig = import ./modules/user.nix;
       mkSpecialArgs = system: inputs // {
         pkgs-unstable = import nixpkgs-unstable { inherit system; };
         inherit userConfig;
       };
     in
     {
-      darwinConfigurations = nixpkgs.lib.genAttrs (nixpkgs.lib.attrNames darwinSystems) (systemName:
-        let
-          system = darwinSystems."${systemName}";
-        in
-        darwin.lib.darwinSystem {
-          system = system;
+      darwinConfigurations = {
+        toloka-macbook = darwin.lib.darwinSystem rec {
+          system = "aarch64-darwin";
           specialArgs = mkSpecialArgs system;
           modules = [
             home-manager.darwinModules.home-manager
@@ -79,39 +65,13 @@
             }
             ./hosts/darwin
           ];
-        }
-      );
-
-      nixosConfigurations = nixpkgs.lib.genAttrs (nixpkgs.lib.attrNames linuxSystems)
-        (systemName:
-          let
-            system = linuxSystems."${systemName}";
-          in
-          nixpkgs.lib.nixosSystem rec {
-            inherit system;
-            specialArgs = mkSpecialArgs system;
-            modules = [
-              disko.nixosModules.disko
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = specialArgs;
-                  users.${userConfig.userName} = import ./modules/nixos/home-manager.nix;
-                };
-              }
-              ./hosts/nixos
-            ];
-          }) // nixpkgs.lib.genAttrs (nixpkgs.lib.attrNames wslSystems) (systemName:
-        let
-          system = wslSystems."${systemName}";
-        in
-        nixpkgs.lib.nixosSystem rec {
-          inherit system;
+        };
+      };
+      nixosConfigurations = {
+        wsl = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
           specialArgs = mkSpecialArgs system;
           modules = [
-            disko.nixosModules.disko
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -124,6 +84,7 @@
             nixos-wsl.nixosModules.default
             ./hosts/wsl
           ];
-        });
+        };
+      };
     };
 }
