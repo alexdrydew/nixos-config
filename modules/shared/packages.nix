@@ -1,6 +1,6 @@
 { pkgs, pkgs-unstable }:
 with pkgs; [
-  vscode
+  # vscode
   nil
   gh
   jetbrains.pycharm-professional

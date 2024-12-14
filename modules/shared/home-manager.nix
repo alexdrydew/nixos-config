@@ -3,7 +3,7 @@
 let
   name = userConfig.userName;
   user = userConfig.userName;
-  email = "alexdrydew@toloka.ai";
+  email = userConfig.email;
 in
 {
   # Shared shell configuration

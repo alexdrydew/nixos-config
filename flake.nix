@@ -36,23 +36,23 @@
 
   outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl } @inputs:
     let
-      userConfig = import ./modules/user.nix;
-      mkSpecialArgs = system: inputs // {
+      defaultUserConfig = import ./modules/users/default-user.nix;
+      mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
         pkgs-unstable = import nixpkgs-unstable { inherit system; };
-        inherit userConfig;
+        userConfig = defaultUserConfig;
       };
     in
     {
       darwinConfigurations = {
         toloka-macbook = darwin.lib.darwinSystem rec {
           system = "aarch64-darwin";
-          specialArgs = mkSpecialArgs system;
+          specialArgs = mkSpecialArgs { inherit system; userConfig = import ./modules/users/toloka-user.nix; };
           modules = [
             home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {
-                user = userConfig.userName;
+                user = defaultUserConfig.userName;
                 enable = true;
                 taps = {
                   "homebrew/homebrew-core" = homebrew-core;
@@ -70,7 +70,7 @@
       nixosConfigurations = {
         wsl = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
-          specialArgs = mkSpecialArgs system;
+          specialArgs = mkSpecialArgs { inherit system; };
           modules = [
             home-manager.nixosModules.home-manager
             {
@@ -78,7 +78,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = specialArgs;
-                users.${userConfig.userName} = import ./modules/nixos/home-manager.nix;
+                users.${defaultUserConfig.userName} = import ./modules/nixos/home-manager.nix;
               };
             }
             nixos-wsl.nixosModules.default
