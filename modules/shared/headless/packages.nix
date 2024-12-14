@@ -1,16 +1,9 @@
 { pkgs, pkgs-unstable }:
 with pkgs; [
-  # vscode
   nil
   gh
-  jetbrains.pycharm-professional
-  jetbrains.webstorm
-  jetbrains.idea-community
   nixpkgs-fmt
   oh-my-zsh
-  jetbrains-mono
-
-  pkgs-unstable.dbeaver-bin
 
   # General packages for development and system management
   bash-completion
@@ -34,7 +27,6 @@ with pkgs; [
   docker-compose
 
   # Media-related packages
-  dejavu_fonts
   ffmpeg
   fd
 

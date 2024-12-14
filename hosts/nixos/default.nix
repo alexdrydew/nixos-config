@@ -7,7 +7,7 @@ in
 {
   imports = [
     ../../modules/nixos/disk-config.nix
-    ../../modules/shared
+    ../../modules/shared/headless
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    ../../modules/shared
+    ../../modules/shared/headless
   ];
 
   wsl.enable = true;

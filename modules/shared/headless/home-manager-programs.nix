@@ -10,8 +10,7 @@ in
   zsh = {
     enable = true;
     autocd = false;
-    plugins = [
-    ];
+    plugins = [ ];
     oh-my-zsh = {
       enable = true;
       theme = "af-magic";

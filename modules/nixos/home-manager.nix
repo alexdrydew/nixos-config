@@ -3,8 +3,8 @@
 let
   user = userConfig.userName;
   xdg_configHome = "/home/${user}/.config";
-  shared-programs = import ../shared/home-manager.nix { inherit config pkgs lib userConfig; };
-  shared-files = import ../shared/files.nix { inherit config pkgs; };
+  shared-programs = import ../shared/headless/home-manager-programs.nix { inherit config pkgs lib userConfig; };
+  shared-files = import ../shared/headless/files.nix { inherit config pkgs; };
 
   polybar-user_modules = builtins.readFile (pkgs.substituteAll {
     src = ./config/polybar/user_modules.ini;

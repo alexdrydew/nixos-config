@@ -3,7 +3,7 @@
 let
   user = userConfig.userName;
   home = "/Users/${user}";
-  sharedFiles = import ../shared/files.nix { inherit config pkgs; };
+  sharedFiles = import ../shared/headless/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit user config pkgs; };
 in
 {
@@ -51,7 +51,7 @@ in
         ];
         stateVersion = "24.05";
       };
-      programs = { } // import ../shared/home-manager.nix { inherit config pkgs lib; };
+      programs = { } // import ../shared/headless/home-manager.nix { inherit config pkgs lib; };
     };
   };
 
