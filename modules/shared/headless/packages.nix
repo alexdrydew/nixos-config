@@ -6,8 +6,8 @@ with pkgs; [
   oh-my-zsh
 
   # Rust
-  cargo
-  rustc
+  (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
+  gcc
 
   # General packages for development and system management
   bash-completion

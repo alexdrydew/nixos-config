@@ -33,14 +33,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl, vscode-server } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl, vscode-server, rust-overlay } @inputs:
     let
       defaultUserConfig = import ./modules/users/default-user.nix;
       mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
         pkgs-unstable = import nixpkgs-unstable { inherit system; };
         userConfig = defaultUserConfig;
+        inherit rust-overlay;
       };
     in
     {
@@ -87,6 +92,7 @@
             # run `systemctl --user enable auto-fix-vscode-server.service`
             ({ config, pkgs, ... }: {
               services.vscode-server.enable = true;
+              services.vscode-server.enableFHS = true;
             })
             ./hosts/wsl
           ];

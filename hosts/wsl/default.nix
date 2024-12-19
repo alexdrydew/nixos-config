@@ -12,6 +12,8 @@ in
   wsl.enable = true;
   wsl.defaultUser = user;
 
+  nix.settings.experimental-features = "nix-command flakes";
+
   time.timeZone = userConfig.timeZone;
 
   # Manages keys and such
