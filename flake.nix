@@ -32,9 +32,10 @@
       url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl, vscode-server } @inputs:
     let
       defaultUserConfig = import ./modules/users/default-user.nix;
       mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
@@ -82,6 +83,11 @@
               };
             }
             nixos-wsl.nixosModules.default
+            vscode-server.nixosModules.default
+            # run `systemctl --user enable auto-fix-vscode-server.service`
+            ({ config, pkgs, ... }: {
+              services.vscode-server.enable = true;
+            })
             ./hosts/wsl
           ];
         };
