@@ -33,7 +33,8 @@ let user = userConfig.userName; in
 
   system.checks.verifyNixPath = false;
 
-  environment.systemPackages = import ../../modules/shared/packages.nix { inherit pkgs; inherit pkgs-unstable; };
+  environment.systemPackages = import ../../modules/shared/headless/packages.nix { inherit pkgs; inherit pkgs-unstable; }
+    ++ import ../../modules/shared/desktop/packages.nix { inherit pkgs; inherit pkgs-unstable; };
 
   system = {
     stateVersion = 4;

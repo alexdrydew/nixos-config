@@ -51,7 +51,7 @@ in
         ];
         stateVersion = "24.05";
       };
-      programs = { } // import ../shared/headless/home-manager.nix { inherit config pkgs lib; };
+      programs = { } // import ../shared/headless/home-manager-programs.nix { inherit config pkgs lib userConfig; };
     };
   };
 
