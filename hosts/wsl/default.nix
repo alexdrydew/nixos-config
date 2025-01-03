@@ -33,6 +33,13 @@ in
     # Let's be able to SSH into this machine
     openssh.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
+    jack = {
+      jackd.enable = true;
+      # support ALSA only programs via ALSA JACK PCM plugin
+      alsa.enable = true;
+      # support ALSA only programs via loopback device (supports programs like Steam)
+      loopback.enable = false;
+    };
   };
 
   # GPU support
@@ -102,4 +109,6 @@ in
 
   system.stateVersion = "21.05"; # Don't change this
 
+  # looks like npm defaults to ipv6 but it is disabled on host
+  networking.enableIPv6 = false;
 }

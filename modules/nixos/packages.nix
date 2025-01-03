@@ -3,6 +3,9 @@
 with pkgs;
 let shared-packages = import ../shared/headless/packages.nix { inherit pkgs; inherit pkgs-unstable; }; in
 shared-packages ++ [
+  pkg-config
+  alsa-lib
+  jack2
 
   # Security and authentication
   yubikey-agent

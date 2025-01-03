@@ -4,10 +4,15 @@ with pkgs; [
   gh
   nixpkgs-fmt
   oh-my-zsh
+  nix-index
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
   gcc
+
+  # Go
+  libcap
+  go
 
   # General packages for development and system management
   bash-completion
