@@ -5,6 +5,7 @@ with pkgs; [
   nixpkgs-fmt
   oh-my-zsh
   nix-index
+  neovim
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
