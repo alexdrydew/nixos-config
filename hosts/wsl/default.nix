@@ -18,14 +18,7 @@ in
 
   # Manages keys and such
   programs = {
-    gnupg.agent.enable = true;
-
-    # Needed for anything GTK related
-    dconf.enable = true;
-
-    # My shell
     zsh.enable = true;
-
     nix-ld.enable = true;
   };
 
