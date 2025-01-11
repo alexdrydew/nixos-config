@@ -65,14 +65,9 @@ in
     { path = "${pkgs.jetbrains.webstorm}/Applications/WebStorm.app/"; }
     { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
     {
-      path = "${config.users.users.${user}.home}/.local/share/";
+      path = "${config.users.users.${user}.home}/Downloads";
       section = "others";
       options = "--sort name --view grid --display folder";
-    }
-    {
-      path = "${config.users.users.${user}.home}/.local/share/downloads";
-      section = "others";
-      options = "--sort name --view grid --display stack";
     }
   ];
 }
