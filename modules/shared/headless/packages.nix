@@ -5,7 +5,6 @@ with pkgs; [
   nixpkgs-fmt
   oh-my-zsh
   nix-index
-  neovim
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
@@ -62,4 +61,4 @@ with pkgs; [
   # Python packages
   pyenv
   # (python310.withPackages (python_pkgs: [ (tlk python_pkgs) ]))
-]
+] ++ [ pkgs-unstable.neovim ]

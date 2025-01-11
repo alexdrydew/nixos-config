@@ -56,6 +56,10 @@ in
       [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
       eval "$(pyenv init -)"
 
+      # Go
+      export GO_PATH=$HOME/go
+      export PATH=$PATH:$GO_PATH/bin
+
       # Toloka
       alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
     '';
