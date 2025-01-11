@@ -5,6 +5,7 @@ with pkgs; [
   nixpkgs-fmt
   oh-my-zsh
   nix-index
+  neovim
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
@@ -27,7 +28,6 @@ with pkgs; [
   zip
 
   # Encryption and security tools
-  age
   gnupg
   libfido2
 
@@ -43,7 +43,6 @@ with pkgs; [
   nodePackages.npm # globally install npm
   nodePackages.prettier
   nodePackages.node2nix
-  nodejs-slim
   pnpm_8
 
   # Text and terminal utilities
@@ -61,4 +60,4 @@ with pkgs; [
   # Python packages
   pyenv
   # (python310.withPackages (python_pkgs: [ (tlk python_pkgs) ]))
-] ++ [ pkgs-unstable.neovim ]
+] ++ [ ]

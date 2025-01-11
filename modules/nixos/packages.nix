@@ -7,24 +7,11 @@ shared-packages ++ [
   alsa-lib
   jack2
 
-  # Security and authentication
-  yubikey-agent
-  keepassxc
-
   # App and package management
   appimage-run
   gnumake
   cmake
   home-manager
-
-  # Media and design tools
-  vlc
-  fontconfig
-  font-manager
-
-  # Productivity tools
-  bc # old school calculator
-  galculator
 
   # Audio tools
   cava # Terminal audio visualizer
@@ -55,15 +42,4 @@ shared-packages ++ [
   pcmanfm # File browser
   sqlite
   xdg-utils
-
-  # Other utilities
-  yad # yad-calendar is used with polybar
-  xdotool
-  google-chrome
-
-  # PDF viewer
-  zathura
-
-  # Music and entertainment
-  spotify
 ]
