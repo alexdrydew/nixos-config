@@ -7,6 +7,8 @@ shared-packages ++ [
   alsa-lib
   jack2
 
+  libcap
+
   # App and package management
   appimage-run
   gnumake

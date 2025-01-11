@@ -12,7 +12,6 @@ with pkgs; [
   gcc
 
   # Go
-  libcap
   go
 
   # General packages for development and system management
