@@ -64,6 +64,7 @@ in
     { path = "${pkgs.jetbrains.pycharm-professional}/Applications/PyCharm.app/"; }
     { path = "${pkgs.jetbrains.webstorm}/Applications/WebStorm.app/"; }
     { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
+    { path = "/Applications/Docker.app/"; }
     {
       path = "${config.users.users.${user}.home}/Downloads";
       section = "others";
