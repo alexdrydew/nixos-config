@@ -6,6 +6,8 @@ with pkgs; [
   oh-my-zsh
   nix-index
   neovim
+  azure-cli
+  k9s
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
