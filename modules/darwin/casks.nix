@@ -7,10 +7,5 @@ _:
   # Communication Tools
   "discord"
   "notion"
-  "slack"
   "telegram"
-  "zoom"
-
-  # Browsers
-  "google-chrome"
 ]

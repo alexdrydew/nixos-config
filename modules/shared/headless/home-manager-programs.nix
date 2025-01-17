@@ -105,7 +105,7 @@ in
             "/home/${user}/.ssh/id_github"
           )
           (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
-            "/Users/${user}/.ssh/id_github"
+            "/Users/${user}/.ssh/id_ed25519"
           )
         ];
       };
