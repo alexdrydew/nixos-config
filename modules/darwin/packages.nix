@@ -9,4 +9,5 @@ in
 shared-headless-packages ++ shared-desktop-packages ++ [
   dockutil
   databricks-cli
+  unnaturalscrollwheels
 ]

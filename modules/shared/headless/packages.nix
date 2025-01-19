@@ -59,6 +59,6 @@ with pkgs; [
   unzip
 
   # Python packages
-  pyenv
+  uv
   # (python310.withPackages (python_pkgs: [ (tlk python_pkgs) ]))
 ] ++ [ ]
