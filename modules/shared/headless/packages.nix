@@ -8,6 +8,7 @@ with pkgs; [
   neovim
   azure-cli
   k9s
+  bazel
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })

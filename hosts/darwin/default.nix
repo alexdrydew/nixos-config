@@ -72,4 +72,6 @@ let user = userConfig.userName; in
       };
     };
   };
+
+  power.sleep.display = "never";
 }
