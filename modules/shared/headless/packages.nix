@@ -1,4 +1,7 @@
 { pkgs, pkgs-unstable }:
+let
+  bazel-lsp = pkgs.callPackage ./bazel-lsp.nix { };
+in
 with pkgs; [
   nil
   gh
@@ -9,6 +12,13 @@ with pkgs; [
   azure-cli
   k9s
   bazel_7
+  bazel-watcher
+  # bazel-lsp
+  # teleport
+  kubelogin
+  postgresql
+  temporal-cli
+  fnm
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
