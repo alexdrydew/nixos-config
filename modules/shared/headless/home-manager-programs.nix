@@ -82,7 +82,8 @@ in
         editor = "nvim";
         autocrlf = "input";
       };
-      pull.rebase = true;
+      pull.rebase = false;
+      pull.merge = true;
       rebase.autoStash = true;
     };
   };

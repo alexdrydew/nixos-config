@@ -5,7 +5,7 @@ with pkgs; [
   jetbrains.webstorm
   jetbrains.idea-community
   jetbrains-mono
-
+  xdot
   pkgs-unstable.dbeaver-bin
 
   dejavu_fonts
