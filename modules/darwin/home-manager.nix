@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, userConfig, ... }:
+{ config, pkgs, pkgs-unstable, userConfig, nvf, ... }:
 
 let
   user = userConfig.userName;
@@ -65,6 +65,7 @@ in
     { path = "${pkgs.jetbrains.webstorm}/Applications/WebStorm.app/"; }
     { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
     { path = "/Applications/Docker.app/"; }
+    { path = "${pkgs.obsidian}/Applications/Obsidian.app/"; }
     {
       path = "${config.users.users.${user}.home}/Downloads";
       section = "others";

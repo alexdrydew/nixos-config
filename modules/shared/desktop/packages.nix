@@ -7,6 +7,6 @@ with pkgs; [
   jetbrains-mono
   xdot
   pkgs-unstable.dbeaver-bin
-
+  obsidian
   dejavu_fonts
 ]

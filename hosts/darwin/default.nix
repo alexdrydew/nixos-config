@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, userConfig, ... }:
+{ pkgs, pkgs-unstable, nvf, userConfig, ... }:
 
 let user = userConfig.userName; in
 
@@ -74,4 +74,7 @@ let user = userConfig.userName; in
   };
 
   power.sleep.display = "never";
+  services.sketchybar = {
+    enable = true;
+  };
 }

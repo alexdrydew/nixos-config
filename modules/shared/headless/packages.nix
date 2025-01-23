@@ -72,4 +72,6 @@ with pkgs; [
   # Python packages
   uv
   # (python310.withPackages (python_pkgs: [ (tlk python_pkgs) ]))
+
+  jdk21
 ] ++ [ ]

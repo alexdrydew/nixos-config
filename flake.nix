@@ -44,9 +44,13 @@
       url = "github:nix-community/nixvim/nixos-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl, vscode-server, rust-overlay, nixvim } @inputs:
+  outputs = { self, darwin, nvf, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl, vscode-server, rust-overlay, nixvim } @inputs:
     let
       defaultUserConfig = import ./modules/users/default-user.nix;
       mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
