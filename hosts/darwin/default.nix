@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, nvf, userConfig, ... }:
+{ pkgs, pkgs-unstable, userConfig, ... }:
 
 let user = userConfig.userName; in
 

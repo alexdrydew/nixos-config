@@ -46,21 +46,22 @@
     };
   };
 
-  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, disko, nixos-wsl, vscode-server, rust-overlay, nixvim } @inputs:
+  outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, nixos-wsl, vscode-server, ... } @inputs:
     let
-      defaultUserConfig = import ./modules/users/default-user.nix;
+      defaultUserConfig = import ./modules/users/default.nix;
       mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
         pkgs-unstable = import nixpkgs-unstable { inherit system; };
         userConfig = defaultUserConfig;
-        inherit rust-overlay;
-        inherit nixvim;
+        inherit inputs;
       };
     in
     {
       darwinConfigurations = {
         toloka-macbook = darwin.lib.darwinSystem rec {
           system = "aarch64-darwin";
-          specialArgs = mkSpecialArgs { inherit system; userConfig = import ./modules/users/toloka-user.nix; };
+          specialArgs = mkSpecialArgs {
+            inherit system; userConfig = import ./modules/users/toloka.nix;
+          };
           modules = [
             home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew

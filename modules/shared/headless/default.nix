@@ -1,4 +1,4 @@
-{ rust-overlay, ... }:
+{ inputs, ... }:
 
 {
   nixpkgs = {
@@ -17,6 +17,6 @@
         (filter
           (n: match ".*\\.nix" n != null ||
           pathExists (path + ("/" + n + "/default.nix")))
-          (attrNames (readDir path))) ++ [ rust-overlay.overlays.default ];
+          (attrNames (readDir path))) ++ [ inputs.rust-overlay.overlays.default ];
   };
 }
