@@ -19,6 +19,7 @@ with pkgs; [
   postgresql
   temporal-cli
   fnm
+  aider-chat
 
   # Rust
   (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
