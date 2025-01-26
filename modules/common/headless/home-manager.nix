@@ -7,26 +7,6 @@ let
 in
 {
   # Shared shell configuration
-  git = {
-    enable = true;
-    ignores = [ "*.swp" ];
-    userName = name;
-    userEmail = email;
-    lfs = {
-      enable = true;
-    };
-    extraConfig = {
-      init.defaultBranch = "main";
-      core = {
-        editor = "nvim";
-        autocrlf = "input";
-      };
-      pull.rebase = false;
-      pull.merge = true;
-      rebase.autoStash = true;
-    };
-  };
-
   ssh = {
     enable = true;
     includes = [

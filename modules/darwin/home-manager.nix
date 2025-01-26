@@ -1,4 +1,4 @@
-{ config, pkgs, pkgs-unstable, userConfig, nvf, ... }:
+{ config, pkgs, pkgs-unstable, userConfig, inputs, ... }:
 
 let
   user = userConfig.userName;
@@ -44,6 +44,7 @@ in
     users.${user} = { pkgs, config, lib, ... }: {
       imports = [
         ../home-manager/common/zsh.nix
+        ../home-manager/common/git.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;
@@ -56,6 +57,7 @@ in
       };
       programs = import ../common/headless/home-manager.nix { inherit pkgs lib userConfig; };
     };
+    extraSpecialArgs = { inherit userConfig; };
   };
 
   # Fully declarative dock using the latest from Nix Store
