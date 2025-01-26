@@ -1,5 +1,24 @@
-{ pkgs, ... }:
+{ pkgs, userConfig, inputs, ... }:
+let
+  user = userConfig.userName;
+in
 {
+  imports = [
+    inputs.nix-homebrew.darwinModules.nix-homebrew
+  ];
+
+  nix-homebrew = {
+    inherit user;
+    enable = true;
+    taps = {
+      "homebrew/homebrew-core" = inputs.homebrew-core;
+      "homebrew/homebrew-cask" = inputs.homebrew-cask;
+      "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+    };
+    mutableTaps = false;
+    autoMigrate = true;
+  };
+
   homebrew = {
     enable = true;
     casks = pkgs.callPackage ./casks.nix { };
