@@ -45,10 +45,9 @@ in
         options = "--sort name --view grid --display folder";
       }
     ];
-    system.checks.verifyNixPath = false;
     system = {
       stateVersion = config.darwin.stateVersion;
-
+      checks.verifyNixPath = false;
       defaults = {
         NSGlobalDomain = {
           AppleShowAllExtensions = true;
