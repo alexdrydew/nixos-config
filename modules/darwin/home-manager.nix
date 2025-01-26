@@ -45,6 +45,7 @@ in
       imports = [
         ../home-manager/common/zsh.nix
         ../home-manager/common/git.nix
+        ../home-manager/common/ssh.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;
