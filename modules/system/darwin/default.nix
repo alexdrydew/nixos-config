@@ -10,6 +10,7 @@ in
     ./dock
     ./homebrew
     ./home-manager.nix
+    ./nix.nix
   ];
 
   users.users.${user} = {
@@ -20,7 +21,6 @@ in
   };
 
   # Fully declarative dock using the latest from Nix Store
-  local.dock.enable = true;
   local.dock.entries = [
     { path = "/Applications/Slack.app/"; }
     { path = "/Applications/Telegram.app/"; }
