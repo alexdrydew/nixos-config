@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ../../modules/system/common
     ../../modules/system/darwin
   ];
 

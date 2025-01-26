@@ -6,6 +6,7 @@ let
 in
 {
   imports = [
+    ../common
     ./dock
     ./homebrew
     ./home-manager.nix
