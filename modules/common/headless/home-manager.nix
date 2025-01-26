@@ -8,9 +8,5 @@ in
 {
   # Shared shell configuration
 
-  gh = {
-    enable = true;
-    extensions = [ ];
-  };
 }
 

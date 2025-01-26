@@ -46,6 +46,7 @@ in
         ../home-manager/common/zsh.nix
         ../home-manager/common/git.nix
         ../home-manager/common/ssh.nix
+        ../home-manager/common/gh.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;

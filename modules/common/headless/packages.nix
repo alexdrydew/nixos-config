@@ -4,7 +4,6 @@ let
 in
 with pkgs; [
   nil
-  gh
   nixpkgs-fmt
   nix-index
   neovim
