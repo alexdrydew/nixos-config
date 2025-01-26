@@ -74,5 +74,16 @@ in
     # (python310.withPackages (python_pkgs: [ (tlk python_pkgs) ]))
 
     jdk21
+
+    # TODO: make desktop packages togglable
+    vscode
+    jetbrains.pycharm-professional
+    jetbrains.webstorm
+    jetbrains.idea-community
+    jetbrains-mono
+    xdot
+    pkgs-unstable.dbeaver-bin
+    obsidian
+    dejavu_fonts
   ];
 }
