@@ -57,7 +57,6 @@ in
         ];
         stateVersion = "24.05";
       };
-      programs = import ../common/headless/home-manager.nix { inherit pkgs lib userConfig; };
     };
     extraSpecialArgs = { inherit userConfig; };
   };
