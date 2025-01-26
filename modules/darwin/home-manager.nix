@@ -3,7 +3,6 @@
 let
   user = userConfig.userName;
   home = "/Users/${user}";
-  sharedFiles = import ../common/headless/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit user config pkgs; };
 in
 {
@@ -52,7 +51,6 @@ in
       home = {
         enableNixpkgsReleaseCheck = false;
         file = lib.mkMerge [
-          sharedFiles
           additionalFiles
         ];
         stateVersion = "24.05";
