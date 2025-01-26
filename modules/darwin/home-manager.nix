@@ -47,10 +47,10 @@ in
         ../home-manager/common/git.nix
         ../home-manager/common/ssh.nix
         ../home-manager/common/gh.nix
+        ../home-manager/common/packages.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;
-        packages = pkgs.callPackage ./packages.nix { inherit pkgs-unstable; };
         file = lib.mkMerge [
           sharedFiles
           additionalFiles
@@ -58,7 +58,7 @@ in
         stateVersion = "24.05";
       };
     };
-    extraSpecialArgs = { inherit userConfig; };
+    extraSpecialArgs = { inherit userConfig; inherit pkgs-unstable; };
   };
 
   # Fully declarative dock using the latest from Nix Store
