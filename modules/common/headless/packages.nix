@@ -6,7 +6,6 @@ with pkgs; [
   nil
   gh
   nixpkgs-fmt
-  oh-my-zsh
   nix-index
   neovim
   azure-cli

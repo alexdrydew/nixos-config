@@ -3,7 +3,7 @@
 let
   user = userConfig.userName;
   home = "/Users/${user}";
-  sharedFiles = import ../shared/headless/files.nix { inherit config pkgs; };
+  sharedFiles = import ../common/headless/files.nix { inherit config pkgs; };
   additionalFiles = import ./files.nix { inherit user config pkgs; };
 in
 {
@@ -42,6 +42,9 @@ in
   home-manager = {
     useGlobalPkgs = true;
     users.${user} = { pkgs, config, lib, ... }: {
+      imports = [
+        ../home-manager/common/zsh.nix
+      ];
       home = {
         enableNixpkgsReleaseCheck = false;
         packages = pkgs.callPackage ./packages.nix { inherit pkgs-unstable; };
@@ -51,7 +54,7 @@ in
         ];
         stateVersion = "24.05";
       };
-      programs = import ../shared/headless/home-manager.nix { inherit pkgs lib userConfig; };
+      programs = import ../common/headless/home-manager.nix { inherit pkgs lib userConfig; };
     };
   };
 

@@ -2,10 +2,10 @@
 
 let
   user = userConfig.userName;
-  shared-files = import ../shared/headless/files.nix { inherit config pkgs; };
+  shared-files = import ../common/headless/files.nix { inherit config pkgs; };
 in
 {
-  imports = [ nixvim.homeManagerModules.nixvim ../shared/headless/home-manager.nix ];
+  imports = [ nixvim.homeManagerModules.nixvim ../common/headless/home-manager.nix ];
   home = {
     enableNixpkgsReleaseCheck = false;
     username = "${user}";
