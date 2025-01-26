@@ -1,8 +1,12 @@
-{ userConfig, pkgs-unstable, ... }:
+{ userConfig, pkgs-unstable, inputs, ... }:
 let
   user = userConfig.userName;
 in
 {
+  imports = [
+    inputs.home-manager.darwinModules.home-manager
+  ];
+
   home-manager = {
     useGlobalPkgs = true;
     users.${user} = { pkgs, config, lib, ... }: {

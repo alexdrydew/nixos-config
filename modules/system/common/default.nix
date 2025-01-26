@@ -1,5 +1,4 @@
-{ inputs, ... }:
-
+{ ... }:
 {
   imports = [ ./overlays ];
   nixpkgs = {

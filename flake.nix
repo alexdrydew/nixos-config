@@ -63,7 +63,6 @@
             inherit system; userConfig = import ./modules/users/toloka.nix;
           };
           modules = [
-            home-manager.darwinModules.home-manager
             nix-homebrew.darwinModules.nix-homebrew
             {
               nix-homebrew = {

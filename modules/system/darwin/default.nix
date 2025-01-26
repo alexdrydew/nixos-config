@@ -1,9 +1,8 @@
-{ config, pkgs, pkgs-unstable, userConfig, lib, inputs, ... }:
+{ config, pkgs, pkgs-unstable, userConfig, lib, ... }:
 
 let
   user = userConfig.userName;
   home = "/Users/${user}";
-  additionalFiles = import ./files.nix { inherit user config pkgs; };
 in
 {
   imports = [
