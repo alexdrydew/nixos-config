@@ -1,13 +1,9 @@
-{ userConfig, pkgs, ... }:
+{ userConfig, config, pkgs, ... }:
 let
   name = userConfig.userName;
   email = userConfig.email;
 in
 {
-  imports = [
-    ./neovim.nix
-  ];
-
   home.packages = with pkgs;
     [
       git
@@ -23,7 +19,7 @@ in
     extraConfig = {
       init.defaultBranch = "main";
       core = {
-        editor = "nvim";
+        editor = if config.modules.neovim.enable then "nvim" else "vim";
         autocrlf = "input";
       };
       pull.rebase = false;
