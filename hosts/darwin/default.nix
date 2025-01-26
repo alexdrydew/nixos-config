@@ -5,7 +5,7 @@ let user = userConfig.userName; in
 {
   imports = [
     ../../modules/system/common
-    ../../modules/system/darwin/home-manager.nix
+    ../../modules/system/darwin
   ];
 
   services.nix-daemon.enable = true;
