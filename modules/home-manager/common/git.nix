@@ -4,9 +4,14 @@ let
   email = userConfig.email;
 in
 {
-  home.packages = with pkgs; [
-    git
+  imports = [
+    ./neovim.nix
   ];
+
+  home.packages = with pkgs;
+    [
+      git
+    ];
   programs.git = {
     enable = true;
     ignores = [ "*.swp" ];

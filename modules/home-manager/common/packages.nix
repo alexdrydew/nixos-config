@@ -7,7 +7,6 @@ in
     nil
     nixpkgs-fmt
     nix-index
-    neovim
     azure-cli
     k9s
     bazel_7

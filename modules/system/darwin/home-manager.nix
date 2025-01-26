@@ -16,6 +16,7 @@ in
         ../../home-manager/common/ssh.nix
         ../../home-manager/common/gh.nix
         ../../home-manager/common/packages.nix
+        ../../home-manager/common/neovim.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;
