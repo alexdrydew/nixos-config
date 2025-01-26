@@ -1,7 +1,4 @@
-{ pkgs, pkgs-unstable, userConfig, ... }:
-
-let user = userConfig.userName; in
-
+{ ... }:
 {
   imports = [
     ../../modules/system/common
@@ -11,4 +8,5 @@ let user = userConfig.userName; in
   services.nix-daemon.enable = true;
   local.dock.enable = true;
 
+  darwin.stateVersion = 4;
 }
