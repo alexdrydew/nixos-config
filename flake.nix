@@ -48,7 +48,7 @@
 
   outputs = { self, darwin, nix-homebrew, homebrew-bundle, homebrew-core, homebrew-cask, home-manager, nixpkgs, nixpkgs-unstable, nixos-wsl, vscode-server, ... } @inputs:
     let
-      defaultUserConfig = import ./modules/users/default.nix;
+      defaultUserConfig = import ./users/default.nix;
       mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
         pkgs-unstable = import nixpkgs-unstable { inherit system; };
         userConfig = defaultUserConfig;
@@ -60,10 +60,10 @@
         toloka-macbook = darwin.lib.darwinSystem rec {
           system = "aarch64-darwin";
           specialArgs = mkSpecialArgs {
-            inherit system; userConfig = import ./modules/users/toloka.nix;
+            inherit system; userConfig = import ./users/toloka.nix;
           };
           modules = [
-            ./hosts/darwin
+            ./hosts/toloka-macbook
           ];
         };
       };
