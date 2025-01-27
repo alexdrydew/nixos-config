@@ -11,6 +11,7 @@ in
     ./homebrew
     ./nix.nix
     ./aerospace.nix
+    ./jankyborders.nix
     ../../home-manager/darwin
   ];
 
@@ -62,6 +63,8 @@ in
           "com.apple.sound.beep.feedback" = 0;
 
           "com.apple.keyboard.fnState" = true;
+
+          NSAutomaticWindowAnimationsEnabled = false;
         };
 
         dock = {
@@ -80,6 +83,8 @@ in
           Clicking = true;
           TrackpadThreeFingerDrag = false;
         };
+
+        spaces.spans-displays = true;
       };
     };
     power.sleep.display = "never";

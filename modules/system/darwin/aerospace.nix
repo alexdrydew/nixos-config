@@ -23,11 +23,16 @@
           vertical = 0;
         };
         outer = {
-          left = 0;
-          bottom = 0;
-          top = 0;
-          right = 0;
+          left = 8;
+          bottom = 8;
+          top = 8;
+          right = 8;
         };
+      };
+
+      workspace-to-monitor-force-assignment = {
+        "1" = "main";
+        "2" = "secondary";
       };
 
       mode.main.binding =
