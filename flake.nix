@@ -42,7 +42,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixCats = {
-      url = "path:./flakes/nixCatsConfig";
+      url = "path:./flakes/kickstart-nvim";
     };
   };
 

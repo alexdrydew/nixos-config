@@ -9,7 +9,7 @@ in
   config = {
     # this value, nixCats is the defaultPackageName you pass to mkNixosModules
     # it will be the namespace for your options.
-    nixCats = {
+    nixCats-nvim = {
       enable = true;
       nixpkgs_version = inputs.nixpkgs;
       # this will add the overlays from ./overlays and also,
