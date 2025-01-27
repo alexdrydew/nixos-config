@@ -11,12 +11,12 @@ in
     useGlobalPkgs = true;
     users.${user} = { pkgs, config, lib, ... }: {
       imports = [
-        ../../home-manager/common/zsh.nix
-        ../../home-manager/common/git.nix
-        ../../home-manager/common/ssh.nix
-        ../../home-manager/common/gh.nix
-        ../../home-manager/common/packages.nix
-        ../../home-manager/common/nixCats.nix
+        ../common/zsh.nix
+        ../common/git.nix
+        ../common/ssh.nix
+        ../common/gh.nix
+        ../common/packages.nix
+        ../common/nixCats.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;

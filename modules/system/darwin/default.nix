@@ -9,8 +9,9 @@ in
     ../common
     ./dock
     ./homebrew
-    ./home-manager.nix
     ./nix.nix
+    ./aerospace.nix
+    ../../home-manager/darwin
   ];
 
   options = {
