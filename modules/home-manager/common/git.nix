@@ -19,7 +19,7 @@ in
     extraConfig = {
       init.defaultBranch = "main";
       core = {
-        editor = if config.modules.neovim.enable then "nvim" else "vim";
+        editor = "nvim";
         autocrlf = "input";
       };
       pull.rebase = false;

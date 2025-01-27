@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, inputs, ... }:
 let
   bazel-lsp = pkgs.callPackage ./bazel-lsp.nix { };
 in

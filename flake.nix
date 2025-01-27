@@ -41,9 +41,8 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+    nixCats = {
+      url = "path:./flakes/nixCatsConfig";
     };
   };
 
