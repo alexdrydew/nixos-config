@@ -17,6 +17,8 @@ in
         ../common/gh.nix
         ../common/packages.nix
         ../common/nixCats.nix
+        ../common/alacritty.nix
+        ./sketchybar
       ];
       home = {
         enableNixpkgsReleaseCheck = false;

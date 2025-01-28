@@ -36,6 +36,7 @@ in
       { path = "/Applications/Slack.app/"; }
       { path = "/Applications/Telegram.app/"; }
       { path = "/Applications/Google Chrome.app/"; }
+      { path = "${home}/Applications/Home Manager Apps/Alacritty.app"; }
       { path = "${pkgs.jetbrains.pycharm-professional}/Applications/PyCharm.app/"; }
       { path = "${pkgs.jetbrains.webstorm}/Applications/WebStorm.app/"; }
       { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
@@ -65,6 +66,7 @@ in
           "com.apple.keyboard.fnState" = true;
 
           NSAutomaticWindowAnimationsEnabled = false;
+          _HIHideMenuBar = true;
         };
 
         dock = {
@@ -90,6 +92,7 @@ in
     power.sleep.display = "never";
     services.sketchybar = {
       enable = true;
+      package = pkgs.sketchybar;
     };
   };
 }

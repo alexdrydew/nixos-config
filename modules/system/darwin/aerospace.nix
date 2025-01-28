@@ -19,14 +19,14 @@
 
       gaps = {
         inner = {
-          horizontal = 0;
-          vertical = 0;
+          horizontal = 4;
+          vertical = 4;
         };
         outer = {
-          left = 8;
-          bottom = 8;
-          top = 8;
-          right = 8;
+          left = 4;
+          bottom = 4;
+          top = 4;
+          right = 4;
         };
       };
 
