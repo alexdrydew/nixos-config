@@ -17,7 +17,7 @@ in
         ../common/gh.nix
         ../common/packages.nix
         ../common/nixCats.nix
-        ../common/alacritty.nix
+        ../common/alacritty
         ./sketchybar
       ];
       home = {

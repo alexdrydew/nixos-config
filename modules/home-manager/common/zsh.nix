@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, osConfig, ... }:
 {
   home.packages = with pkgs; [
     oh-my-zsh
@@ -59,6 +59,16 @@
 
       # Toloka
       alias tlk='$HOME/source/frontend/common/infra/cli/bin/entrypoint'
+      ${
+        if osConfig.homebrew.enable then ''
+
+          # Homebrew 
+          if [[ $(uname -m) == 'arm64' ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+          fi
+        ''
+        else ""
+      }
     '';
 
     envExtra = ''

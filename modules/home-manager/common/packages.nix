@@ -9,7 +9,6 @@ in
     nix-index
     azure-cli
     k9s
-    bazel_7
     bazel-watcher
     # bazel-lsp
     # teleport
@@ -18,6 +17,7 @@ in
     temporal-cli
     fnm
     aider-chat
+    rsync
 
     # Rust
     (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
