@@ -1,2 +1,15 @@
+general.import = [
+    "~/.config/alacritty/themes/themes/github_dark.toml"
+]
+
 [font]
-normal = "jetbrains-mono"
+normal.family = "JetBrains Mono"
+
+[window]
+decorations = "Buttonless"
+option_as_alt = "Both"
+padding.x = 10
+padding.y = 10
+
+opacity = 0.9
+blur = true

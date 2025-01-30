@@ -16,8 +16,9 @@ in
         ../common/ssh.nix
         ../common/gh.nix
         ../common/packages.nix
-        ../common/nixCats.nix
+        ../common/nixCats
         ../common/alacritty
+        ../common/kitty
         ./sketchybar
       ];
       home = {

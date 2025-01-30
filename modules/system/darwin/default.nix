@@ -37,7 +37,8 @@ in
       { path = "/Applications/Telegram.app/"; }
       { path = "/Applications/Google Chrome.app/"; }
       { path = "${home}/Applications/Home Manager Apps/Alacritty.app"; }
-      { path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app/Contents/MacOS/idea"; }
+      { path = "${home}/Applications/Home Manager Apps/kitty.app"; }
+      { path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app"; }
       { path = "/nix/store/s2lafg3hb8yai0h63hrllrbh0g0cisvf-idea-community-2024.3.1/Applications/IntelliJ IDEA CE.app"; }
       { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
       { path = "/Applications/Docker.app/"; }
