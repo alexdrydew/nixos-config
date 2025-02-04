@@ -17,7 +17,6 @@ in
         ../common/gh.nix
         ../common/packages.nix
         ../common/nixCats
-        ../common/alacritty
         ../common/kitty
         ./sketchybar
       ];

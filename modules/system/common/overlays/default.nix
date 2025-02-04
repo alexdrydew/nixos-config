@@ -9,5 +9,7 @@
         (n: (match ".*\\.nix" n != null ||
         pathExists (path + ("/" + n + "/default.nix"))) &&
         n != "default.nix")
-        (attrNames (readDir path))) ++ [ inputs.rust-overlay.overlays.default ];
+        (attrNames (readDir path))) ++ [
+      inputs.rust-overlay.overlays.default
+    ];
 }

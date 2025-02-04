@@ -8,6 +8,5 @@ _:
 
   # Communication Tools
   "discord"
-  "notion"
   "telegram"
 ]

@@ -20,7 +20,7 @@ in
     rsync
 
     # Rust
-    (rust-bin.stable.latest.default.override { extensions = [ "rust-src" ]; })
+    # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
     gcc
 
     # Go
@@ -84,5 +84,7 @@ in
     pkgs-unstable.dbeaver-bin
     obsidian
     dejavu_fonts
-  ];
+  ] ++ (with pkgs-unstable; [
+    firefox-unwrapped
+  ]);
 }

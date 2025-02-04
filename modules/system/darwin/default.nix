@@ -36,10 +36,9 @@ in
       { path = "/Applications/Slack.app/"; }
       { path = "/Applications/Telegram.app/"; }
       { path = "/Applications/Google Chrome.app/"; }
-      { path = "${home}/Applications/Home Manager Apps/Alacritty.app"; }
+      { path = "/Applications/Firefox.app/"; }
       { path = "${home}/Applications/Home Manager Apps/kitty.app"; }
       { path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app"; }
-      { path = "/nix/store/s2lafg3hb8yai0h63hrllrbh0g0cisvf-idea-community-2024.3.1/Applications/IntelliJ IDEA CE.app"; }
       { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
       { path = "/Applications/Docker.app/"; }
       { path = "${pkgs.obsidian}/Applications/Obsidian.app/"; }
@@ -57,8 +56,8 @@ in
           AppleShowAllExtensions = true;
           ApplePressAndHoldEnabled = false;
 
-          KeyRepeat = 2; # Values: 120, 90, 60, 30, 12, 6, 2
-          InitialKeyRepeat = 15; # Values: 120, 94, 68, 35, 25, 15
+          KeyRepeat = 2;
+          InitialKeyRepeat = 15;
 
           "com.apple.mouse.tapBehavior" = 1;
           "com.apple.sound.beep.volume" = 0.0;
