@@ -1,4 +1,4 @@
-{ userConfig, config, pkgs, ... }:
+{ userConfig, pkgs, ... }:
 let
   name = userConfig.userName;
   email = userConfig.email;
