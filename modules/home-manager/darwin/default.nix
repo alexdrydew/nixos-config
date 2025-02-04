@@ -9,7 +9,7 @@ in
 
   home-manager = {
     useGlobalPkgs = true;
-    users.${user} = { pkgs, config, lib, ... }: {
+    users.${user} = { ... }: {
       imports = [
         ../common/zsh.nix
         ../common/git.nix
@@ -18,7 +18,9 @@ in
         ../common/packages.nix
         ../common/nixCats
         ../common/kitty
+        ../common/firefox.nix
         ./sketchybar
+        ./packages.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;

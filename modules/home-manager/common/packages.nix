@@ -1,7 +1,4 @@
-{ pkgs, pkgs-unstable, inputs, ... }:
-let
-  bazel-lsp = pkgs.callPackage ./bazel-lsp.nix { };
-in
+{ pkgs, pkgs-unstable, ... }:
 {
   home.packages = with pkgs; [
     nil
@@ -84,7 +81,5 @@ in
     pkgs-unstable.dbeaver-bin
     obsidian
     dejavu_fonts
-  ] ++ (with pkgs-unstable; [
-    firefox-unwrapped
-  ]);
+  ];
 }

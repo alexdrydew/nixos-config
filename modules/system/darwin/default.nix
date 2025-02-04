@@ -32,22 +32,24 @@ in
     };
 
     # Fully declarative dock using the latest from Nix Store
-    local.dock.entries = [
-      { path = "/Applications/Slack.app/"; }
-      { path = "/Applications/Telegram.app/"; }
-      { path = "/Applications/Google Chrome.app/"; }
-      { path = "/Applications/Firefox.app/"; }
-      { path = "${home}/Applications/Home Manager Apps/kitty.app"; }
-      { path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app"; }
-      { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
-      { path = "/Applications/Docker.app/"; }
-      { path = "${pkgs.obsidian}/Applications/Obsidian.app/"; }
-      {
-        path = "${config.users.users.${user}.home}/Downloads";
-        section = "others";
-        options = "--sort name --view grid --display folder";
-      }
-    ];
+    local.dock = {
+      enable = true;
+      entries = [
+        { path = "/Applications/Slack.app/"; }
+        { path = "/Applications/Telegram.app/"; }
+        { path = "${home}/Applications/Home Manager Apps/Firefox.app"; }
+        { path = "${home}/Applications/Home Manager Apps/kitty.app"; }
+        { path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app"; }
+        { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
+        { path = "/Applications/Docker.app/"; }
+        { path = "${pkgs.obsidian}/Applications/Obsidian.app/"; }
+        {
+          path = "${config.users.users.${user}.home}/Downloads";
+          section = "others";
+          options = "--sort name --view grid --display folder";
+        }
+      ];
+    };
     system = {
       stateVersion = config.darwin.stateVersion;
       checks.verifyNixPath = false;

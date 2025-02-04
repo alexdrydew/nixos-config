@@ -42,17 +42,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixCats = {
-      url = "path:./flakes/kickstart-nvim";
+      url = "path:flakes/kickstart-nvim";
     };
   };
 
   outputs =
-    { self
-    , darwin
-    , nix-homebrew
-    , homebrew-bundle
-    , homebrew-core
-    , homebrew-cask
+    { darwin
     , home-manager
     , nixpkgs
     , nixpkgs-unstable
@@ -64,8 +59,7 @@
       defaultUserConfig = import ./users/default.nix;
       mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
         pkgs-unstable = import nixpkgs-unstable { inherit system; };
-        userConfig = defaultUserConfig;
-        inherit inputs;
+        inherit inputs userConfig;
       };
     in
     {
@@ -97,7 +91,7 @@
             nixos-wsl.nixosModules.default
             vscode-server.nixosModules.default
             # run `systemctl --user enable auto-fix-vscode-server.service`
-            ({ config, pkgs, ... }: {
+            ({ ... }: {
               services.vscode-server.enable = true;
               services.vscode-server.enableFHS = true;
             })
