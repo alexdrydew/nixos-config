@@ -58,7 +58,7 @@
       export PATH=$PATH:$GO_PATH/bin
 
       # Toloka
-      alias tlk='$HOME/source/frontend/common/infra/cli/bin/entrypoint'
+      alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
       ${
         if osConfig.homebrew.enable then ''
 

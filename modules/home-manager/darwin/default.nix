@@ -19,6 +19,7 @@ in
         ../common/nixCats
         ../common/kitty
         ../common/firefox.nix
+        ../common/k9s.nix
         ./sketchybar
         ./packages.nix
       ];

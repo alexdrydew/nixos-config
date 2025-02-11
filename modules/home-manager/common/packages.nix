@@ -5,7 +5,6 @@
     nixpkgs-fmt
     nix-index
     azure-cli
-    k9s
     bazel-watcher
     # bazel-lsp
     # teleport
