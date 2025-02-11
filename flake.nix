@@ -70,25 +70,14 @@
           specialArgs = mkSpecialArgs {
             inherit system; userConfig = import ./users/toloka.nix;
           };
-          modules = [
-            ./hosts/toloka-macbook
-          ];
+          modules = [ ./hosts/toloka-macbook ];
         };
       };
       nixosConfigurations = {
         wsl = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = mkSpecialArgs { inherit system; };
-          modules = [
-            nixos-wsl.nixosModules.default
-            vscode-server.nixosModules.default
-            # run `systemctl --user enable auto-fix-vscode-server.service`
-            ({ ... }: {
-              services.vscode-server.enable = true;
-              services.vscode-server.enableFHS = true;
-            })
-            ./hosts/wsl
-          ];
+          modules = [ ./hosts/wsl ];
         };
       };
     };
