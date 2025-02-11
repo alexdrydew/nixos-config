@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    ../../modules/common/headless
+    ../../modules/system/nixos
   ];
 
   wsl.enable = true;

@@ -1,26 +1,25 @@
 { userConfig, pkgs-unstable, inputs, ... }:
+
 let
   user = userConfig.userName;
 in
 {
   imports = [
-    inputs.home-manager.darwinModules.home-manager
+    ../common
+    ../../home-manager/nixos
   ];
 
   home-manager = {
     useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = { inherit userConfig; inherit pkgs-unstable; inherit inputs; };
     users.${user} = { ... }: {
-      imports = [
-        ../common
-        ./firefox.nix
-        ./sketchybar
-        ./packages.nix
-      ];
       home = {
         enableNixpkgsReleaseCheck = false;
+        username = "${user}";
+        homeDirectory = "/home/${user}";
         stateVersion = "24.05";
       };
     };
-    extraSpecialArgs = { inherit userConfig; inherit pkgs-unstable; inherit inputs; };
   };
 }

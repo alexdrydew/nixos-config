@@ -4,7 +4,7 @@ let
 in
 {
   imports = [
-    inputs.home-manager.darwinModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   home-manager = {
@@ -12,9 +12,6 @@ in
     users.${user} = { ... }: {
       imports = [
         ../common
-        ./firefox.nix
-        ./sketchybar
-        ./packages.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;

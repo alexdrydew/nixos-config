@@ -80,15 +80,6 @@
           system = "x86_64-linux";
           specialArgs = mkSpecialArgs { inherit system; };
           modules = [
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = specialArgs;
-                users.${defaultUserConfig.userName} = import ./modules/nixos/home-manager.nix;
-              };
-            }
             nixos-wsl.nixosModules.default
             vscode-server.nixosModules.default
             # run `systemctl --user enable auto-fix-vscode-server.service`
