@@ -15,6 +15,13 @@ in
     })
   ];
 
+  home-manager.sharedModules = [
+    {
+      # WSL uses host VSCode
+      vscode.enable = false;
+    }
+  ];
+
   wsl.enable = true;
   wsl.defaultUser = user;
   networking.enableIPv6 = false;
