@@ -1,4 +1,7 @@
 { pkgs, osConfig, ... }:
+let
+  homebrew-enabled = builtins.hasAttr "homebrew" osConfig && osConfig.homebrew.enable;
+in
 {
   home.packages = with pkgs; [
     oh-my-zsh
@@ -48,11 +51,6 @@
       # Always color ls and group directories
       alias ls='ls --color=auto'
 
-      # pyenv
-      export PYENV_ROOT="$HOME/.pyenv"
-      [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-      eval "$(pyenv init -)"
-
       # Go
       export GO_PATH=$HOME/go
       export PATH=$PATH:$GO_PATH/bin
@@ -60,8 +58,7 @@
       # Toloka
       alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
       ${
-        if osConfig.homebrew.enable then ''
-
+        if homebrew-enabled then ''
           # Homebrew 
           if [[ $(uname -m) == 'arm64' ]]; then
             eval "$(/opt/homebrew/bin/brew shellenv)"

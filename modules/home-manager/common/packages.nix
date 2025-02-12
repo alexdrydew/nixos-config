@@ -71,7 +71,6 @@
     jdk21
 
     # TODO: make desktop packages togglable
-    vscode
     jetbrains.pycharm-professional
     jetbrains.webstorm
     jetbrains.idea-community

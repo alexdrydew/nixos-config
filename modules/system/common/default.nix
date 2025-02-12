@@ -1,6 +1,9 @@
 { ... }:
 {
-  imports = [ ./overlays ];
+  imports = [
+    ./overlays
+    ./nix.nix
+  ];
   nixpkgs = {
     config = {
       allowUnfree = true;
