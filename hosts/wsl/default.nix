@@ -10,8 +10,10 @@ in
     inputs.vscode-server.nixosModules.default
     # run `systemctl --user enable auto-fix-vscode-server.service`
     ({ ... }: {
-      services.vscode-server.enable = true;
-      services.vscode-server.enableFHS = true;
+      services.vscode-server = {
+        enable = true;
+        enableFHS = true;
+      };
     })
   ];
 
