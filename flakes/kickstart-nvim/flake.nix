@@ -108,6 +108,7 @@
             nixd
             stylua
             basedpyright
+            ruff
           ];
           kickstart-debug = [
             delve
@@ -246,6 +247,9 @@
             # your alias may not conflict with your other packages.
             aliases = [ "vim" ];
             # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
+
+            # so that by default nvim uses project lsps
+            suffix-path = true;
           };
           # and a set of categories that you want
           # (and other information to pass to lua)
