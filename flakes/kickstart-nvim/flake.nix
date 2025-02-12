@@ -107,6 +107,7 @@
             lua-language-server
             nixd
             stylua
+            basedpyright
           ];
           kickstart-debug = [
             delve
