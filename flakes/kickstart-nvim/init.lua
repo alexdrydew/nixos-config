@@ -646,7 +646,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       local servers = {}
       -- servers.clangd = {},
       -- servers.gopls = {},
-      servers.basedpyright = {}
+      servers.pyright = {}
       servers.ruff = {}
       -- servers.rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs

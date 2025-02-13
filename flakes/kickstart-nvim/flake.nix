@@ -107,7 +107,7 @@
             lua-language-server
             nixd
             stylua
-            basedpyright
+            pyright
             ruff
           ];
           kickstart-debug = [

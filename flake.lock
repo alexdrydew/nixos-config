@@ -209,7 +209,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-HpBEO0Gkv4XlPzi6wFxdCsXNP5X+PZRg2KDpVG6QPL8=",
+        "narHash": "sha256-19Iz5R0/Yxl1bqR3XOdAiKYntEAAAR8zRuXhfPb3yls=",
         "path": "flakes/kickstart-nvim",
         "type": "path"
       },
