@@ -283,7 +283,12 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
   -- "gc" to comment visual regions/lines
   -- NOTE: nixCats: nix downloads it with a different file name.
   -- tell lazy about that.
-  { 'numToStr/Comment.nvim', name = 'comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    name = 'comment.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
+    opts = {},
+  },
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
@@ -292,6 +297,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'kickstart-gitsigns',
     opts = {
       signs = {
         add = { text = '+' },
@@ -320,6 +326,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     config = function() -- This is the function that runs, AFTER loading
       require('which-key').setup()
@@ -356,6 +363,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
 
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     event = 'VimEnter',
     branch = '0.1.x',
     dependencies = {
@@ -377,10 +385,10 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
           return vim.fn.executable 'make' == 1
         end),
       },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
+      { 'nvim-telescope/telescope-ui-select.nvim', enabled = require('nixCatsUtils').enableForCategory 'general' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font and require('nixCatsUtils').enableForCategory 'general' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -747,6 +755,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     lazy = false,
     keys = {
       {
@@ -786,6 +795,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
 
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
@@ -904,6 +914,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
       -- Load the colorscheme here.
@@ -917,10 +928,17 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  {
+    'folke/todo-comments.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
 
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     config = function()
       -- Better Around/Inside textobjects
       --
@@ -958,6 +976,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     build = require('nixCatsUtils').lazyAdd ':TSUpdate',
     opts = {
       -- NOTE: nixCats: use lazyAdd to only set these 2 options if nix wasnt involved.
