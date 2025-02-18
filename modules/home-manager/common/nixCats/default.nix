@@ -20,7 +20,7 @@ in
       #  ];
       #  # see the packageDefinitions below.
       #  # This says which of those to install.
-      #  packageNames = [ "myHomeModuleNvim" ];
+      packageNames = [ "nvim" "nvim-vscode" ];
 
       #  luaPath = "${./.}";
 

@@ -266,7 +266,10 @@ local lazyOptions = {
 -- argument, the path to lazy.nvim as downloaded by nix, or nil, before the normal arguments.
 require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 'lazy.nvim' }, {
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  {
+    'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+    enabled = require('nixCatsUtils').enableForCategory 'general',
+  },
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -462,6 +465,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       {
@@ -646,8 +650,18 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       local servers = {}
       -- servers.clangd = {},
       -- servers.gopls = {},
-      servers.pyright = {}
-      servers.ruff = {}
+      servers.basedpyright = {
+        disableOrganizeImports = true,
+        basedpyright = {
+          analysis = {
+            -- ignore = { "*" },
+            typeCheckingMode = 'standard',
+            diagnosticMode = 'openFilesOnly',
+            useLibraryCodeForTypes = true,
+          },
+        },
+      }
+      -- servers.ruff = {}
       -- servers.rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --

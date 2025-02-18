@@ -15,6 +15,7 @@ in
         ./firefox.nix
         ./sketchybar
         ./packages.nix
+        ./unnaturalscrollwheels.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;
@@ -23,4 +24,9 @@ in
     };
     extraSpecialArgs = { inherit userConfig; inherit pkgs-unstable; inherit inputs; };
   };
+
+  system.activationScripts.postUserActivation.text = ''
+    # Following line should allow us to avoid a logout/login cycle
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  '';
 }

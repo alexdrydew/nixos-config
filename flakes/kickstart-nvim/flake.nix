@@ -107,7 +107,7 @@
             lua-language-server
             nixd
             stylua
-            pyright
+            basedpyright
             ruff
           ];
           kickstart-debug = [
@@ -269,6 +269,44 @@
             # so it doesnt have a category above.
             # but we can still send the info from nix to lua that we want it!
             kickstart-gitsigns = true;
+
+            # we can pass whatever we want actually.
+            have_nerd_font = false;
+
+            example = {
+              youCan = "add more than just booleans";
+              toThisSet = [
+                "and the contents of this categories set"
+                "will be accessible to your lua with"
+                "nixCats('path.to.value')"
+                "see :help nixCats"
+                "and type :NixCats to see the categories set in nvim"
+              ];
+            };
+          };
+        };
+        nvim-vscode = { ... }: {
+          settings = {
+            wrapRc = true;
+            aliases = [ "nvim-code" ];
+            suffix-path = true;
+          };
+          categories = {
+            general = false;
+            gitPlugins = false;
+            customPlugins = false;
+            test = true;
+
+            kickstart-autopairs = false;
+            kickstart-neo-tree = false;
+            kickstart-debug = false;
+            kickstart-lint = false;
+            kickstart-indent_line = false;
+
+            # this kickstart extra didnt require any extra plugins
+            # so it doesnt have a category above.
+            # but we can still send the info from nix to lua that we want it!
+            kickstart-gitsigns = false;
 
             # we can pass whatever we want actually.
             have_nerd_font = false;
