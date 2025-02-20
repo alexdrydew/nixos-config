@@ -1,6 +1,6 @@
-{ userConfig, pkgs-unstable, inputs, ... }:
+{ config, pkgs-unstable, inputs, ... }:
 let
-  user = userConfig.userName;
+  user = config.userConfig.userName;
 in
 {
   imports = [
@@ -22,7 +22,7 @@ in
         stateVersion = "24.05";
       };
     };
-    extraSpecialArgs = { inherit userConfig; inherit pkgs-unstable; inherit inputs; };
+    extraSpecialArgs = { inherit pkgs-unstable; inherit inputs; };
   };
 
   system.activationScripts.postUserActivation.text = ''

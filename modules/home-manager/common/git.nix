@@ -1,7 +1,7 @@
-{ userConfig, pkgs, ... }:
+{ osConfig, pkgs, ... }:
 let
-  name = userConfig.userName;
-  email = userConfig.email;
+  name = osConfig.userConfig.userName;
+  email = osConfig.userConfig.email;
 in
 {
   home.packages = with pkgs;

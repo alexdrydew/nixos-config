@@ -1,7 +1,7 @@
-{ userConfig, inputs, ... }:
+{ config, inputs, ... }:
 
 let
-  user = userConfig.userName;
+  user = config.userConfig.userName;
 in
 {
   imports = [

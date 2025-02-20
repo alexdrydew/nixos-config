@@ -1,6 +1,6 @@
-{ lib, pkgs, osConfig, userConfig, ... }:
+{ lib, pkgs, osConfig, ... }:
 let
-  user = userConfig.userName;
+  user = osConfig.userConfig.userName;
   home = osConfig.users.users.${user}.home;
 in
 {

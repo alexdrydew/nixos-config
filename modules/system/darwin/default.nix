@@ -1,7 +1,7 @@
-{ config, pkgs, pkgs-unstable, userConfig, lib, ... }:
+{ config, pkgs, pkgs-unstable, lib, ... }:
 
 let
-  user = userConfig.userName;
+  user = config.userConfig.userName;
   home = "/Users/${user}";
 in
 {

@@ -1,8 +1,7 @@
-{ userConfig, pkgs-unstable, inputs, ... }:
+{ config, pkgs-unstable, inputs, ... }:
 let
-  user = userConfig.userName;
-in
-{
+  user = config.userConfig.userName;
+in {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -18,6 +17,6 @@ in
         stateVersion = "24.05";
       };
     };
-    extraSpecialArgs = { inherit userConfig; inherit pkgs-unstable; inherit inputs; };
+    extraSpecialArgs = { inherit pkgs-unstable; inherit inputs; };
   };
 }

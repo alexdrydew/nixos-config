@@ -1,8 +1,8 @@
-{ pkgs, userConfig, pkgs-unstable, inputs, ... }:
+{ pkgs, config, pkgs-unstable, inputs, ... }:
 
 let
-  user = userConfig.userName;
-  keys = userConfig.keys;
+  user = config.userConfig.userName;
+  keys = config.keys;
 in
 {
   imports = [
@@ -19,7 +19,7 @@ in
     nix-ld.enable = true;
   };
 
-  time.timeZone = userConfig.timeZone;
+  time.timeZone = config.userConfig.timeZone;
 
   programs.zsh.enable = true;
   users.users = {
@@ -40,7 +40,7 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit userConfig; inherit pkgs-unstable; inherit inputs; };
+    extraSpecialArgs = { inherit pkgs-unstable; inherit inputs; };
     users.${user} = { ... }: {
       home = {
         enableNixpkgsReleaseCheck = false;

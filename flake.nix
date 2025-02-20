@@ -49,18 +49,14 @@
 
   outputs =
     { darwin
-    , home-manager
     , nixpkgs
     , nixpkgs-unstable
-    , nixos-wsl
-    , vscode-server
     , ...
     } @inputs:
     let
-      defaultUserConfig = import ./users/default.nix;
-      mkSpecialArgs = { system, userConfig ? defaultUserConfig }: {
+      mkSpecialArgs = { system }: {
         pkgs-unstable = import nixpkgs-unstable { inherit system; };
-        inherit inputs userConfig;
+        inherit inputs;
       };
     in
     {
@@ -68,16 +64,22 @@
         toloka-macbook = darwin.lib.darwinSystem rec {
           system = "aarch64-darwin";
           specialArgs = mkSpecialArgs {
-            inherit system; userConfig = import ./users/toloka.nix;
+            inherit system; 
           };
-          modules = [ ./hosts/toloka-macbook ];
+          modules = [
+            ./modules/users/toloka.nix
+            ./hosts/toloka-macbook
+          ];
         };
       };
       nixosConfigurations = {
         wsl = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = mkSpecialArgs { inherit system; };
-          modules = [ ./hosts/wsl ];
+          modules = [ 
+            ./modules/users/personal.nix
+            ./hosts/wsl
+          ];
         };
       };
     };

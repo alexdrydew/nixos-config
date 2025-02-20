@@ -1,6 +1,6 @@
-{ pkgs, userConfig, ... }:
+{ pkgs, config, ... }:
 let
-  user = userConfig.userName;
+  user = config.userConfig.userName;
 in
 {
   nix = {

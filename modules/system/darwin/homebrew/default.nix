@@ -1,6 +1,6 @@
-{ pkgs, userConfig, inputs, ... }:
+{ pkgs, config, inputs, ... }:
 let
-  user = userConfig.userName;
+  user = config.userConfig.userName;
 in
 {
   imports = [
