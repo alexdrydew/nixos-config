@@ -45,12 +45,17 @@
       url = "path:flakes/kickstart-nvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { darwin
     , nixpkgs
     , nixpkgs-unstable
+    , lix-module
     , ...
     } @inputs:
     let
@@ -67,6 +72,7 @@
             inherit system; 
           };
           modules = [
+            lix-module.nixosModules.default
             ./modules/users/toloka.nix
             ./hosts/toloka-macbook
           ];

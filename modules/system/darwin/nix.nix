@@ -4,7 +4,8 @@ let
 in
 {
   nix = {
-    package = pkgs.nix;
+    package = pkgs.lix;
+
     settings = {
       trusted-users = [ "@admin" "${user}" ];
       substituters = [ "https://nix-community.cachix.org" ];
