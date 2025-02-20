@@ -4,22 +4,16 @@ let
 in
 {
   home.packages = with pkgs; [
-    oh-my-zsh
     zsh
+    zsh-autosuggestions
   ];
   programs.zsh = {
     enable = true;
     autocd = false;
     plugins = [ ];
-    oh-my-zsh = {
-      enable = true;
-      theme = "af-magic";
 
-      plugins = [
-        "git"
-        "docker"
-      ];
-    };
+    enableCompletion = true;
+    autosuggestion.enable = true;
 
     initExtraFirst = ''
       if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
@@ -70,5 +64,8 @@ in
 
     envExtra = ''
     '';
+  };
+  programs.starship = {
+    enable = true; 
   };
 }
