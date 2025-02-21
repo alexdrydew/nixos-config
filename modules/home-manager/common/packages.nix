@@ -14,6 +14,7 @@
     fnm
     aider-chat
     rsync
+    graphviz
 
     # Rust
     # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })

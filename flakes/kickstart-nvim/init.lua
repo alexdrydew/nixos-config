@@ -251,6 +251,9 @@ local lazyOptions = {
   },
 }
 
+-- local statusline = require('lsp-status')
+-- statusline.register_progress()
+
 -- [[ Configure and install plugins ]]
 --
 --  To check the current status of your plugins, run
@@ -370,20 +373,6 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
         'nvim-telescope/telescope-fzf-native.nvim',
-
-        -- `build` is used to run some command when the plugin is installed/updated.
-        -- This is only run then, not every time Neovim starts up.
-        -- NOTE: nixCats: use lazyAdd to only run build steps if nix wasnt involved.
-        -- because nix already did this.
-        build = require('nixCatsUtils').lazyAdd 'make',
-
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
-        -- NOTE: nixCats: use lazyAdd to only add this if nix wasnt involved.
-        -- because nix built it already, so who cares if we have make in the path.
-        cond = require('nixCatsUtils').lazyAdd(function()
-          return vim.fn.executable 'make' == 1
-        end),
       },
       { 'nvim-telescope/telescope-ui-select.nvim', enabled = require('nixCatsUtils').enableForCategory 'general' },
 
@@ -475,27 +464,6 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
     'neovim/nvim-lspconfig',
     enabled = require('nixCatsUtils').enableForCategory 'general',
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      {
-        'williamboman/mason.nvim',
-        -- NOTE: nixCats: use lazyAdd to only enable mason if nix wasnt involved.
-        -- because we will be using nix to download things instead.
-        enabled = require('nixCatsUtils').lazyAdd(true, false),
-        config = true,
-      }, -- NOTE: Must be loaded before dependants
-      {
-        'williamboman/mason-lspconfig.nvim',
-        -- NOTE: nixCats: use lazyAdd to only enable mason if nix wasnt involved.
-        -- because we will be using nix to download things instead.
-        enabled = require('nixCatsUtils').lazyAdd(true, false),
-      },
-      {
-        'WhoIsSethDaniel/mason-tool-installer.nvim',
-        -- NOTE: nixCats: use lazyAdd to only enable mason if nix wasnt involved.
-        -- because we will be using nix to download things instead.
-        enabled = require('nixCatsUtils').lazyAdd(true, false),
-      },
-
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
@@ -659,17 +627,23 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       -- servers.clangd = {},
       -- servers.gopls = {},
       servers.basedpyright = {
-        disableOrganizeImports = true,
         basedpyright = {
           analysis = {
             -- ignore = { "*" },
-            typeCheckingMode = 'standard',
+            disableOrganizeImports = true,
+            typeCheckingMode = 'basic',
             diagnosticMode = 'openFilesOnly',
             useLibraryCodeForTypes = true,
+            exclude = {
+              '.venv/**',
+              'bazel-*/**',
+            },
+            indexing = true,
           },
         },
       }
-      -- servers.ruff = {}
+
+      servers.ruff = {}
       -- servers.rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -705,49 +679,14 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
         },
       }
 
-      -- NOTE: nixCats: if nix, use lspconfig instead of mason
-      -- You could MAKE it work, using lspsAndRuntimeDeps and sharedLibraries in nixCats
-      -- but don't... its not worth it. Just add the lsp to lspsAndRuntimeDeps.
-      if require('nixCatsUtils').isNixCats then
-        for server_name, _ in pairs(servers) do
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-            cmd = (servers[server_name] or {}).cmd,
-            root_pattern = (servers[server_name] or {}).root_pattern,
-          }
-        end
-      else
-        -- NOTE: nixCats: and if no nix, do it the normal way
-
-        -- Ensure the servers and tools above are installed
-        --  To check the current status of installed tools and/or manually install
-        --  other tools, you can run
-        --    :Mason
-        --
-        --  You can press `g?` for help in this menu.
-        require('mason').setup()
-
-        -- You can add other tools here that you want Mason to install
-        -- for you, so that they are available from within Neovim.
-        local ensure_installed = vim.tbl_keys(servers or {})
-        vim.list_extend(ensure_installed, {
-          'stylua', -- Used to format Lua code
-        })
-        require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-        require('mason-lspconfig').setup {
-          handlers = {
-            function(server_name)
-              local server = servers[server_name] or {}
-              -- This handles overriding only values explicitly passed
-              -- by the server configuration above. Useful when disabling
-              -- certain features of an LSP (for example, turning off formatting for tsserver)
-              server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-              require('lspconfig')[server_name].setup(server)
-            end,
-          },
+      for server_name, _ in pairs(servers) do
+        require('lspconfig')[server_name].setup {
+          capabilities = capabilities,
+          settings = servers[server_name],
+          filetypes = (servers[server_name] or {}).filetypes,
+          cmd = (servers[server_name] or {}).cmd,
+          root_dir = (servers[server_name] or {}).root_dir,
+          single_file_support = (servers[server_name] or {}).single_file_support,
         }
       end
     end,
@@ -804,15 +743,6 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
         -- NOTE: nixCats: nix downloads it with a different file name.
         -- tell lazy about that.
         name = 'luasnip',
-        build = require('nixCatsUtils').lazyAdd((function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)()),
         dependencies = {
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
@@ -954,36 +884,70 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
-
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+  {
+    'nvim-lualine/lualine.nvim',
+    enabled = require('nixCatsUtils').enableForCategory 'general',
+    dependencies = {
+      'nvim-lua/lsp-status.nvim',
+    },
+
+    require('lualine').setup {
+      options = {
+        icons_enabled = true,
+        theme = 'tokyonight-night',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+          statusline = {},
+          winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        always_show_tabline = true,
+        globalstatus = false,
+        refresh = {
+          statusline = 100,
+          tabline = 100,
+          winbar = 100,
+        },
+      },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = {
+          function()
+            return require('lsp-status').status_progress()
+          end,
+          'encoding',
+          'fileformat',
+          'filetype',
+        },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
+    },
+  },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     enabled = require('nixCatsUtils').enableForCategory 'general',
-    build = require('nixCatsUtils').lazyAdd ':TSUpdate',
     opts = {
-      -- NOTE: nixCats: use lazyAdd to only set these 2 options if nix wasnt involved.
-      -- because nix already ensured they were installed.
-      ensure_installed = require('nixCatsUtils').lazyAdd { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
-      auto_install = require('nixCatsUtils').lazyAdd(true, false),
-
       highlight = {
         enable = true,
         -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
