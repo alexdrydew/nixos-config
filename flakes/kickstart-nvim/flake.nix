@@ -154,6 +154,11 @@
             #   ]
             # ))
           ];
+          ai = [
+            copilot-lua
+            copilot-lualine
+            copilot-cmp
+          ];
           kickstart-debug = [
             nvim-dap
             nvim-dap-ui
@@ -257,6 +262,7 @@
           # (and other information to pass to lua)
           categories = {
             general = true;
+            ai = true;
             gitPlugins = true;
             customPlugins = true;
             test = true;
@@ -295,6 +301,7 @@
           };
           categories = {
             general = false;
+            ai = false;
             gitPlugins = false;
             customPlugins = false;
             test = true;

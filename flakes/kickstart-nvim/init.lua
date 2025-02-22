@@ -762,6 +762,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      require('nixCatsUtils').enableForCategory 'ai' and 'zbirenbaum/copilot-cmp' or nil,
     },
     config = function()
       -- See `:help cmp`
@@ -798,7 +799,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
-          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
           --['<Tab>'] = cmp.mapping.select_next_item(),
           --['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
@@ -833,6 +834,8 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          -- { name = 'copilot' },
+          (require('nixCatsUtils').enableForCategory 'ai' and { name = 'copilot' } or nil),
         },
       }
     end,
@@ -908,7 +911,7 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
         ignore_focus = {},
         always_divide_middle = true,
         always_show_tabline = true,
-        globalstatus = false,
+        globalstatus = true,
         refresh = {
           statusline = 100,
           tabline = 100,
@@ -918,11 +921,14 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_c = {
+          {
+            'filename',
+            path = 1, -- relative path
+          },
+        },
         lualine_x = {
-          function()
-            return require('lsp-status').status_progress()
-          end,
+          'copilot',
           'encoding',
           'fileformat',
           'filetype',
@@ -971,6 +977,42 @@ require('nixCatsUtils.lazyCat').setup(nixCats.pawsible { 'allPlugins', 'start', 
       --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+    end,
+  },
+  {
+    'zbirenbaum/copilot.lua',
+    enabled = require('nixCatsUtils').enableForCategory 'ai',
+    opts = {
+      panel = {
+        enabled = false,
+      },
+      suggestion = {
+        enabled = false,
+      },
+      filetypes = {
+        yaml = false,
+        markdown = false,
+        help = false,
+        gitcommit = false,
+        gitrebase = false,
+        hgcommit = false,
+        svn = false,
+        cvs = false,
+        ['.'] = false,
+      },
+      copilot_node_command = 'node', -- Node.js version must be > 18.x
+      server_opts_overrides = {},
+    },
+  },
+  {
+    'AndreM222/copilot-lualine',
+    enabled = require('nixCatsUtils').enableForCategory 'ai',
+  },
+  {
+    'zbirenbaum/copilot-cmp',
+    enabled = require('nixCatsUtils').enableForCategory 'ai',
+    config = function()
+      require('copilot_cmp').setup()
     end,
   },
 
