@@ -2,7 +2,7 @@
 
 let
   user = config.userConfig.userName;
-  keys = config.keys;
+  keys = config.userConfig.keys;
 in
 {
   imports = [
