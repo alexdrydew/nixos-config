@@ -16,6 +16,13 @@
     extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
   };
 
+  home-manager.sharedModules = [
+    {
+      home.packageSets.graphical = false;
+      home.packageSets.devTools = false;
+    }
+  ];
+
   time.timeZone = config.userConfig.timeZone;
 
   networking = {
