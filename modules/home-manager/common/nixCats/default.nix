@@ -222,7 +222,7 @@ let
         wrapRc = true;
         # IMPORTANT:
         # your alias may not conflict with your other packages.
-        aliases = [ "vim" ];
+        aliases = [ "nvim-cats" ];
         # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
 
         # so that by default nvim uses project lsps
@@ -319,7 +319,7 @@ in
     # this value, nixCats is the defaultPackageName you pass to mkNixosModules
     # it will be the namespace for your options.
     nvim = {
-      enable = false;
+      enable = true;
       packageNames = [ "nvim" "nvim-vscode" ];
     };
   };

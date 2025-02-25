@@ -91,6 +91,14 @@
             ./hosts/wsl
           ];
         };
+        htpc = nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = mkSpecialArgs { inherit system; };
+          modules = [
+            ./modules/users/personal.nix
+            ./hosts/htpc
+          ];
+        };
       };
     };
 }
