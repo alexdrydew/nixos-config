@@ -2,7 +2,6 @@
 
 let
   user = config.userConfig.userName;
-  keys = config.userConfig.keys;
 in
 {
   imports = [
@@ -30,11 +29,6 @@ in
         "docker"
       ];
       shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = keys;
-    };
-
-    root = {
-      openssh.authorizedKeys.keys = keys;
     };
   };
   home-manager = {
