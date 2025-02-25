@@ -319,7 +319,7 @@ in
     # this value, nixCats is the defaultPackageName you pass to mkNixosModules
     # it will be the namespace for your options.
     nvim = {
-      enable = true;
+      enable = false;
       packageNames = [ "nvim" "nvim-vscode" ];
     };
   };

@@ -5,9 +5,10 @@
     ./ssh.nix
     ./gh.nix
     ./packages.nix
-    ./nixCats
+    # ./nixCats
     ./kitty
     ./vscode.nix
     ./k9s.nix
+    ./nvf
   ];
 }
