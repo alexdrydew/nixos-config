@@ -1,84 +1,95 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, lib, config, ... }:
 {
-  home.packages = with pkgs; [
-    nil
-    nixpkgs-fmt
-    nix-index
-    azure-cli
-    bazel-watcher
-    # bazel-lsp
-    # teleport
-    kubelogin
-    postgresql
-    temporal-cli
-    fnm
-    aider-chat
-    rsync
-    graphviz
+  options = {
+    home.packageSets = {
+      graphical = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+      };
+      devTools = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+      };
+    };
+  };
+  
+  config = {
+    home.packages = with pkgs; [
+      azure-cli
+      bazel-watcher
+      # bazel-lsp
+      # teleport
+      kubelogin
+      postgresql
+      temporal-cli
+      rsync
+      graphviz
 
-    # Rust
-    # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
-    gcc
+      # General packages for development and system management
+      bash-completion
+      bat
+      btop
+      killall
+      neofetch
+      openssh
+      sqlite
+      wget
+      zip
 
-    # Go
-    go
+      # Encryption and security tools
+      gnupg
+      libfido2
 
-    # General packages for development and system management
-    bash-completion
-    bat
-    btop
-    coreutils
-    killall
-    neofetch
-    openssh
-    sqlite
-    wget
-    zip
+      # Cloud-related tools and SDKs
+      docker
+      docker-compose
 
-    # Encryption and security tools
-    gnupg
-    libfido2
+      # Media-related packages
+      ffmpeg
+      fd
 
-    # Cloud-related tools and SDKs
-    docker
-    docker-compose
+      # Text and terminal utilities
+      htop
+      hunspell
+      iftop
+      jq
+      ripgrep
+      tree
+      tmux
+      unrar
+      unzip
+  ] ++ lib.optionals (config.home.packageSets.devTools) [
+      aider-chat
+      coreutils
+      fnm
+      nil
+      nixpkgs-fmt
+      nix-index
 
-    # Media-related packages
-    ffmpeg
-    fd
+      # Python packages
+      uv
+      jdk21
+      # Node.js development tools
+      nodePackages.npm # globally install npm
+      nodePackages.prettier
+      nodePackages.node2nix
+      pnpm_8
 
-    # Node.js development tools
-    nodePackages.npm # globally install npm
-    nodePackages.prettier
-    nodePackages.node2nix
-    pnpm_8
+      # Rust
+      # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
+      gcc
 
-    # Text and terminal utilities
-    htop
-    hunspell
-    iftop
-    jetbrains-mono
-    jq
-    ripgrep
-    tree
-    tmux
-    unrar
-    unzip
-
-    # Python packages
-    uv
-    # (python310.withPackages (python_pkgs: [ (tlk python_pkgs) ]))
-
-    jdk21
-
-    # TODO: make desktop packages togglable
-    jetbrains.pycharm-professional
-    jetbrains.webstorm
-    jetbrains.idea-community
-    jetbrains-mono
-    xdot
-    pkgs-unstable.dbeaver-bin
-    obsidian
-    dejavu_fonts
-  ];
+      # Go
+      go
+    ] ++ lib.optionals (config.home.packageSets.graphical) [
+        jetbrains.pycharm-professional
+        jetbrains.webstorm
+        jetbrains.idea-community
+        jetbrains-mono
+        xdot
+        pkgs-unstable.dbeaver-bin
+        obsidian
+        dejavu_fonts
+      ];
+  };
 }
