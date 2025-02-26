@@ -20,7 +20,7 @@
     {
       home.packageSets.graphical = false;
       home.packageSets.devTools = false;
-      kitty = false;
+      kitty.enable = false;
     }
   ];
 
