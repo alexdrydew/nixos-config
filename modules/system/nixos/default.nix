@@ -11,6 +11,7 @@ in
     ./hardware
     ./sudo.nix
     ./audio.nix
+    ./kodi.nix
   ];
 
   programs = {
