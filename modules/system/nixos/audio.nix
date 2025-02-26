@@ -1,7 +1,7 @@
 { lib, config, ... }:
 {
   options = {
-    audio.enable = lib.mkEnableOption // { default = true; };
+    audio.enable = lib.mkEnableOption "audio" // { default = true; };
   };
   config = lib.mkIf config.audio.enable {
     services = {
