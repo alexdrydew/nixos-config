@@ -1,20 +1,18 @@
 { pkgs, config, ... }:
-{
+let
+  user = config.userConfig.userName;
+in {
   imports = [
-    ../../modules/system/common/nix.nix
+    ../../modules/users/personal.nix
+    ../../modules/system/nixos
+    ./hardware-configuration.nix
   ];
-  boot = {
-    loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 42;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" "v4l2loopback" ];
-    kernelModules = [ "uinput" "v4l2loopback" ];
-    extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
-  };
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  networking.hostName = "nixos";
+  networking.networkmanager.enable = true;
 
   home-manager.sharedModules = [
     {
@@ -26,14 +24,28 @@
 
   time.timeZone = config.userConfig.timeZone;
 
-  networking = {
-    hostName = "htpc-alexdrydew";
-    useDHCP = false;
-    interfaces.eno1.useDHCP = true;
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
   };
   ssh-server.enable = true;
   docker.enable = false;
 
+  users.users.${user} = {
+    isNormalUser = true;
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [];
+  };
+
+  services.getty.autologinUser = user;
+  nixpkgs.config.allowUnfree = true;
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    git
+  ];
   services.sshd.enable = true;
   system.stateVersion = "24.11";
 }
