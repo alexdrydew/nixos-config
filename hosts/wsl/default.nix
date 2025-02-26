@@ -21,12 +21,15 @@ in
     {
       # WSL uses host VSCode
       vscode.enable = false;
+      home.packageSets.graphical = false;
+      home.kitty = false;
     }
   ];
 
   wsl.enable = true;
   wsl.defaultUser = user;
   networking.enableIPv6 = false;
+  hardware.nvidia.enable = true;
 
   system.stateVersion = "21.05";
 }

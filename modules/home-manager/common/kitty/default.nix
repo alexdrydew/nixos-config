@@ -1,11 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, lib, config, ... }:
 {
-  home.file."./.config/kitty/" = {
-    source = ./config;
-    recursive = true;
+  options = {
+    kitty.enable = lib.mkEnableOption "Kitty Terminal" // { default = true; };
   };
 
-  home.packages = with pkgs; [
-    kitty
-  ];
+  config = lib.mkIf config.kitty.enable {
+    home.file."./.config/kitty/" = {
+      source = ./config;
+      recursive = true;
+    };
+
+    home.packages = with pkgs; [
+      kitty
+    ];
+  };
 }

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, config, ... }:
 let
   nixCats = inputs.nixCats;
   nixpkgs = inputs.nixpkgs;
@@ -315,7 +315,14 @@ in
   imports = [
     homeModule
   ];
-  config = {
+
+  options = {
+    nixCats = {
+      enable = lib.mkEnableOption "nixCats";
+    };
+  };
+
+  config = lib.mkIf config.nixCats.enable {
     # this value, nixCats is the defaultPackageName you pass to mkNixosModules
     # it will be the namespace for your options.
     nvim = {

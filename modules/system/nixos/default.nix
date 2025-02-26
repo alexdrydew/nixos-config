@@ -10,7 +10,6 @@ in
     ./docker.nix
     ./hardware
     ./sudo.nix
-    ./ssh.nix
     ./audio.nix
   ];
 

@@ -10,6 +10,7 @@
   home-manager.sharedModules = [
     {
       vscode.enable = true;
+      nixCats.enable = true;
     }
   ];
   darwin.stateVersion = 4;

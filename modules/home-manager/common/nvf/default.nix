@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, config,... }:
 let 
   nvf-nvim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
@@ -7,7 +7,14 @@ let
     ];
   };
 in {
-  home.packages = with pkgs; [
-    nvf-nvim.neovim
-  ];
+  options = {
+    nvf = {
+      enable = lib.mkEnableOption "nvf" // {default = true;};
+    };
+  };
+  config = lib.mkIf config.nvf.enable {
+    home.packages = [
+      nvf-nvim.neovim
+    ];
+  };
 }

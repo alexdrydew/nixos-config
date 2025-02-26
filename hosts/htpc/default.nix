@@ -20,6 +20,7 @@
     {
       home.packageSets.graphical = false;
       home.packageSets.devTools = false;
+      kitty = false;
     }
   ];
 
@@ -30,6 +31,8 @@
     useDHCP = false;
     interfaces.eno1.useDHCP = true;
   };
+  ssh-server.enable = true;
+  docker.enable = false;
 
   services.sshd.enable = true;
   system.stateVersion = "24.11";
