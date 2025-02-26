@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 {
   options = {
     kodi = {
@@ -7,10 +7,19 @@
   };
   config = lib.mkIf config.kodi.enable {
     services.xserver.enable = true;
-    services.xserver.desktopManager.kodi.enable = true;
-    services.xserver.displayManager.autoLogin.enable = true;
-    services.xserver.displayManager.autoLogin.user = "kodi";
+    services.xserver.desktopManager = {
+      kodi = {
+        enable = true;
+        package = (pkgs.kodi.withPackages (pkgs: with pkgs; [
+          jellycon
+        ]));
+      };
+    };
     services.xserver.displayManager.lightdm.greeter.enable = false;
     users.extraUsers.kodi.isNormalUser = true;
+    services.displayManager.autoLogin = {
+      user = "kodi";
+      enable = true;
+    };
   };
 }
