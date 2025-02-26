@@ -23,8 +23,8 @@
         signcolumn = "yes";
         splitright = true;
         splitbelow = true;
-        scrollOffset = 10;
       };
+      scrollOffset = 10;
       lineNumberMode = "number";
       undoFile.enable = true;
     };
