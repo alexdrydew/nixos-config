@@ -24,6 +24,10 @@
       temporal-cli
       rsync
       graphviz
+      # av1 decoding
+      mpv
+      dav1d
+      
 
       # General packages for development and system management
       bash-completion

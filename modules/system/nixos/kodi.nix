@@ -12,6 +12,7 @@
         enable = true;
         package = (pkgs.kodi.withPackages (pkgs: with pkgs; [
           jellycon
+          youtube 
         ]));
       };
     };

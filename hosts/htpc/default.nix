@@ -49,5 +49,6 @@ in {
     git
   ];
   services.sshd.enable = true;
+  hardware.intel-gpu.enable = true;
   system.stateVersion = "24.11";
 }
