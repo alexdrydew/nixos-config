@@ -12,6 +12,7 @@ in
     ./sudo.nix
     ./audio.nix
     ./kodi
+    ./kde-plasma.nix
   ];
 
   programs = {

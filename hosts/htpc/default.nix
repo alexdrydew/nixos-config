@@ -8,7 +8,8 @@ in {
     ./hardware-configuration.nix
   ];
 
-  kodi.enable = true;
+  # kodi.enable = true;
+  kde-plasma.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -21,6 +22,7 @@ in {
       home.packageSets.graphical = false;
       home.packageSets.devTools = false;
       kitty.enable = false;
+      big-launcher.enable = true;
     }
   ];
 
@@ -34,7 +36,7 @@ in {
   };
   ssh-server.enable = true;
   docker.enable = false;
-
+  
   users.users.${user} = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];

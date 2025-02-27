@@ -11,6 +11,8 @@ in {
     users.${user} = { ... }: {
       imports = [
         ../common
+        ./plasma-manager.nix
+        ./big-launcher.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;
