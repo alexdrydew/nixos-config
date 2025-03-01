@@ -12,5 +12,6 @@
     services.xserver.displayManager.autoLogin.user = "kodi";
     services.xserver.displayManager.lightdm.greeter.enable = false;
     users.extraUsers.kodi.isNormalUser = true;
+    kodi.enableAdvancedLauncher = true;
   };
 }

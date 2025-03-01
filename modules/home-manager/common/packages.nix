@@ -24,6 +24,7 @@
       temporal-cli
       rsync
       graphviz
+      cloc
 
       # General packages for development and system management
       bash-completion
