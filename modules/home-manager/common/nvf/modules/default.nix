@@ -15,6 +15,13 @@
         vim-sleuth
         copilot-lua
         copilot-lualine
+        telescope-ui-select-nvim
+      ];
+      ui.noice = {
+        enable = true;
+      };
+      luaPackages = [
+        "jsregexp" # for luasnip
       ];
       vimAlias = true;
       filetree.neo-tree = {

@@ -20,6 +20,7 @@ in {
   config = lib.mkIf config.nvf.enable {
     home.packages = [
       nvf-nvim.neovim
+      pkgs.stylua
     ];
   };
 }

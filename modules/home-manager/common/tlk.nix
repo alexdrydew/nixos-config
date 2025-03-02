@@ -1,9 +1,9 @@
 # TODO: fix
-{ buildPythonPackage
-, fetchurl
-, setuptools
+{
+  buildPythonPackage,
+  fetchurl,
+  setuptools,
 }:
-
 buildPythonPackage {
   pname = "tlk";
   version = "1.7.26";
@@ -14,12 +14,12 @@ buildPythonPackage {
     hash = "sha256-aXae9/x0HVp4KqydCf5/+p5PlSKUQ5cE3iVeD08rtf0=";
   };
 
-  build-system = [ setuptools ];
+  build-system = [setuptools];
 
-  dependencies = [ ];
+  dependencies = [];
 
   # Could not contact DNS servers
   doCheck = false;
 
-  pythonImportsCheck = [ "tlk" ];
+  pythonImportsCheck = ["tlk"];
 }

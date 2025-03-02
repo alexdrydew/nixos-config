@@ -48,17 +48,11 @@ in {
       telescope = {
         mappings = {
           helpTags = "<leader>sh";
-          # TODO: keymaps
           findFiles = "<leader>sf";
-          # TODO: builtin
-          # TODO: grep string
           liveGrep = "<leader>sg";
           diagnostics = "<leader>sd";
           resume = "<leader>sr";
-          # TODO: oldfiles
           buffers = "<leader><leader>";
-          # TODO: current buffer fuzzy find
-          #TODO: <leader>s/
           lspDefinitions = "gd";
           lspReferences = "gr";
           lspImplementations = "gI";
@@ -93,6 +87,13 @@ in {
         (mkKeymap "n" "<C-k>" "<C-w><C-k>" {desc = "Move focus to the upper window";})
         # TODO: keymaps for which-key
         (mkKeymap "n" "\\" "<cmd>Neotree reveal<cr>" {})
+        # Telescope
+        (mkKeymap "n" "<leader>sk" "<cmd>Telescope keymaps<cr>" {desc = "[S]earch [K]eymaps";})
+        (mkKeymap "n" "<leader>ss" "<cmd>Telescope builtin<cr>" {desc = "[S]earch [S]elect Telescope";})
+        (mkKeymap "n" "<leader>sw" "<cmd>Telescope grep_string<cr>" {desc = "[S]earch current [W]ord";})
+        (mkKeymap "n" "<leader>s/" "<cmd>Telescope live_grep grep_open_files=true<cr>" {desc = "[S]earch [/] in Open Files";})
+        (mkKeymap "n" "<leader>sn" "<cmd>Telescope find_files cwd=vim.fn.stdpath('config')<cr>" {desc = "[S]earch [N]eovim files";})
+        (mkKeymap "n" "<leader>s." "<cmd>Telescope old_files<cr>" {desc = "[S]earch Recent Files ('.' for repeat)";})
       ];
     };
   };

@@ -1,9 +1,12 @@
-{ lib, pkgs, osConfig, ... }:
-let
-  user = osConfig.userConfig.userName;
-  home = osConfig.users.users.${user}.home;
-in
 {
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}: let
+  user = osConfig.userConfig.userName;
+  inherit (osConfig.users.users.${user}) home;
+in {
   programs.ssh = {
     enable = true;
     includes = [
@@ -13,10 +16,12 @@ in
       "github.com" = {
         identitiesOnly = true;
         identityFile = [
-          (lib.mkIf pkgs.stdenv.hostPlatform.isLinux
+          (
+            lib.mkIf pkgs.stdenv.hostPlatform.isLinux
             "/home/${user}/.ssh/id_github"
           )
-          (lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
+          (
+            lib.mkIf pkgs.stdenv.hostPlatform.isDarwin
             "/Users/${user}/.ssh/id_ed25519"
           )
         ];
