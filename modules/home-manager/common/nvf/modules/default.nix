@@ -37,6 +37,7 @@
         signcolumn = "yes";
         splitright = true;
         splitbelow = true;
+        shiftwidth = 4;
       };
       scrollOffset = 10;
       lineNumberMode = "number";
