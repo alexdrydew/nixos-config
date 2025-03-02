@@ -1,5 +1,10 @@
-{ inputs, pkgs, lib, config,... }:
-let 
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   nvf-nvim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
     modules = [
