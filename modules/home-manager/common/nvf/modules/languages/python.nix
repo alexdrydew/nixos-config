@@ -1,6 +1,4 @@
-
-{ config, pkgs, ... }:
-{
+{pkgs, ...}: {
   config = {
     vim = {
       extraPackages = [
@@ -11,7 +9,7 @@
         python = {
           enable = true;
           format.type = "ruff";
-          lsp.enable = false;  # define custom
+          lsp.enable = false; # define custom
           treesitter.enable = true;
         };
       };
@@ -19,34 +17,43 @@
         lspconfig = {
           enable = true;
           sources = {
-            based-pyright = ''
-              lspconfig.basedpyright.setup{
-                capabilities = capabilities;
-                on_attach = default_on_attach;
-                settings = {
-                  analysis = {
-                    -- ignore = { "*" },
-                    disableOrganizeImports = true,
-                    typeCheckingMode = "basic",
-                    diagnosticMode = "openFilesOnly",
-                    useLibraryCodeForTypes = true,
-                    exclude = {
-                      ".venv/**",
-                      "bazel-*/**",
+            based-pyright =
+              /*
+              lua
+              */
+              ''
+                lspconfig.basedpyright.setup{
+                  capabilities = capabilities;
+                  settings = {
+                    basedpyright = {
+                      analysis = {
+                        -- ignore = { "*" },
+                        disableOrganizeImports = true,
+                        typeCheckingMode = "basic",
+                        diagnosticMode = "openFilesOnly",
+                        useLibraryCodeForTypes = true,
+                        exclude = {
+                          ".venv/**",
+                          "bazel-*/**",
+                        },
+                        indexing = true,
+                      },
                     },
-                    indexing = true,
-                  },
-                };
-                cmd = ${''{"${pkgs.basedpyright}/bin/basedpyright-langserver", "--stdio"}''}
-              }
-            '';
-            ruff = ''
-              lspconfig.ruff.setup{
-                capabilities = capabilities;
-                on_attach = default_on_attach;
-                cmd = ${''{"${pkgs.ruff}/bin/ruff", "server"}''}
-              }
-            '';
+                  };
+                  cmd = ${''{"${pkgs.basedpyright}/bin/basedpyright-langserver", "--stdio"}''}
+                }
+              '';
+            ruff =
+              /*
+              lua
+              */
+              ''
+                lspconfig.ruff.setup{
+                  capabilities = capabilities;
+                  on_attach = default_on_attach;
+                  cmd = ${''{"${pkgs.ruff}/bin/ruff", "server"}''}
+                }
+              '';
           };
         };
       };

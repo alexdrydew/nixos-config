@@ -1,5 +1,10 @@
-{ inputs, pkgs, lib, config,... }:
-let 
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   nvf-nvim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
     modules = [
@@ -15,6 +20,7 @@ in {
   config = lib.mkIf config.nvf.enable {
     home.packages = [
       nvf-nvim.neovim
+      pkgs.stylua
     ];
   };
 }

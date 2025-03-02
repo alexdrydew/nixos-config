@@ -1,5 +1,10 @@
-{ pkgs, pkgs-unstable, lib, config, ... }:
 {
+  pkgs,
+  pkgs-unstable,
+  lib,
+  config,
+  ...
+}: {
   options = {
     home.packageSets = {
       graphical = lib.mkOption {
@@ -12,80 +17,82 @@
       };
     };
   };
-  
+
   config = {
-    home.packages = with pkgs; [
-      azure-cli
-      bazel-watcher
-      # bazel-lsp
-      # teleport
-      kubelogin
-      postgresql
-      temporal-cli
-      rsync
-      graphviz
-      # av1 decoding
-      mpv
-      dav1d
-      
+    home.packages = with pkgs;
+      [
+        azure-cli
+        bazel-watcher
+        # bazel-lsp
+        # teleport
+        kubelogin
+        postgresql
+        temporal-cli
+        rsync
+        graphviz
+        cloc
+        # av1 decoding
+        mpv
+        dav1d
 
-      # General packages for development and system management
-      bash-completion
-      bat
-      btop
-      killall
-      neofetch
-      openssh
-      sqlite
-      wget
-      zip
+        # General packages for development and system management
+        bash-completion
+        bat
+        btop
+        killall
+        neofetch
+        openssh
+        sqlite
+        wget
+        zip
 
-      # Encryption and security tools
-      gnupg
-      libfido2
+        # Encryption and security tools
+        gnupg
+        libfido2
 
-      # Cloud-related tools and SDKs
-      docker
-      docker-compose
+        # Cloud-related tools and SDKs
+        docker
+        docker-compose
 
-      # Media-related packages
-      ffmpeg
-      fd
+        # Media-related packages
+        ffmpeg
+        fd
 
-      # Text and terminal utilities
-      htop
-      hunspell
-      iftop
-      jq
-      ripgrep
-      tree
-      tmux
-      unrar
-      unzip
-  ] ++ lib.optionals (config.home.packageSets.devTools) [
-      aider-chat
-      coreutils
-      fnm
-      nil
-      nixpkgs-fmt
-      nix-index
+        # Text and terminal utilities
+        htop
+        hunspell
+        iftop
+        jq
+        ripgrep
+        tree
+        tmux
+        unrar
+        unzip
+      ]
+      ++ lib.optionals (config.home.packageSets.devTools) [
+        coreutils
+        fnm
+        nil
+        nixpkgs-fmt
+        nix-index
 
-      # Python packages
-      uv
-      jdk21
-      # Node.js development tools
-      nodePackages.npm # globally install npm
-      nodePackages.prettier
-      nodePackages.node2nix
-      pnpm_8
+        # Python packages
+        uv
+        jdk21
+        # Node.js development tools
+        nodePackages.npm # globally install npm
+        nodePackages.prettier
+        nodePackages.node2nix
+        pnpm_8
 
-      # Rust
-      # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
-      gcc
+        # Rust
+        # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
+        gcc
 
-      # Go
-      go
-    ] ++ lib.optionals (config.home.packageSets.graphical) [
+        # Go
+        go
+      ]
+      ++ lib.optionals (config.home.packageSets.graphical) [
         jetbrains.pycharm-professional
         jetbrains.webstorm
         jetbrains.idea-community
