@@ -1,6 +1,6 @@
-_:
+_: [
+  "macfuse"
 
-[
   # Development Tools
   "homebrew/cask/docker"
 

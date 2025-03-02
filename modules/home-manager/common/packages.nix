@@ -34,6 +34,8 @@
         # av1 decoding
         mpv
         dav1d
+        sshfs
+        chromium
 
         # General packages for development and system management
         bash-completion
