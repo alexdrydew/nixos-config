@@ -31,6 +31,10 @@
           enable = true;
           lsp.enable = true;
         };
+        yaml = {
+          enable = true;
+          lsp.enable = true;
+        };
       };
       visuals.fidget-nvim = {
         enable = true;

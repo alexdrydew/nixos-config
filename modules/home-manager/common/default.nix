@@ -1,5 +1,6 @@
-{ ... }: {
+{...}: {
   imports = [
+    ./aider.nix
     ./zsh.nix
     ./git.nix
     ./ssh.nix

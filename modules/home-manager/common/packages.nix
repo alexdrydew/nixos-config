@@ -70,7 +70,6 @@
         unzip
       ]
       ++ lib.optionals (config.home.packageSets.devTools) [
-        aider-chat
         coreutils
         fnm
         nil
