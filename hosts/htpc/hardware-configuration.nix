@@ -13,6 +13,8 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  # https://nixos.wiki/wiki/Intel_Graphics
+  boot.kernelParams = [ "i915.force_probe=46d1" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/f9dbd03a-f631-4920-8781-53736928a773";
