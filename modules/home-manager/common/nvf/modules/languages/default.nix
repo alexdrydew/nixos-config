@@ -21,6 +21,16 @@
           enable = true;
           lsp.enable = true;
         };
+        ts = {
+          enable = true;
+          format.enable = true;
+          extraDiagnostics.enable = true;
+          lsp.enable = true;
+        };
+        tailwind = {
+          enable = true;
+          lsp.enable = true;
+        };
       };
       visuals.fidget-nvim = {
         enable = true;
