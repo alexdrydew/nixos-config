@@ -1,8 +1,10 @@
-{ pkgs, osConfig, ... }:
-let
-  homebrew-enabled = builtins.hasAttr "homebrew" osConfig && osConfig.homebrew.enable;
-in
 {
+  pkgs,
+  osConfig,
+  ...
+}: let
+  homebrew-enabled = builtins.hasAttr "homebrew" osConfig && osConfig.homebrew.enable;
+in {
   home.packages = with pkgs; [
     zsh
     zsh-autosuggestions
@@ -10,7 +12,7 @@ in
   programs.zsh = {
     enable = true;
     autocd = false;
-    plugins = [ ];
+    plugins = [];
 
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -31,7 +33,7 @@ in
 
       # editors
       export ALTERNATE_EDITOR=""
-      export EDITOR="vim"
+      export EDITOR="nvim"
       export VISUAL="code"
 
       # nix shortcuts
@@ -49,11 +51,15 @@ in
       export GO_PATH=$HOME/go
       export PATH=$PATH:$GO_PATH/bin
 
+      bindkey "\e[1;3D" backward-word
+      bindkey "\e[1;3C" forward-word
+
       # Toloka
       alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
       ${
-        if homebrew-enabled then ''
-          # Homebrew 
+        if homebrew-enabled
+        then ''
+          # Homebrew
           if [[ $(uname -m) == 'arm64' ]]; then
             eval "$(/opt/homebrew/bin/brew shellenv)"
           fi
@@ -66,6 +72,6 @@ in
     '';
   };
   programs.starship = {
-    enable = true; 
+    enable = true;
   };
 }
