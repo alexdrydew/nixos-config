@@ -35,6 +35,11 @@
           enable = true;
           lsp.enable = true;
         };
+        css = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = true;
+        };
       };
       visuals.fidget-nvim = {
         enable = true;

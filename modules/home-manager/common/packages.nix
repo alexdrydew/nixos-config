@@ -35,7 +35,8 @@
         mpv
         dav1d
         sshfs
-        chromium
+        lsyncd
+        gtk3
 
         # General packages for development and system management
         bash-completion
