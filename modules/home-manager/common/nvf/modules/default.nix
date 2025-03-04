@@ -61,10 +61,13 @@
       };
       telescope = {
         enable = true;
-        setupOpts.defaults.file_ignore_patterns = [
-          ".aider*"
-          ".venv*"
-        ];
+        setupOpts.defaults = {
+          file_ignore_patterns = [
+            ".aider*"
+            ".venv*"
+          ];
+          layout_config.horizontal.prompt_position = "bottom";
+        };
       };
       formatter = {
         conform-nvim = {
