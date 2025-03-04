@@ -12,23 +12,23 @@
     telescope = {
       setupOpts = {
         extensions = {
-          # "ui-select" = [
-          #   (lib.generators.mkLuaInline
-          #     /*
-          #     lua
-          #     */
-          #     "require('telescope.themes').get_dropdown()")
-          # ];
+          "ui-select" = [
+            (lib.generators.mkLuaInline
+              /*
+              lua
+              */
+              "require('telescope.themes').get_dropdown()")
+          ];
         };
       };
       after =
         lib.mkAfter
-        # telescope.load_extension('ui-select')
         /*
         lua
         */
         ''
           telescope.load_extension('fzf')
+          telescope.load_extension('ui-select')
         '';
     };
     # "telescope-ui-select.nvim" = {
