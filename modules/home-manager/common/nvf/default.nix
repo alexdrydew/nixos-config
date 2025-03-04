@@ -1,13 +1,17 @@
 {
   inputs,
   pkgs,
+  pkgs-unstable,
   lib,
   config,
   ...
 }: let
   nvf-nvim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
-    extraSpecialArgs = {inherit (inputs) neovim-nightly-overlay;};
+    extraSpecialArgs = {
+      inherit (inputs) neovim-nightly-overlay;
+      inherit pkgs-unstable;
+    };
     modules = [
       ./modules/default.nix
     ];

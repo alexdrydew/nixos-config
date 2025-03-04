@@ -1,46 +1,33 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{lib, ...}: {
   imports = [
     ./local-highlight
+    ./none-ls.nix
   ];
 
-  config.vim.lazy.plugins = {
-    telescope = {
-      setupOpts = {
-        extensions = {
-          "ui-select" = [
-            (lib.generators.mkLuaInline
-              /*
-              lua
-              */
-              "require('telescope.themes').get_dropdown()")
-          ];
+  config = {
+    vim.lazy.plugins = {
+      telescope = {
+        setupOpts = {
+          extensions = {
+            "ui-select" = [
+              (lib.generators.mkLuaInline
+                /*
+                lua
+                */
+                "require('telescope.themes').get_dropdown()")
+            ];
+          };
         };
+        after =
+          lib.mkAfter
+          /*
+          lua
+          */
+          ''
+            telescope.load_extension('fzf')
+            telescope.load_extension('ui-select')
+          '';
       };
-      after =
-        lib.mkAfter
-        /*
-        lua
-        */
-        ''
-          telescope.load_extension('fzf')
-          telescope.load_extension('ui-select')
-        '';
     };
-    # "telescope-ui-select.nvim" = {
-    #   package = pkgs.vimPlugins.telescope-ui-select-nvim;
-    #   setupModule = "telescope-ui-select.nvim";
-    #   after =
-    #     /*
-    #     lua
-    #     */
-    #     ''
-    #       require("telescope").load_extension("ui-select")
-    #     '';
-    # };
   };
 }

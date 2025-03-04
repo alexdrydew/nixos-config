@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./python.nix
+    ./eslint.nix
   ];
   config = {
     vim = {
@@ -24,7 +25,7 @@
         ts = {
           enable = true;
           format.enable = true;
-          extraDiagnostics.enable = true;
+          extraDiagnostics.enable = false; # eslint_d is not available in none-ls anymore and I use eslint lsp
           lsp.enable = true;
         };
         tailwind = {
