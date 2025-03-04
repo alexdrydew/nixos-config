@@ -7,6 +7,7 @@
 }: let
   nvf-nvim = inputs.nvf.lib.neovimConfiguration {
     inherit pkgs;
+    extraSpecialArgs = {inherit (inputs) neovim-nightly-overlay;};
     modules = [
       ./modules/default.nix
     ];

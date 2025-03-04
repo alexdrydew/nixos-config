@@ -1,6 +1,7 @@
 {
   pkgs,
   options,
+  neovim-nightly-overlay,
   ...
 }: {
   imports = [
@@ -11,14 +12,16 @@
 
   config = {
     vim = {
+      package = neovim-nightly-overlay.packages.${pkgs.system}.neovim;
       startPlugins = with pkgs.vimPlugins; [
         vim-sleuth
         copilot-lua
         copilot-lualine
         telescope-ui-select-nvim
+        telescope-fzf-native-nvim
       ];
-      ui.noice = {
-        enable = true;
+      ui = {
+        noice.enable = true;
       };
       luaPackages = [
         "jsregexp" # for luasnip
@@ -58,6 +61,10 @@
       };
       telescope = {
         enable = true;
+        setupOpts.defaults.file_ignore_patterns = [
+          ".aider*"
+          ".venv*"
+        ];
       };
       formatter = {
         conform-nvim = {

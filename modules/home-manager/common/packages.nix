@@ -36,7 +36,7 @@
         dav1d
         sshfs
         lsyncd
-        gtk3
+        cargo-tauri
 
         # General packages for development and system management
         bash-completion

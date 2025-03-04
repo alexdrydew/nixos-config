@@ -1,7 +1,7 @@
 {
   description = "Starter Configuration for MacOS and NixOS";
 
-  inputs = {
+  inputs = rec {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
@@ -44,13 +44,16 @@
     nixCats = {
       url = "github:BirdeeHub/nixCats-nvim";
     };
-    lix-module = {   
+    lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
     };
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
@@ -59,50 +62,48 @@
     };
   };
 
-  outputs =
-    { darwin
-    , nixpkgs
-    , nixpkgs-unstable
-    , lix-module
-    , ...
-    } @inputs:
-    let
-      mkSpecialArgs = { system }: {
-        pkgs-unstable = import nixpkgs-unstable { inherit system; };
-        inherit inputs;
-      };
-    in
-    {
-      darwinConfigurations = {
-        toloka-macbook = darwin.lib.darwinSystem rec {
-          system = "aarch64-darwin";
-          specialArgs = mkSpecialArgs {
-            inherit system; 
-          };
-          modules = [
-            lix-module.nixosModules.default
-            ./modules/users/toloka.nix
-            ./hosts/toloka-macbook
-          ];
+  outputs = {
+    darwin,
+    nixpkgs,
+    nixpkgs-unstable,
+    lix-module,
+    ...
+  } @ inputs: let
+    mkSpecialArgs = {system}: {
+      pkgs-unstable = import nixpkgs-unstable {inherit system;};
+      inherit inputs;
+    };
+  in {
+    darwinConfigurations = {
+      toloka-macbook = darwin.lib.darwinSystem rec {
+        system = "aarch64-darwin";
+        specialArgs = mkSpecialArgs {
+          inherit system;
         };
-      };
-      nixosConfigurations = {
-        wsl = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = mkSpecialArgs { inherit system; };
-          modules = [ 
-            ./modules/users/personal.nix
-            ./hosts/wsl
-          ];
-        };
-        htpc = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = mkSpecialArgs { inherit system; };
-          modules = [
-            ./modules/users/personal.nix
-            ./hosts/htpc
-          ];
-        };
+        modules = [
+          lix-module.nixosModules.default
+          ./modules/users/toloka.nix
+          ./hosts/toloka-macbook
+        ];
       };
     };
+    nixosConfigurations = {
+      wsl = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = mkSpecialArgs {inherit system;};
+        modules = [
+          ./modules/users/personal.nix
+          ./hosts/wsl
+        ];
+      };
+      htpc = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = mkSpecialArgs {inherit system;};
+        modules = [
+          ./modules/users/personal.nix
+          ./hosts/htpc
+        ];
+      };
+    };
+  };
 }
