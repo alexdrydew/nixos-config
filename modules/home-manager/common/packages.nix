@@ -37,6 +37,8 @@
         sshfs
         lsyncd
         cargo-tauri
+        pipx
+        difftastic
 
         # General packages for development and system management
         bash-completion

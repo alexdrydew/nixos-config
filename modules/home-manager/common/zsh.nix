@@ -54,6 +54,8 @@ in {
       bindkey "\e[1;3D" backward-word
       bindkey "\e[1;3C" forward-word
 
+      export PATH="/Users/alexdrydew/.local/bin:$PATH"
+
       # Toloka
       alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
       ${

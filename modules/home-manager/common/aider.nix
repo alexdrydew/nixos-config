@@ -5,6 +5,7 @@
   ...
 }: let
   yaml = pkgs.formats.yaml {};
+  json = pkgs.formats.json {};
 in {
   options.aider = {
     enable = lib.mkEnableOption "Enable aider" // {default = true;};
@@ -65,12 +66,27 @@ in {
 
   config = lib.mkIf config.aider.enable {
     home = {
-      packages = [pkgs.aider-chat];
-      file.".aider.conf.yml" = {
-        source = yaml.generate "aider-conf" config.aider.settings;
-      };
-      file.".aider.model.settings.yml" = {
-        source = yaml.generate "aider-model-settings" config.aider.modelSettings;
+      # use pipx instead
+      # packages = [pkgs.aider-chat];
+
+      file = {
+        ".aider.conf.yml".source = yaml.generate "aider-conf" config.aider.settings;
+        ".aider.model.settings.yml".source = yaml.generate "aider-model-settings" config.aider.modelSettings;
+        ".aider.model.metadata.json".source = json.generate "aider-model-meta" {
+          "fireworks_ai/accounts/fireworks/models/deepseek-r1" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 65336;
+            "max_output_tokens" = 8192;
+            "input_cost_per_token" = 0.000003;
+            "output_cost_per_token" = 0.00000219;
+            "litellm_provider" = "fireworks_ai";
+            "mode" = "chat";
+            "supports_function_calling" = false;
+            "supports_assistant_prefill" = false;
+            "supports_tool_choice" = false;
+            "supports_prompt_caching" = false;
+          };
+        };
       };
     };
   };
