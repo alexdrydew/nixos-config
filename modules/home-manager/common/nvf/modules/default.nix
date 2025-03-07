@@ -19,6 +19,7 @@
         copilot-lualine
         telescope-ui-select-nvim
         telescope-fzf-native-nvim
+        nvim-spectre
       ];
       ui = {
         noice.enable = true;
