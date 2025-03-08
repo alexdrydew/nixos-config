@@ -1,9 +1,12 @@
-{ pkgs, config, pkgs-unstable, inputs, ... }:
-
-let
-  user = config.userConfig.userName;
-in
 {
+  pkgs,
+  config,
+  pkgs-unstable,
+  inputs,
+  ...
+}: let
+  user = config.userConfig.userName;
+in {
   imports = [
     ../common
     ../../home-manager/nixos
@@ -13,6 +16,7 @@ in
     ./audio.nix
     ./kodi
     ./kde-plasma.nix
+    ./firefox.nix
   ];
 
   programs = {
@@ -35,8 +39,11 @@ in
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit pkgs-unstable; inherit inputs; };
-    users.${user} = { ... }: {
+    extraSpecialArgs = {
+      inherit pkgs-unstable;
+      inherit inputs;
+    };
+    users.${user} = {...}: {
       home = {
         enableNixpkgsReleaseCheck = false;
         username = "${user}";
