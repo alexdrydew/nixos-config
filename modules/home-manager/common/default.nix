@@ -11,5 +11,6 @@
     ./vscode.nix
     ./k9s.nix
     ./nvf
+    ./moonlight.nix
   ];
 }

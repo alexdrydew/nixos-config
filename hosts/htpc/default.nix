@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
-let
+{
+  pkgs,
+  config,
+  ...
+}: let
   user = config.userConfig.userName;
 in {
   imports = [
@@ -29,28 +32,29 @@ in {
   time.timeZone = config.userConfig.timeZone;
 
   i18n.defaultLocale = "en_US.UTF-8";
+  services = {
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
 
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    getty.autologinUser = user;
+    sshd.enable = true;
   };
   ssh-server.enable = true;
   docker.enable = false;
-  
+
   users.users.${user} = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel" "audio"];
     packages = with pkgs; [];
   };
-
-  services.getty.autologinUser = user;
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     neovim
     git
   ];
-  services.sshd.enable = true;
   hardware.intel-gpu.enable = true;
   system.stateVersion = "24.11";
 }
