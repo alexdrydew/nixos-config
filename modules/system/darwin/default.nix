@@ -1,10 +1,13 @@
-{ config, pkgs, pkgs-unstable, lib, ... }:
-
-let
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  lib,
+  ...
+}: let
   user = config.userConfig.userName;
   home = "/Users/${user}";
-in
-{
+in {
   imports = [
     ../common
     ./dock
@@ -12,6 +15,8 @@ in
     ./nix.nix
     ./aerospace.nix
     ./jankyborders.nix
+    ./raycast.nix
+    ./sketchybar
     ../../home-manager/darwin
   ];
 
@@ -26,7 +31,7 @@ in
   config = {
     users.users.${user} = {
       name = "${user}";
-      home = home;
+      inherit home;
       isHidden = false;
       shell = pkgs.zsh;
     };
@@ -35,14 +40,14 @@ in
     local.dock = {
       enable = true;
       entries = [
-        { path = "/Applications/Slack.app/"; }
-        { path = "/Applications/Telegram.app/"; }
-        { path = "${home}/Applications/Home Manager Apps/Firefox.app"; }
-        { path = "${home}/Applications/Home Manager Apps/kitty.app"; }
-        { path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app"; }
-        { path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/"; }
-        { path = "/Applications/Docker.app/"; }
-        { path = "${pkgs.obsidian}/Applications/Obsidian.app/"; }
+        {path = "/Applications/Slack.app/";}
+        {path = "/Applications/Telegram.app/";}
+        {path = "${home}/Applications/Home Manager Apps/Firefox.app";}
+        {path = "${home}/Applications/Home Manager Apps/kitty.app";}
+        {path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app";}
+        {path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/";}
+        {path = "/Applications/Docker.app/";}
+        {path = "${pkgs.obsidian}/Applications/Obsidian.app/";}
         {
           path = "${config.users.users.${user}.home}/Downloads";
           section = "others";
@@ -51,7 +56,7 @@ in
       ];
     };
     system = {
-      stateVersion = config.darwin.stateVersion;
+      inherit (config.darwin) stateVersion;
       checks.verifyNixPath = false;
       defaults = {
         NSGlobalDomain = {
@@ -68,6 +73,7 @@ in
           "com.apple.keyboard.fnState" = true;
 
           NSAutomaticWindowAnimationsEnabled = false;
+          _HIHideMenuBar = true;
         };
 
         dock = {
@@ -90,10 +96,20 @@ in
         spaces.spans-displays = true;
       };
     };
-    power.sleep.display = "never";
-    services.sketchybar = {
-      enable = true;
-      package = pkgs.sketchybar;
+    system.defaults.CustomUserPreferences = {
+      "com.apple.symbolichotkeys" = {
+        AppleSymbolicHotKeys = {
+          # Disable 'Cmd + Space' for Spotlight Search
+          "64" = {
+            enabled = false;
+          };
+          # Disable 'Cmd + Alt + Space' for Finder search window
+          "65" = {
+            enabled = false;
+          };
+        };
+      };
     };
+    power.sleep.display = "never";
   };
 }

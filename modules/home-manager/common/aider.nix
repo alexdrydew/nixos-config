@@ -86,6 +86,19 @@ in {
             "supports_tool_choice" = false;
             "supports_prompt_caching" = false;
           };
+          "openai/deepseek-r1" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 65336;
+            "max_output_tokens" = 8192;
+            "input_cost_per_token" = 0.000003;
+            "output_cost_per_token" = 0.00000219;
+            "litellm_provider" = "openai";
+            "mode" = "chat";
+            "supports_function_calling" = false;
+            "supports_assistant_prefill" = false;
+            "supports_tool_choice" = false;
+            "supports_prompt_caching" = false;
+          };
         };
       };
     };

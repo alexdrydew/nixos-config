@@ -1,8 +1,11 @@
-{ pkgs, config, inputs, ... }:
-let
-  user = config.userConfig.userName;
-in
 {
+  pkgs,
+  config,
+  inputs,
+  ...
+}: let
+  user = config.userConfig.userName;
+in {
   imports = [
     inputs.nix-homebrew.darwinModules.nix-homebrew
   ];
@@ -21,8 +24,8 @@ in
 
   homebrew = {
     enable = true;
-    brews = pkgs.callPackage ./brews.nix { };
-    casks = pkgs.callPackage ./casks.nix { };
+    brews = pkgs.callPackage ./brews.nix {};
+    casks = pkgs.callPackage ./casks.nix {};
     # onActivation.cleanup = "uninstall";
 
     # These app IDs are from using the mas CLI app
