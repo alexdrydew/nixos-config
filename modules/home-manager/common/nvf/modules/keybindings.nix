@@ -70,6 +70,7 @@ in {
           previousDiagnostic = "[d";
           nextDiagnostic = "]d";
           openDiagnosticFloat = "<leader>e";
+          goToType = "gt";
         };
       };
       keymaps = [

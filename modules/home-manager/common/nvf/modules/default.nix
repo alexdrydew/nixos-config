@@ -8,6 +8,7 @@
     ./languages
     ./keybindings.nix
     ./plugins
+    ./debugger.nix
   ];
 
   config = {

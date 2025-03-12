@@ -41,6 +41,11 @@
           lsp.enable = true;
           format.enable = true;
         };
+        rust = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = true;
+        };
       };
       visuals.fidget-nvim = {
         enable = true;
