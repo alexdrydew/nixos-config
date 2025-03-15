@@ -11,6 +11,7 @@
     extraSpecialArgs = {
       inherit (inputs) neovim-nightly-overlay;
       inherit pkgs-unstable;
+      rustaceanvim = inputs.rustaceanvim.packages.${pkgs.system}.default;
     };
     modules = [
       ./modules/default.nix

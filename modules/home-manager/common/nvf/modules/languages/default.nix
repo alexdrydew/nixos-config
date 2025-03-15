@@ -1,4 +1,4 @@
-{...}: {
+{pkgs-unstable, ...}: {
   imports = [
     ./python.nix
     ./eslint.nix
@@ -44,7 +44,22 @@
         rust = {
           enable = true;
           lsp.enable = true;
-          format.enable = true;
+          format.enable = false;
+          lsp = {
+            opts =
+              /*
+              lua
+              */
+              ''
+                ['rust-analyzer'] = {
+                  -- cargo = {allFeature = true},
+                  procMacro = {
+                    enable = true,
+                  },
+                },
+              '';
+            package = pkgs-unstable.rust-analyzer;
+          };
         };
       };
       visuals.fidget-nvim = {

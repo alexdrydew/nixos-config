@@ -17,10 +17,13 @@ in {
         ];
         "dark-mode" = true;
         "model-settings-file" = "${config.home.homeDirectory}/.aider.model.settings.yml";
-        "auto-commits" = false;
+        "auto-commits" = true;
         "auto-lint" = false;
-        "check-update" = false;
+        "check-update" = true;
         "vim" = true;
+        "editor" = "nvim";
+        "no-attribute-author" = true;
+        "no-attribute-committer" = true;
       };
       description = "Aider configuration attributes";
     };
@@ -58,6 +61,21 @@ in {
           use_system_prompt = true;
           use_temperature = true;
           streaming = true;
+        }
+        {
+          name = "openai/claude-3-7-sonnet-20250219";
+          edit_format = "diff";
+          use_repo_map = true;
+          examples_as_sys_msg = true;
+          extra_params = {
+            max_tokens = 64000;
+            thinking = {
+              type = "enabled";
+              budget_tokens = 32000;
+            };
+          };
+          editor_model_name = "openai/claude-3-7-sonnet-20250219";
+          editor_edit_format = "editor-diff";
         }
       ];
       description = "Aider model configuration";
@@ -98,6 +116,35 @@ in {
             "supports_assistant_prefill" = false;
             "supports_tool_choice" = false;
             "supports_prompt_caching" = false;
+          };
+          "openai/claude-3-7-sonnet-20250219" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 200000;
+            "max_output_tokens" = 8192;
+            "input_cost_per_token" = 0.000003;
+            "output_cost_per_token" = 0.000015;
+            "input_cost_per_image" = 0.0048;
+            "mode" = "chat";
+            "supports_function_calling" = true;
+            "supports_vision" = true;
+            "tool_use_system_prompt_tokens" = 159;
+            "supports_assistant_prefill" = true;
+            "supports_tool_choice" = true;
+          };
+          "openai/o3-mini" = {
+            "max_tokens" = 100000;
+            "max_input_tokens" = 200000;
+            "max_output_tokens" = 100000;
+            "input_cost_per_token" = 0.0000011;
+            "output_cost_per_token" = 0.0000044;
+            "cache_read_input_token_cost" = 0.00000055;
+            "mode" = "chat";
+            "supports_function_calling" = true;
+            "supports_parallel_function_calling" = false;
+            "supports_vision" = false;
+            "supports_prompt_caching" = true;
+            "supports_response_schema" = true;
+            "supports_tool_choice" = true;
           };
         };
       };

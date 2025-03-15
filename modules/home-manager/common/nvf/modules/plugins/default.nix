@@ -2,6 +2,7 @@
   imports = [
     ./local-highlight
     ./none-ls.nix
+    ./rustaceanvim.nix
   ];
 
   config = {

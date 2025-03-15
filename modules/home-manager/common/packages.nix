@@ -92,6 +92,7 @@
 
         # Rust
         # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
+        rustup
         gcc
 
         # Go

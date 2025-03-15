@@ -33,7 +33,6 @@
                         diagnosticMode = "openFilesOnly",
                         useLibraryCodeForTypes = true,
                         exclude = {
-                          ".venv/**",
                           "bazel-*/**",
                         },
                         indexing = true,
