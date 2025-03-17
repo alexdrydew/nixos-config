@@ -5,6 +5,13 @@
   ];
   config = {
     vim = {
+      luaConfigPre =
+        /*
+        lua
+        */
+        ''
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr })
+        '';
       treesitter = {
         enable = true;
         highlight.enable = true;

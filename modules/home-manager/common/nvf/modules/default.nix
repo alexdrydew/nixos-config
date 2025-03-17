@@ -147,6 +147,7 @@
       autopairs.nvim-autopairs = {
         enable = true;
       };
+      useSystemClipboard = true;
     };
   };
 }

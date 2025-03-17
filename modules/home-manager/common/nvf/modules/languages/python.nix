@@ -34,6 +34,9 @@
                         useLibraryCodeForTypes = true,
                         exclude = {
                           "bazel-*/**",
+                          "**/node_modules",
+                          "**/__pycache__",
+                          "**/.*"
                         },
                         indexing = true,
                       },
