@@ -30,7 +30,7 @@
                         -- ignore = { "*" },
                         disableOrganizeImports = true,
                         typeCheckingMode = "basic",
-                        diagnosticMode = "openFilesOnly",
+                        diagnosticMode = "workspace",
                         useLibraryCodeForTypes = true,
                         exclude = {
                           "bazel-*/**",

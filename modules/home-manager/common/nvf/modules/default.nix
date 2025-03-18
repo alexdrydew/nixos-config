@@ -34,8 +34,8 @@
       };
       theme = {
         enable = true;
-        name = "tokyonight";
-        style = "night";
+        name = "rose-pine";
+        style = "main";
       };
       options = {
         mouse = "a";
