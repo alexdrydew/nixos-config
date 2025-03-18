@@ -77,11 +77,13 @@ in {
         };
 
         dock = {
-          autohide = false;
+          # hide dock
+          autohide = true;
+          autohide-delay = 1000.0;
+          tilesize = 1;
           show-recents = false;
           launchanim = true;
           orientation = "bottom";
-          tilesize = 48;
         };
 
         finder = {
