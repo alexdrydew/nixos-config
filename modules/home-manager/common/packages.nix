@@ -39,7 +39,6 @@
         cargo-tauri
         pipx
         difftastic
-        # open-webui
 
         # General packages for development and system management
         bash-completion
