@@ -22,17 +22,19 @@
                 "require('telescope.themes').get_dropdown()")
             ];
           };
-          vimgrep_arguments = [
-            "${pkgs.ripgrep}/bin/rg"
-            "--color=never"
-            "--no-heading"
-            "--with-filename"
-            "--line-number"
-            "--column"
-            "--smart-case"
-            "--hidden"
-            # "--no-ignore"
-          ];
+          defaults = {
+            vimgrep_arguments = lib.mkForce [
+              "${pkgs.ripgrep}/bin/rg"
+              "--color=never"
+              "--no-heading"
+              "--with-filename"
+              "--line-number"
+              "--column"
+              "--smart-case"
+              # "--hidden"
+              # "--no-ignore"
+            ];
+          };
         };
         after =
           lib.mkAfter
