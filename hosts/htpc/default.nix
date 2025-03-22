@@ -10,6 +10,7 @@ in {
     ../../modules/system/nixos
     ./hardware-configuration.nix
   ];
+  rustdesk-server.enable = true;
 
   # kodi.enable = true;
   kde-plasma.enable = true;

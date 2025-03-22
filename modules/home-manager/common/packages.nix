@@ -39,6 +39,7 @@
         cargo-tauri
         pipx
         difftastic
+        rustdesk
 
         # General packages for development and system management
         bash-completion
