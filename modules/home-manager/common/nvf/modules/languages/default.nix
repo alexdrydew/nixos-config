@@ -1,10 +1,17 @@
-{...}: {
+{pkgs-unstable, ...}: {
   imports = [
     ./python.nix
     ./eslint.nix
   ];
   config = {
     vim = {
+      luaConfigPre =
+        /*
+        lua
+        */
+        ''
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr })
+        '';
       treesitter = {
         enable = true;
         highlight.enable = true;
@@ -40,6 +47,26 @@
           enable = true;
           lsp.enable = true;
           format.enable = true;
+        };
+        rust = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = false;
+          lsp = {
+            opts =
+              /*
+              lua
+              */
+              ''
+                ['rust-analyzer'] = {
+                  -- cargo = {allFeature = true},
+                  procMacro = {
+                    enable = true,
+                  },
+                },
+              '';
+            package = pkgs-unstable.rust-analyzer;
+          };
         };
       };
       visuals.fidget-nvim = {

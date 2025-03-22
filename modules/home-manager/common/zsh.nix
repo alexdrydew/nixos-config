@@ -34,7 +34,6 @@ in {
       # editors
       export ALTERNATE_EDITOR=""
       export EDITOR="nvim"
-      export VISUAL="code"
 
       # nix shortcuts
       shell() {

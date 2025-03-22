@@ -22,7 +22,7 @@ in
       # WSL uses host VSCode
       vscode.enable = false;
       home.packageSets.graphical = false;
-      home.kitty = false;
+      kitty.enable = false;
     }
   ];
 

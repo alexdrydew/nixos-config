@@ -1,7 +1,12 @@
-{lib, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./local-highlight
     ./none-ls.nix
+    ./rustaceanvim.nix
   ];
 
   config = {
@@ -15,6 +20,19 @@
                 lua
                 */
                 "require('telescope.themes').get_dropdown()")
+            ];
+          };
+          defaults = {
+            vimgrep_arguments = lib.mkForce [
+              "${pkgs.ripgrep}/bin/rg"
+              "--color=never"
+              "--no-heading"
+              "--with-filename"
+              "--line-number"
+              "--column"
+              "--smart-case"
+              # "--hidden"
+              # "--no-ignore"
             ];
           };
         };

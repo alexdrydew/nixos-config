@@ -33,8 +33,10 @@
                         diagnosticMode = "openFilesOnly",
                         useLibraryCodeForTypes = true,
                         exclude = {
-                          ".venv/**",
                           "bazel-*/**",
+                          "**/node_modules",
+                          "**/__pycache__",
+                          "**/.*"
                         },
                         indexing = true,
                       },

@@ -17,6 +17,11 @@ in {
             scrollDocsDown = "<C-f>";
             confirm = "<CR>";
           };
+          setupOpts = {
+            experimental = {
+              ghost_text = true;
+            };
+          };
         };
       };
       assistant.copilot = {
@@ -70,6 +75,7 @@ in {
           previousDiagnostic = "[d";
           nextDiagnostic = "]d";
           openDiagnosticFloat = "<leader>e";
+          goToType = "gt";
         };
       };
       keymaps = [

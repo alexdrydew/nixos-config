@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ../../modules/system/darwin
   ];
@@ -10,7 +9,6 @@
   home-manager.sharedModules = [
     {
       vscode.enable = true;
-      nixCats.enable = false;
     }
   ];
   darwin.stateVersion = 4;

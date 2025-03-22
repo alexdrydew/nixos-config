@@ -17,10 +17,13 @@ in {
         ];
         "dark-mode" = true;
         "model-settings-file" = "${config.home.homeDirectory}/.aider.model.settings.yml";
-        "auto-commits" = false;
+        "auto-commits" = true;
         "auto-lint" = false;
-        "check-update" = false;
+        "check-update" = true;
         "vim" = true;
+        "editor" = "nvim";
+        "no-attribute-author" = true;
+        "no-attribute-committer" = true;
       };
       description = "Aider configuration attributes";
     };
@@ -59,6 +62,49 @@ in {
           use_temperature = true;
           streaming = true;
         }
+        {
+          name = "openai/deepseek-r1";
+          edit_format = "diff";
+          weak_model_name = null;
+          use_repo_map = true;
+          send_undo_reply = false;
+          lazy = false;
+          reminder = "sys";
+          examples_as_sys_msg = true;
+          extra_params = {max_tokens = 16384;};
+          cache_control = false;
+          caches_by_default = true;
+          use_system_prompt = true;
+          use_temperature = true;
+          streaming = true;
+          editor_model_name = "openai/claude-sonnet-3-5";
+          editor_edit_format = "editor-diff";
+        }
+        {
+          name = "openai/claude-3-7-sonnet-20250219";
+          edit_format = "diff";
+          use_repo_map = true;
+          examples_as_sys_msg = true;
+          extra_params = {
+            max_tokens = 64000;
+            thinking = {
+              type = "disabled";
+              budget_tokens = 32000;
+            };
+          };
+          editor_model_name = "openai/claude-3-7-sonnet-20250219";
+          editor_edit_format = "editor-diff";
+        }
+        {
+          name = "openai/claude-sonnet-3-5";
+          edit_format = "diff";
+          use_repo_map = true;
+          examples_as_sys_msg = true;
+          extra_params = {
+            max_tokens = 64000;
+          };
+          editor_edit_format = "editor-diff";
+        }
       ];
       description = "Aider model configuration";
     };
@@ -85,6 +131,62 @@ in {
             "supports_assistant_prefill" = false;
             "supports_tool_choice" = false;
             "supports_prompt_caching" = false;
+          };
+          "openai/deepseek-r1" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 65336;
+            "max_output_tokens" = 8192;
+            "input_cost_per_token" = 0.000003;
+            "output_cost_per_token" = 0.00000219;
+            "litellm_provider" = "openai";
+            "mode" = "chat";
+            "supports_function_calling" = false;
+            "supports_assistant_prefill" = false;
+            "supports_tool_choice" = false;
+            "supports_prompt_caching" = false;
+          };
+          "openai/claude-3-7-sonnet-20250219" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 200000;
+            "max_output_tokens" = 8192;
+            "input_cost_per_token" = 0.000003;
+            "output_cost_per_token" = 0.000015;
+            "input_cost_per_image" = 0.0048;
+            "mode" = "chat";
+            "supports_function_calling" = true;
+            "supports_vision" = true;
+            "tool_use_system_prompt_tokens" = 159;
+            "supports_assistant_prefill" = true;
+            "supports_tool_choice" = true;
+          };
+          "openai/claude-sonnet-3-5" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 200000;
+            "max_output_tokens" = 8192;
+            "input_cost_per_token" = 0.000003;
+            "output_cost_per_token" = 0.000015;
+            "input_cost_per_image" = 0.0048;
+            "mode" = "chat";
+            "supports_function_calling" = true;
+            "supports_vision" = true;
+            "tool_use_system_prompt_tokens" = 159;
+            "supports_assistant_prefill" = true;
+            "supports_tool_choice" = true;
+          };
+          "openai/o3-mini" = {
+            "max_tokens" = 100000;
+            "max_input_tokens" = 200000;
+            "max_output_tokens" = 100000;
+            "input_cost_per_token" = 0.0000011;
+            "output_cost_per_token" = 0.0000044;
+            "cache_read_input_token_cost" = 0.00000055;
+            "mode" = "chat";
+            "supports_function_calling" = true;
+            "supports_parallel_function_calling" = false;
+            "supports_vision" = false;
+            "supports_prompt_caching" = true;
+            "supports_response_schema" = true;
+            "supports_tool_choice" = true;
           };
         };
       };

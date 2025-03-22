@@ -17,6 +17,7 @@ in {
     ./kodi
     ./kde-plasma.nix
     ./firefox.nix
+    ./rustdesk.nix
   ];
 
   programs = {

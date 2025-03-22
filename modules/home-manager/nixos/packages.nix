@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   home = {
-    packages = with pkgs; [chromium];
+    packages = with pkgs; [
+      chromium
+      rustdesk
+    ];
   };
 }

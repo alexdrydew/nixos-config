@@ -8,6 +8,7 @@
     ./languages
     ./keybindings.nix
     ./plugins
+    ./debugger.nix
   ];
 
   config = {
@@ -33,8 +34,8 @@
       };
       theme = {
         enable = true;
-        name = "tokyonight";
-        style = "night";
+        name = "rose-pine";
+        style = "main";
       };
       options = {
         mouse = "a";
@@ -146,6 +147,7 @@
       autopairs.nvim-autopairs = {
         enable = true;
       };
+      useSystemClipboard = true;
     };
   };
 }

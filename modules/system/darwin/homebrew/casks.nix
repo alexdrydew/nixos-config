@@ -1,5 +1,6 @@
 _: [
   "macfuse"
+  "rustdesk"
 
   # Development Tools
   "homebrew/cask/docker"
