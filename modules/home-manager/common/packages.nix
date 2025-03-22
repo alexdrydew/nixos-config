@@ -39,7 +39,7 @@
         cargo-tauri
         pipx
         difftastic
-        rustdesk
+        nmap
 
         # General packages for development and system management
         bash-completion
