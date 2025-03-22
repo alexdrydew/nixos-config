@@ -14,7 +14,7 @@
         autoLogin.user = config.userConfig.userName;
       };
       xserver.enable = true;
-      xserver.desktopManager.plasma6 = {
+      desktopManager.plasma6 = {
         enable = true;
       };
     };
