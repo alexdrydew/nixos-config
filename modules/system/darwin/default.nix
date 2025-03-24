@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-stable,
   pkgs-unstable,
   lib,
   ...
@@ -47,7 +48,7 @@ in {
         {path = "${home}/Applications/Home Manager Apps/IntelliJ IDEA CE.app";}
         {path = "${pkgs-unstable.dbeaver-bin}/Applications/dbeaver.app/";}
         {path = "/Applications/Docker.app/";}
-        {path = "${pkgs.obsidian}/Applications/Obsidian.app/";}
+        {path = "${pkgs-stable.obsidian}/Applications/Obsidian.app/";}
         {
           path = "${config.users.users.${user}.home}/Downloads";
           section = "others";

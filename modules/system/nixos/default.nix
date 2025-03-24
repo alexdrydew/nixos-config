@@ -1,7 +1,8 @@
 {
   pkgs,
-  config,
+  pkgs-stable,
   pkgs-unstable,
+  config,
   inputs,
   ...
 }: let
@@ -18,6 +19,7 @@ in {
     ./kde-plasma.nix
     ./firefox.nix
     ./rustdesk.nix
+    ./pihole.nix
   ];
 
   programs = {
@@ -42,9 +44,10 @@ in {
     useUserPackages = true;
     extraSpecialArgs = {
       inherit pkgs-unstable;
+      inherit pkgs-stable;
       inherit inputs;
     };
-    users.${user} = {...}: {
+    users.${user} = _: {
       home = {
         enableNixpkgsReleaseCheck = false;
         username = "${user}";

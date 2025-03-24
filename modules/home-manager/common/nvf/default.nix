@@ -1,17 +1,17 @@
 {
   inputs,
-  pkgs,
+  pkgs-stable,
   pkgs-unstable,
   lib,
   config,
   ...
 }: let
   nvf-nvim = inputs.nvf.lib.neovimConfiguration {
-    inherit pkgs;
+    pkgs = pkgs-stable;
     extraSpecialArgs = {
       inherit (inputs) neovim-nightly-overlay;
       inherit pkgs-unstable;
-      rustaceanvim = inputs.rustaceanvim.packages.${pkgs.system}.default;
+      rustaceanvim = inputs.rustaceanvim.packages.${pkgs-stable.system}.default;
     };
     modules = [
       ./modules/default.nix
@@ -26,7 +26,7 @@ in {
   config = lib.mkIf config.nvf.enable {
     home.packages = [
       nvf-nvim.neovim
-      pkgs.stylua
+      pkgs-stable.stylua
     ];
   };
 }

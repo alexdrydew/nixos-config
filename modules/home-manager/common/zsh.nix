@@ -1,12 +1,12 @@
 {
-  pkgs,
+  pkgs-stable,
   osConfig,
   ...
 }: let
   homebrew-enabled = builtins.hasAttr "homebrew" osConfig && osConfig.homebrew.enable;
 in {
-  home.packages = with pkgs; [
-    zsh
+  home.packages = with pkgs-stable; [
+    # zsh
     zsh-autosuggestions
   ];
   programs.zsh = {

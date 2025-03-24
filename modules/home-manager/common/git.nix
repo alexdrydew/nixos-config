@@ -1,16 +1,17 @@
-{ osConfig, pkgs, ... }:
-let
-  name = osConfig.userConfig.userName;
-  email = osConfig.userConfig.email;
-in
 {
-  home.packages = with pkgs;
-    [
-      git
-    ];
+  osConfig,
+  pkgs,
+  ...
+}: let
+  name = osConfig.userConfig.userName;
+  inherit (osConfig.userConfig) email;
+in {
+  home.packages = with pkgs; [
+    git
+  ];
   programs.git = {
     enable = true;
-    ignores = [ "*.swp" ];
+    ignores = ["*.swp"];
     userName = name;
     userEmail = email;
     lfs = {

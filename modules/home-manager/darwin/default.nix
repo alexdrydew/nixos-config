@@ -1,15 +1,19 @@
-{ config, pkgs-unstable, inputs, ... }:
-let
-  user = config.userConfig.userName;
-in
 {
+  config,
+  pkgs-unstable,
+  pkgs-stable,
+  inputs,
+  ...
+}: let
+  user = config.userConfig.userName;
+in {
   imports = [
     inputs.home-manager.darwinModules.home-manager
   ];
 
   home-manager = {
     useGlobalPkgs = true;
-    users.${user} = { ... }: {
+    users.${user} = {...}: {
       imports = [
         ../common
         ./firefox.nix
@@ -22,7 +26,11 @@ in
         stateVersion = "24.05";
       };
     };
-    extraSpecialArgs = { inherit pkgs-unstable; inherit inputs; };
+    extraSpecialArgs = {
+      inherit pkgs-unstable;
+      inherit pkgs-stable;
+      inherit inputs;
+    };
   };
 
   system.activationScripts.postUserActivation.text = ''

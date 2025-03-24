@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-{
-  home.packages = with pkgs; [
+{pkgs-stable, ...}: {
+  home.packages = with pkgs-stable; [
     dockutil
   ];
 }

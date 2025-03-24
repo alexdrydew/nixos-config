@@ -11,5 +11,6 @@ vimUtils.buildVimPlugin {
     rev = "bc0630e43be5699bb94dadc302c0d21615421d93";
     hash = "sha256-Gw0Bp2YeoESiBLs3NPnqke3xwEjuiQDDU1CPofrhtig=;";
   };
+  doCheck = false;
   meta.homepage = "https://github.com/folke/snacks.nvim/";
 }

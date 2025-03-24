@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs-stable,
   pkgs-unstable,
   lib,
   config,
@@ -19,7 +19,7 @@
   };
 
   config = {
-    home.packages = with pkgs;
+    home.packages = with pkgs-stable;
       [
         azure-cli
         bazel-watcher

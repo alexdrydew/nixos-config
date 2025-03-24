@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   programs.k9s = {
     enable = true;
     plugin = {
@@ -7,7 +6,7 @@
         debug = {
           shortCut = "Shift-D";
           description = "Add debug container";
-          scopes = [ "containers" ];
+          scopes = ["containers"];
           command = "bash";
           background = false;
           confirm = true;

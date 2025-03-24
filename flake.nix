@@ -71,7 +71,14 @@
     ...
   } @ inputs: let
     mkSpecialArgs = {system}: {
-      pkgs-unstable = import nixpkgs-unstable {inherit system;};
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      pkgs-stable = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
       inherit inputs;
     };
   in {
@@ -97,7 +104,7 @@
           ./hosts/wsl
         ];
       };
-      htpc = nixpkgs.lib.nixosSystem rec {
+      htpc = nixpkgs-unstable.lib.nixosSystem rec {
         system = "x86_64-linux";
         specialArgs = mkSpecialArgs {inherit system;};
         modules = [
