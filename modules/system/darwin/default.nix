@@ -34,6 +34,7 @@ in {
       name = "${user}";
       inherit home;
       isHidden = false;
+      # can't use explicit pkgs-stable here because it is hardcoded in programs.zsh
       shell = pkgs.zsh;
     };
 

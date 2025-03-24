@@ -75,7 +75,7 @@
         unrar
         unzip
       ]
-      ++ lib.optionals (config.home.packageSets.devTools) [
+      ++ lib.optionals config.home.packageSets.devTools [
         coreutils
         fnm
         nil
@@ -99,12 +99,13 @@
         # Go
         go
       ]
-      ++ lib.optionals (config.home.packageSets.graphical) [
+      ++ lib.optionals config.home.packageSets.graphical [
         jetbrains.pycharm-professional
         jetbrains.webstorm
         jetbrains.idea-community
         jetbrains-mono
-        xdot
+        # TODO: fix on macos
+        # xdot
         pkgs-unstable.dbeaver-bin
         obsidian
         dejavu_fonts
