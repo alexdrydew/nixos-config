@@ -58,6 +58,9 @@
           changedelete = {text = "~";};
         };
       };
+      git.git-conflict = {
+        enable = true;
+      };
       binds.whichKey = {
         enable = true;
       };
