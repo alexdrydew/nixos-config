@@ -20,6 +20,7 @@ in {
         ./sketchybar
         ./packages.nix
         ./unnaturalscrollwheels.nix
+        ./raycast.nix
       ];
       home = {
         enableNixpkgsReleaseCheck = false;
