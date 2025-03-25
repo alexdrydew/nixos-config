@@ -43,4 +43,22 @@ _: {
     '';
     executable = true;
   };
+
+  home.file.".kitty-sessions/nixos-config.sh" = {
+    text = ''
+      cd ~/nixos-config
+      launch --title "nvim" zsh -ic "nvim . && exec zsh -i"
+
+      new_tab shell
+      cd ~/nixos-config
+      launch zsh -ic "exec zsh -i"
+
+      new_tab aider
+      launch zsh -ic "aider --model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model fireworks_ai/accounts/fireworks/models/deepseek-v3 --subtree-only --map-tokens 1024 && exec zsh -i"
+
+      new_tab aider-watch
+      launch zsh -ic "aider --model fireworks_ai/accounts/fireworks/models/deepseek-v3 --subtree-only --map-tokens 1024 --watch-files && exec zsh -i"
+    '';
+    executable = true;
+  };
 }
