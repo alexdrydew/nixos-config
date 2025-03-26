@@ -70,14 +70,18 @@
     lix-module,
     ...
   } @ inputs: let
+    # TODO: hacky, cleanup
+    overlays = import ./modules/system/common/overlays/default.nix {inherit inputs;};
     mkSpecialArgs = {system}: {
       pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config.allowUnfree = true;
+        inherit (overlays.nixpkgs) overlays;
       };
       pkgs-stable = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        inherit (overlays.nixpkgs) overlays;
       };
       inherit inputs;
     };
