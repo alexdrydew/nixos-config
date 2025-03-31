@@ -7,19 +7,19 @@ _: {
         */
         ''
           cd ~/source/toloka-python
-          launch --title "nvim" zsh -ic "source ~/source/toloka-python/.venv/bin/activate && nvim . && exec zsh -i"
+          launch --title "nvim" zsh -ic "source ~/source/toloka-python/.venv/bin/activate; nvim .; exec zsh -i"
 
           new_tab shell
           cd ~/source/toloka-python
-          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate && exec zsh -i"
+          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; exec zsh -i"
 
           new_tab aider
           cd ~/source/toloka-python
-          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate && aider --model openai/deepseek-r1 --architect --editor-model openai/claude-3-7-sonnet-20250219 --subtree-only --no-auto-commits && exec zsh -i"
+          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider --model openai/deepseek-r1 --architect --editor-model openai/claude-3-7-sonnet-20250219 --subtree-only --no-auto-commits; exec zsh -i"
 
           new_tab aider watch
           cd ~/source/toloka-python
-          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate && aider --model openai/claude-3-7-sonnet-20250219 --subtree-only --no-auto-commits --watch-files && exec zsh -i"
+          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider --model openai/claude-3-7-sonnet-20250219 --subtree-only --no-auto-commits --watch-files; exec zsh -i"
         '';
       executable = true;
     };
@@ -31,24 +31,24 @@ _: {
         */
         ''
           cd ~/source/toloka-python/toloka/bespoke/configurator/backend
-          launch --title "backend" zsh -ic "source ~/source/toloka-python/.venv/bin/activate && ./local-dev.sh && exec zsh -i"
+          launch --title "backend" zsh -ic "source ~/source/toloka-python/.venv/bin/activate; ./local-dev.sh; exec zsh -i"
 
           new_tab temporal
-          launch zsh -ic "temporal server start-dev --namespace sft && exec zsh -i"
+          launch zsh -ic "temporal server start-dev --namespace sft; exec zsh -i"
 
           new_tab kubectl techman
-          launch zsh -ic "kubectl port-forward deployments/techman-deployment 8082:8080 --namespace dev-bespoke-techman && exec zsh -i"
+          launch zsh -ic "kubectl port-forward deployments/techman-deployment 8082:8080 --namespace dev-bespoke-techman; exec zsh -i"
 
           new_tab kubectl admin-ms
-          launch zsh -ic "kubectl port-forward deployments/admin-ms-deployment 8081:80 --namespace prestable-apps && exec zsh -i"
+          launch zsh -ic "kubectl port-forward deployments/admin-ms-deployment 8081:80 --namespace prestable-apps; exec zsh -i"
 
           new_tab worker
           cd ~/source/toloka-python
-          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate && python -m toloka.sft.workers.runtime.launcher.main -c local --watch && exec zsh -i"
+          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; python -m toloka.sft.workers.runtime.launcher.main -c local --watch; exec zsh -i"
 
           new_tab frontend
           cd ~/source/frontend
-          launch zsh -ic "pnpm i && tlk dev -c && exec zsh -i"
+          launch zsh -ic "pnpm i; tlk dev -c; exec zsh -i"
         '';
       executable = true;
     };
@@ -60,17 +60,17 @@ _: {
         */
         ''
           cd ~/nixos-config
-          launch --title "nvim" zsh -ic "nvim . && exec zsh -i"
+          launch --title "nvim" zsh -ic "nvim .; exec zsh -i"
 
           new_tab shell
           cd ~/nixos-config
           launch zsh -ic "exec zsh -i"
 
           new_tab aider
-          launch zsh -ic "aider --model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model fireworks_ai/accounts/fireworks/models/deepseek-v3 --subtree-only --map-tokens 1024 && exec zsh -i"
+          launch zsh -ic "aider --model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model fireworks_ai/accounts/fireworks/models/deepseek-v3 --subtree-only --map-tokens 1024; exec zsh -i"
 
           new_tab aider-watch
-          launch zsh -ic "aider --model fireworks_ai/accounts/fireworks/models/deepseek-v3 --subtree-only --map-tokens 1024 --watch-files && exec zsh -i"
+          launch zsh -ic "aider --model fireworks_ai/accounts/fireworks/models/deepseek-v3 --subtree-only --map-tokens 1024 --watch-files; exec zsh -i"
         '';
       executable = true;
     };
