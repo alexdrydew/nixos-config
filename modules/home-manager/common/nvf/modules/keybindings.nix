@@ -15,12 +15,7 @@ in {
             previous = "<C-p>";
             scrollDocsUp = "<C-b>";
             scrollDocsDown = "<C-f>";
-            confirm = "<CR>";
-          };
-          setupOpts = {
-            experimental = {
-              ghost_text = true;
-            };
+            confirm = "<C-CR>";
           };
         };
       };
@@ -92,7 +87,7 @@ in {
         (mkKeymap "n" "<C-j>" "<C-w><C-j>" {desc = "Move focus to the lower window";})
         (mkKeymap "n" "<C-k>" "<C-w><C-k>" {desc = "Move focus to the upper window";})
         # TODO: keymaps for which-key
-        (mkKeymap "n" "\\" "<cmd>Neotree reveal<cr>" {})
+        (mkKeymap "n" "\\" "<cmd>Neotree position=float reveal<cr>" {})
         # Telescope
         (mkKeymap "n" "<leader>sk" "<cmd>Telescope keymaps<cr>" {desc = "[S]earch [K]eymaps";})
         (mkKeymap "n" "<leader>ss" "<cmd>Telescope builtin<cr>" {desc = "[S]earch [S]elect Telescope";})

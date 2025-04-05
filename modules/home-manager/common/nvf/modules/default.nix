@@ -14,14 +14,17 @@
   config = {
     vim = {
       package = neovim-nightly-overlay.packages.${pkgs.system}.neovim;
-      startPlugins = with pkgs.vimPlugins; [
-        vim-sleuth
-        copilot-lua
-        copilot-lualine
-        telescope-ui-select-nvim
-        telescope-fzf-native-nvim
-        nvim-spectre
-      ];
+      extraPlugins = with pkgs.vimPlugins; {
+        vim-sleuth = {package = vim-sleuth;};
+        copilot-lua = {package = copilot-lua;};
+        copilot-lualine = {package = copilot-lualine;};
+        telescope-ui-select-nvim = {package = telescope-ui-select-nvim;};
+        telescope-fzf-native-nvim = {package = telescope-fzf-native-nvim;};
+        nvim-spectre = {package = nvim-spectre;};
+        tailwind-tools-nvim = {
+          package = tailwind-tools-nvim;
+        };
+      };
       ui = {
         noice.enable = true;
       };
@@ -92,6 +95,11 @@
             "luasnip"
             "cmp-path"
           ];
+          setupOpts = {
+            experimental = {
+              ghost_text = true;
+            };
+          };
         };
       };
       notes = {
@@ -151,6 +159,7 @@
         enable = true;
       };
       useSystemClipboard = true;
+      withNodeJs = true; # for node remote plugins
     };
   };
 }

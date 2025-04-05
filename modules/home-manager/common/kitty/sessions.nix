@@ -74,5 +74,29 @@ _: {
         '';
       executable = true;
     };
+
+    ".kitty-sessions/tv-ui-dev.sh" = {
+      text =
+        /*
+        bash
+        */
+        ''
+          cd ~/source/tv-ui
+          launch --title "nvim" zsh -ic "nix develop -c zsh -ic 'nvim .; exec zsh -i'"
+
+          new_tab dev
+          cd ~/source/tv-ui
+          launch zsh -ic "nix develop -c zsh -ic 'cargo-tauri dev; exec zsh -i'"
+
+          new_tab shell
+          cd ~/source/tv-ui
+          launch zsh -ic "nix develop -c zsh -ic 'exec zsh -i'"
+
+          new_tab aider
+          cd ~/source/tv-ui
+          launch zsh -ic "nix develop -c zsh -ic 'aider --model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model gemini-2.5-pro; exec zsh -i'"
+        '';
+      executable = true;
+    };
   };
 }

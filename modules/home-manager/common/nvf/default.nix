@@ -12,6 +12,7 @@
       inherit (inputs) neovim-nightly-overlay;
       inherit pkgs-unstable;
       rustaceanvim = inputs.rustaceanvim.packages.${pkgs-stable.system}.default;
+      inherit (pkgs-stable) neovim-node-client;
     };
     modules = [
       ./modules/default.nix
@@ -27,6 +28,7 @@ in {
     home.packages = [
       nvf-nvim.neovim
       pkgs-stable.stylua
+      pkgs-stable.neovim-node-client
     ];
   };
 }

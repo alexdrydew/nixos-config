@@ -27,7 +27,7 @@
         };
         lua = {
           enable = true;
-          lsp.enable = true;
+          lsp.enable = false;
         };
         ts = {
           enable = true;
