@@ -15,7 +15,7 @@ _: {
 
           new_tab aider
           cd ~/source/toloka-python
-          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider --model openai/deepseek-r1 --architect --editor-model openai/gemini-2-5-pro --subtree-only --no-auto-commits; exec zsh -i"
+          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider --editor-model openai/gemini-2-5-pro --subtree-only --no-auto-commits; exec zsh -i"
 
           new_tab aider watch
           cd ~/source/toloka-python
