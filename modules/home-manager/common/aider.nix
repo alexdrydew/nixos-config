@@ -106,7 +106,7 @@ in {
           editor_edit_format = "editor-diff";
         }
         {
-          name = "openai/gemini-2.5-pro";
+          name = "openai/gemini-2-5-pro";
           edit_format = "diff-fenced";
           use_repo_map = true;
           weak_model_name = "openai/gemini-2.0-flash";
@@ -194,7 +194,7 @@ in {
             "supports_response_schema" = true;
             "supports_tool_choice" = true;
           };
-          "openai/gemini-2.5-pro" = {
+          "openai/gemini-2-5-pro" = {
             "max_tokens" = 8192;
             "max_input_tokens" = 1048576;
             "max_output_tokens" = 64000;

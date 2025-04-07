@@ -94,7 +94,7 @@ _: {
 
           new_tab aider
           cd ~/source/tv-ui
-          launch zsh -ic "nix develop -c zsh -ic 'aider --model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model gemini-2.5-pro; exec zsh -i'"
+          launch zsh -ic "nix develop -c zsh -ic 'aider --model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model openai/gemini-2-5-pro; exec zsh -i'"
         '';
       executable = true;
     };
