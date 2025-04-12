@@ -18,12 +18,12 @@ in {
     autosuggestion.enable = true;
 
     initExtraFirst = ''
-      if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
-        . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-        . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
-      fi
-
       if [[ -z "$IN_NIX_SHELL" ]]; then
+        if [[ -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]]; then
+          . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+          . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+        fi
+
         # Define variables for directories, only if not in nix-shell
         export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
         export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
@@ -36,15 +36,15 @@ in {
         export PATH="/Users/alexdrydew/.local/bin:$PATH"
 
         ${
-          if homebrew-enabled
-          then ''
-            # Homebrew, only modify PATH if not in nix-shell
-            if [[ $(uname -m) == 'arm64' ]]; then
-              eval "$(/opt/homebrew/bin/brew shellenv)"
-            fi
-          ''
-          else ""
-        }
+        if homebrew-enabled
+        then ''
+          # Homebrew, only modify PATH if not in nix-shell
+          if [[ $(uname -m) == 'arm64' ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+          fi
+        ''
+        else ""
+      }
       fi
 
       # Remove history data we don't want to see

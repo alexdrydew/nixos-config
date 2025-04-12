@@ -158,6 +158,24 @@
       autopairs.nvim-autopairs = {
         enable = true;
       };
+      utility = {
+        images = {
+          image-nvim = {
+            enable = true;
+            setupOpts = {
+              backend = "kitty";
+              hijackFilePatterns = [
+                "*.png"
+                "*.jpg"
+                "*.jpeg"
+                "*.gif"
+                "*.webp"
+                "*.svg"
+              ];
+            };
+          };
+        };
+      };
       useSystemClipboard = true;
       withNodeJs = true; # for node remote plugins
     };

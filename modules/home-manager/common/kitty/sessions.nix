@@ -24,6 +24,30 @@ _: {
       executable = true;
     };
 
+    ".kitty-sessions/kitty-python-agents.sh" = {
+      text =
+        /*
+        bash
+        */
+        ''
+          cd ~/source/agent-integrations
+          launch --title "nvim" zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; nvim .; exec zsh -i"
+
+          new_tab shell
+          cd ~/source/agent-integrations
+          launch zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; exec zsh -i"
+
+          new_tab aider
+          cd ~/source/agent-integrations
+          launch zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; aider --model openai/gemini-2-5-pro --subtree-only --no-auto-commits; exec zsh -i"
+
+          new_tab aider watch
+          cd ~/source/agent-integrations
+          launch zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; aider --model openai/gemini-2-5-pro --subtree-only --no-auto-commits --watch-files; exec zsh -i"
+        '';
+      executable = true;
+    };
+
     ".kitty-sessions/bespoke-configurator-dev.sh" = {
       text =
         /*
