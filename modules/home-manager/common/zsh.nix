@@ -23,10 +23,29 @@ in {
         . /nix/var/nix/profiles/default/etc/profile.d/nix.sh
       fi
 
-      # Define variables for directories
-      export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
-      export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
-      export PATH=$HOME/.local/share/bin:$PATH
+      if [[ -z "$IN_NIX_SHELL" ]]; then
+        # Define variables for directories, only if not in nix-shell
+        export PATH=$HOME/.pnpm-packages/bin:$HOME/.pnpm-packages:$PATH
+        export PATH=$HOME/.npm-packages/bin:$HOME/bin:$PATH
+        export PATH=$HOME/.local/share/bin:$PATH
+
+        # Go
+        export GO_PATH=$HOME/go
+        export PATH=$PATH:$GO_PATH/bin
+
+        export PATH="/Users/alexdrydew/.local/bin:$PATH"
+
+        ${
+          if homebrew-enabled
+          then ''
+            # Homebrew, only modify PATH if not in nix-shell
+            if [[ $(uname -m) == 'arm64' ]]; then
+              eval "$(/opt/homebrew/bin/brew shellenv)"
+            fi
+          ''
+          else ""
+        }
+      fi
 
       # Remove history data we don't want to see
       export HISTIGNORE="pwd:ls:cd"
@@ -46,27 +65,11 @@ in {
       # Always color ls and group directories
       alias ls='ls --color=auto'
 
-      # Go
-      export GO_PATH=$HOME/go
-      export PATH=$PATH:$GO_PATH/bin
-
       bindkey "\e[1;3D" backward-word
       bindkey "\e[1;3C" forward-word
 
-      export PATH="/Users/alexdrydew/.local/bin:$PATH"
-
       # Toloka
       alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
-      ${
-        if homebrew-enabled
-        then ''
-          # Homebrew
-          if [[ $(uname -m) == 'arm64' ]]; then
-            eval "$(/opt/homebrew/bin/brew shellenv)"
-          fi
-        ''
-        else ""
-      }
     '';
 
     envExtra = ''
