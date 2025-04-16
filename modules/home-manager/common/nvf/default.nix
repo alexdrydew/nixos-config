@@ -29,6 +29,8 @@ in {
       nvf-nvim.neovim
       pkgs-stable.stylua
       pkgs-stable.neovim-node-client
+      pkgs-stable.basedpyright
+      pkgs-stable.ruff
     ];
   };
 }

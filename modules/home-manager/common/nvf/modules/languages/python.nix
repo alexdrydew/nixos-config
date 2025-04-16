@@ -42,7 +42,7 @@
                       },
                     },
                   };
-                  cmd = ${''{"${pkgs.basedpyright}/bin/basedpyright-langserver", "--stdio"}''}
+                  cmd = {"basedpyright-langserver", "--stdio"};
                 }
               '';
             ruff =
@@ -53,7 +53,7 @@
                 lspconfig.ruff.setup{
                   capabilities = capabilities;
                   on_attach = default_on_attach;
-                  cmd = ${''{"${pkgs.ruff}/bin/ruff", "server"}''}
+                  cmd = ${''{"ruff", "server"}''}
                 }
               '';
           };
