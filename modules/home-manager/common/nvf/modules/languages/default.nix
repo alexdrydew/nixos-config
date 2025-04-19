@@ -71,7 +71,27 @@
       };
       visuals.fidget-nvim = {
         enable = true;
+        setupOpts.notification.override_vim_notify = true;
       };
+      luaConfigRC.ts-verstion-notificaion =
+        /*
+        lua
+        */
+        ''
+          -- Custom handler for $/typescriptVersion
+          local custom_typescript_version_handler = function(err, result, ctx)
+            if err then
+              vim.notify("LSP Error: " .. err.message, vim.log.levels.ERROR)
+              return
+            end
+
+            vim.notify("TypeScript version: " .. result.version, vim.log.levels.INFO, {
+              title = "TypeScript LSP",
+            })
+          end
+
+          vim.lsp.handlers["$/typescriptVersion"] = custom_typescript_version_handler
+        '';
     };
   };
 }

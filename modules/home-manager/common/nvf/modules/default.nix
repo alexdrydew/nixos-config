@@ -26,7 +26,12 @@
         };
       };
       ui = {
-        noice.enable = true;
+        noice = {
+          enable = true;
+          setupOpts = {
+            notify.enabled = false;
+          };
+        };
       };
       luaPackages = [
         "jsregexp" # for luasnip
