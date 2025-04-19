@@ -1,7 +1,7 @@
 {pkgs-unstable, ...}: {
   imports = [
     ./python.nix
-    ./eslint.nix
+    ./js.nix
   ];
   config = {
     vim = {
@@ -28,12 +28,6 @@
         lua = {
           enable = true;
           lsp.enable = false;
-        };
-        ts = {
-          enable = true;
-          format.enable = true;
-          extraDiagnostics.enable = false; # eslint_d is not available in none-ls anymore and I use eslint lsp
-          lsp.enable = true;
         };
         tailwind = {
           enable = true;
@@ -73,25 +67,6 @@
         enable = true;
         setupOpts.notification.override_vim_notify = true;
       };
-      luaConfigRC.ts-verstion-notificaion =
-        /*
-        lua
-        */
-        ''
-          -- Custom handler for $/typescriptVersion
-          local custom_typescript_version_handler = function(err, result, ctx)
-            if err then
-              vim.notify("LSP Error: " .. err.message, vim.log.levels.ERROR)
-              return
-            end
-
-            vim.notify("TypeScript version: " .. result.version, vim.log.levels.INFO, {
-              title = "TypeScript LSP",
-            })
-          end
-
-          vim.lsp.handlers["$/typescriptVersion"] = custom_typescript_version_handler
-        '';
     };
   };
 }
