@@ -24,7 +24,17 @@
     };
     extraPlugins = {
       typescript-tools = {
-        package = pkgs.vimPlugins.typescript-tools-nvim;
+        package = pkgs.vimUtils.buildVimPlugin {
+          pname = "typescript-tools.nvim";
+          version = "2025-04-19";
+          src = pkgs.fetchFromGitHub {
+            owner = "pmizio";
+            repo = "typescript-tools.nvim";
+            rev = "885f4cc150f996f5bff5804874f92ff3051c883d";
+            hash = "sha256-PcLpn9c9BUAAhMfEzZIH4K4f+YDumvWZzQ0iGMR/NSw=";
+          };
+          meta.homepage = "https://github.com/pmizio/typescript-tools.nvim/";
+        };
         setup =
           /*
           lua

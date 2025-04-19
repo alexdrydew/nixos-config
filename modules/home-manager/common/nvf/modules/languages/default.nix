@@ -1,4 +1,9 @@
-{pkgs-unstable, ...}: {
+{
+  pkgs-unstable,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./python.nix
     ./js.nix
@@ -32,6 +37,9 @@
         tailwind = {
           enable = true;
           lsp.enable = true;
+        };
+        html = {
+          enable = true;
         };
         yaml = {
           enable = true;
