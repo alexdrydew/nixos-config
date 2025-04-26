@@ -82,7 +82,7 @@ in {
           # hide dock
           autohide = true;
           autohide-delay = 1000.0;
-          tilesize = 1;
+          tilesize = 16;
           show-recents = false;
           launchanim = true;
           orientation = "bottom";
