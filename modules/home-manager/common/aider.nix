@@ -14,6 +14,7 @@ in {
       default = {
         "read" = [
           "${config.home.homeDirectory}/CONVENTIONS.md"
+          "${config.home.homeDirectory}/EDIT_GEMINI_CONVENTIONS.md"
         ];
         "dark-mode" = true;
         "model-settings-file" = "${config.home.homeDirectory}/.aider.model.settings.yml";

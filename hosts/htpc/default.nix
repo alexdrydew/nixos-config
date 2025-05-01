@@ -32,7 +32,7 @@ in {
   home-manager.sharedModules = [
     {
       home.packageSets.graphical = false;
-      home.packageSets.devTools = false;
+      home.packageSets.devTools = true;
       kitty.enable = false;
       big-launcher.enable = true;
     }
