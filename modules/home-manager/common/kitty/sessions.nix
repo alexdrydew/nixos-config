@@ -77,6 +77,26 @@ _: {
       executable = true;
     };
 
+    ".kitty-sessions/nixos-config-dev.sh" = {
+      text =
+        /*
+        bash
+        */
+        ''
+          cd ~/nixos-config
+          launch --title "nvim" zsh -ic "nvim .; exec zsh -i"
+
+          new_tab shell
+          cd ~/nixos-config
+          launch zsh -ic "exec zsh -i"
+
+          new_tab aider
+          cd ~/nixos-config
+          launch zsh -ic "aider --model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model openai/gemini-2-5-pro; exec zsh -i"
+        '';
+      executable = true;
+    };
+
     ".kitty-sessions/nixos-config.sh" = {
       text =
         /*

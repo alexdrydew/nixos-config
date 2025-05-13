@@ -88,6 +88,28 @@
           '';
         executable = true;
       };
+
+      "raycast/kitty-nixos-config-dev.sh" = {
+        text =
+          /*
+          bash
+          */
+          ''
+            #!/bin/bash
+
+            # Required parameters:
+            # @raycast.schemaVersion 1
+            # @raycast.title kitty nixos-config dev
+            # @raycast.mode silent
+
+            # Optional parameters:
+            # @raycast.icon 🤖
+            # @raycast.packageName kitty
+
+            ${config.home.profileDirectory}/bin/kitty --session ${config.home.homeDirectory}/.kitty-sessions/nixos-config-dev.sh
+          '';
+        executable = true;
+      };
     };
   };
 }
