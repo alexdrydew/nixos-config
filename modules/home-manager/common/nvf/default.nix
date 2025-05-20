@@ -7,7 +7,7 @@
   ...
 }: let
   nvf-nvim = inputs.nvf.lib.neovimConfiguration {
-    pkgs = pkgs-stable;
+    pkgs = pkgs-unstable;
     extraSpecialArgs = {
       inherit (inputs) neovim-nightly-overlay;
       inherit pkgs-unstable;
@@ -27,10 +27,10 @@ in {
   config = lib.mkIf config.nvf.enable {
     home.packages = [
       nvf-nvim.neovim
-      pkgs-stable.stylua
-      pkgs-stable.neovim-node-client
-      pkgs-stable.basedpyright
-      pkgs-stable.ruff
+      pkgs-unstable.stylua
+      pkgs-unstable.neovim-node-client
+      pkgs-unstable.basedpyright
+      pkgs-unstable.ruff
     ];
   };
 }

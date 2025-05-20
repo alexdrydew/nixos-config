@@ -83,13 +83,7 @@
         nix-index
 
         # Python packages
-        uv
         jdk21
-        # Node.js development tools
-        nodePackages.npm # globally install npm
-        nodePackages.prettier
-        nodePackages.node2nix
-        pnpm_8
 
         # Rust
         # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
@@ -109,6 +103,14 @@
         pkgs-unstable.dbeaver-bin
         obsidian
         dejavu_fonts
-      ];
+      ]
+      ++ (with pkgs-unstable; [
+        uv
+        pnpm_8
+        # Node.js development tools
+        nodePackages.npm # globally install npm
+        nodePackages.prettier
+        nodePackages.node2nix
+      ]);
   };
 }

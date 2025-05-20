@@ -17,7 +17,7 @@ in {
     ./aerospace.nix
     ./jankyborders.nix
     ./raycast.nix
-    ./sketchybar
+    # ./sketchybar
     ../../home-manager/darwin
   ];
 

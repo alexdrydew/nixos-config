@@ -1,6 +1,8 @@
-{...}: {
+{pkgs, ...}: let
+  yaml = pkgs.formats.yaml {};
+in {
   imports = [
-    ./aider.nix
+    ./ider.nix
     ./zsh.nix
     ./git.nix
     ./ssh.nix
@@ -12,4 +14,10 @@
     ./nvf
     ./moonlight.nix
   ];
+
+  home = {
+    file = {
+      ".aider.conf.yml12".source = yaml.generate "test" {};
+    };
+  };
 }

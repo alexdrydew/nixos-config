@@ -25,6 +25,10 @@
     extraPlugins = {
       typescript-tools = {
         package = pkgs.vimUtils.buildVimPlugin {
+          dependencies = [
+            pkgs.vimPlugins.plenary-nvim
+            pkgs.vimPlugins.nvim-lspconfig
+          ];
           pname = "typescript-tools.nvim";
           version = "2025-04-19";
           src = pkgs.fetchFromGitHub {

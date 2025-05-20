@@ -17,7 +17,7 @@ in {
       imports = [
         ../common
         ./firefox.nix
-        ./sketchybar
+        # ./sketchybar
         ./packages.nix
         ./unnaturalscrollwheels.nix
         ./raycast.nix

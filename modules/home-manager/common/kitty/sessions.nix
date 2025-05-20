@@ -1,10 +1,8 @@
-_:
-let
-  aiderGeminiArgs = "--model openai/gemini-2-5-pro --subtree-only --no-auto-commits";
-  aiderDeepseekArchitectArgs = "--model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect --editor-model openai/gemini-2-5-pro";
-  aiderDeepseekV3SubtreeArgs = "--model fireworks_ai/accounts/fireworks/models/deepseek-v3 --subtree-only --map-tokens 1024";
-in
-{
+_: let
+  aiderWorkArgs = "--model openai/google/gemini-2.5-pro-exp-03-25 --subtree-only --no-auto-commits";
+  aiderPersonalArchitectArgs = "--model openrouter/deepseek/deepseek-r1 --architect --editor-model openrouter/anthropic/claude-3.5-sonnet";
+  aiderPersonalArgs = "--model openai/o4-mini-high --subtree-only";
+in {
   home.file = {
     ".kitty-sessions/toloka-python.sh" = {
       text =
@@ -21,11 +19,11 @@ in
 
           new_tab aider
           cd ~/source/toloka-python
-          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider ${aiderGeminiArgs}; exec zsh -i"
+          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider ${aiderWorkArgs}; exec zsh -i"
 
           new_tab aider watch
           cd ~/source/toloka-python
-          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider ${aiderGeminiArgs} --watch-files; exec zsh -i"
+          launch zsh -ic "source ~/source/toloka-python/.venv/bin/activate; aider ${aiderWorkArgs} --watch-files; exec zsh -i"
         '';
       executable = true;
     };
@@ -45,11 +43,11 @@ in
 
           new_tab aider
           cd ~/source/agent-integrations
-          launch zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; aider ${aiderGeminiArgs}; exec zsh -i"
+          launch zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; aider ${aiderWorkArgs}; exec zsh -i"
 
           new_tab aider watch
           cd ~/source/agent-integrations
-          launch zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; aider ${aiderGeminiArgs} --watch-files; exec zsh -i"
+          launch zsh -ic "source ~/source/agent-integrations/.venv/bin/activate; aider ${aiderWorkArgs} --watch-files; exec zsh -i"
         '';
       executable = true;
     };
@@ -98,7 +96,7 @@ in
 
           new_tab aider
           cd ~/nixos-config
-          launch zsh -ic "aider ${aiderDeepseekArchitectArgs}; exec zsh -i"
+          launch zsh -ic "aider ${aiderPersonalArchitectArgs}; exec zsh -i"
         '';
       executable = true;
     };
@@ -117,10 +115,10 @@ in
           launch zsh -ic "exec zsh -i"
 
           new_tab aider
-          launch zsh -ic "aider ${aiderDeepseekV3SubtreeArgs} --editor-model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect; exec zsh -i"
+          launch zsh -ic "aider ${aiderPersonalArgs} --editor-model fireworks_ai/accounts/fireworks/models/deepseek-r1 --architect; exec zsh -i"
 
           new_tab aider-watch
-          launch zsh -ic "aider ${aiderDeepseekV3SubtreeArgs} --watch-files; exec zsh -i"
+          launch zsh -ic "aider ${aiderPersonalArgs} --watch-files; exec zsh -i"
         '';
       executable = true;
     };
@@ -144,7 +142,7 @@ in
 
           new_tab aider
           cd ~/source/tv-ui
-          launch zsh -ic "nix develop -c zsh -ic 'aider ${aiderDeepseekArchitectArgs}; exec zsh -i'"
+          launch zsh -ic "nix develop -c zsh -ic 'aider ${aiderPersonalArchitectArgs}; exec zsh -i'"
         '';
       executable = true;
     };

@@ -107,10 +107,15 @@ in {
           editor_edit_format = "editor-diff";
         }
         {
-          name = "openai/gemini-2-5-pro";
+          name = "openai/google/gemini-2.5-pro-exp-03-25";
           edit_format = "diff-fenced";
           use_repo_map = true;
           weak_model_name = "openai/gemini-2.0-flash";
+        }
+        {
+          name = "openai/gemini-2.0-flash";
+          edit_format = "diff";
+          use_repo_map = true;
         }
       ];
       description = "Aider model configuration";
@@ -195,7 +200,7 @@ in {
             "supports_response_schema" = true;
             "supports_tool_choice" = true;
           };
-          "openai/gemini-2-5-pro" = {
+          "openai/google/gemini-2.5-pro-exp-03-25" = {
             "max_tokens" = 8192;
             "max_input_tokens" = 1048576;
             "max_output_tokens" = 64000;
@@ -230,6 +235,25 @@ in {
             "supports_response_schema" = true;
             "supports_tool_choice" = true;
             "source" = "https://cloud.google.com/vertex-ai/generative-ai/pricing";
+          };
+          "openai/gemini-2.0-flash" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 1048576;
+            "max_output_tokens" = 8192;
+            "max_images_per_prompt" = 3000;
+            "max_videos_per_prompt" = 10;
+            "max_video_length" = 1;
+            "max_audio_length_hours" = 8.4;
+            "max_audio_per_prompt" = 1;
+            "max_pdf_size_mb" = 30;
+            "litellm_provider" = "openrouter";
+            "mode" = "chat";
+            "supports_system_messages" = true;
+            "supports_function_calling" = true;
+            "supports_vision" = true;
+            "supports_response_schema" = true;
+            "supports_audio_output" = true;
+            "supports_tool_choice" = true;
           };
         };
       };

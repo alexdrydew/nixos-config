@@ -181,7 +181,7 @@
           };
         };
       };
-      useSystemClipboard = true;
+      clipboard.registers = "unnamedplus";
       withNodeJs = true; # for node remote plugins
     };
   };

@@ -14,6 +14,7 @@
         };
       };
       lsp = {
+        enable = true;
         lspconfig = {
           enable = true;
           sources = {

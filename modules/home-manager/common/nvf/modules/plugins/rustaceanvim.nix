@@ -1,5 +1,5 @@
 {rustaceanvim, ...}: {
   vim.pluginOverrides = {
-    inherit rustaceanvim;
+    # inherit rustaceanvim;
   };
 }
