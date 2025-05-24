@@ -2,7 +2,7 @@
   yaml = pkgs.formats.yaml {};
 in {
   imports = [
-    ./ider.nix
+    ./aider.nix
     ./zsh.nix
     ./git.nix
     ./ssh.nix

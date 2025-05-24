@@ -181,7 +181,10 @@
           };
         };
       };
-      clipboard.registers = "unnamedplus";
+      clipboard = {
+        enable = true;
+        registers = "unnamedplus";
+      };
       withNodeJs = true; # for node remote plugins
     };
   };

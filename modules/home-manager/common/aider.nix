@@ -82,6 +82,24 @@ in {
           editor_edit_format = "editor-diff";
         }
         {
+          name = "openai/claude-sonnet-4";
+          overeager = true;
+          edit_format = "diff";
+          weak_model_name = "openai/gemini-2.0-flash";
+          use_repo_map = true;
+          examples_as_sys_msg = true;
+          extra_params = {
+            # extra_headers = {
+            #   anthropic-beta = "prompt-caching-2024-07-31,pdfs-2024-09-25,output-128k-2025-02-19";
+            # };
+            max_tokens = 64000;
+          };
+          cache_control = true;
+          editor_model_name = "openai/claude-3-7-sonnet-20250219";
+          editor_edit_format = "editor-diff";
+          accepts_settings = ["thinking_tokens"];
+        }
+        {
           name = "openai/claude-3-7-sonnet-20250219";
           edit_format = "diff";
           use_repo_map = true;
@@ -158,6 +176,20 @@ in {
             "supports_prompt_caching" = false;
           };
           "openai/claude-3-7-sonnet-20250219" = {
+            "max_tokens" = 8192;
+            "max_input_tokens" = 200000;
+            "max_output_tokens" = 8192;
+            "input_cost_per_token" = 0.000003;
+            "output_cost_per_token" = 0.000015;
+            "input_cost_per_image" = 0.0048;
+            "mode" = "chat";
+            "supports_function_calling" = true;
+            "supports_vision" = true;
+            "tool_use_system_prompt_tokens" = 159;
+            "supports_assistant_prefill" = true;
+            "supports_tool_choice" = true;
+          };
+          "openai/claude-sonnet-4" = {
             "max_tokens" = 8192;
             "max_input_tokens" = 200000;
             "max_output_tokens" = 8192;

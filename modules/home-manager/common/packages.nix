@@ -103,6 +103,8 @@
         pkgs-unstable.dbeaver-bin
         obsidian
         dejavu_fonts
+
+        google-chrome
       ]
       ++ (with pkgs-unstable; [
         uv

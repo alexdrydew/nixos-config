@@ -8,7 +8,10 @@
       languages = {
         python = {
           enable = true;
-          format.type = "ruff";
+          format = {
+            enable = true;
+            type = "ruff";
+          };
           lsp.enable = false; # define custom
           treesitter.enable = true;
         };
