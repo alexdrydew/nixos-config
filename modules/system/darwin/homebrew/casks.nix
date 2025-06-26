@@ -1,6 +1,8 @@
 _: [
   "macfuse"
   "rustdesk"
+  "chromium"
+  "devpod"
 
   # Development Tools
   "homebrew/cask/docker"

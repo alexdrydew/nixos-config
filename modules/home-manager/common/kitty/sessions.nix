@@ -1,5 +1,5 @@
 _: let
-  aiderWorkArgs = "--model openai/google/gemini-2.5-pro-exp-03-25 --subtree-only --no-auto-commits";
+  aiderWorkArgs = "--model openai/gemini-2-5-pro --subtree-only --no-auto-commits";
   aiderPersonalArchitectArgs = "--model openrouter/deepseek/deepseek-r1 --architect --editor-model openrouter/anthropic/claude-3.5-sonnet";
   aiderPersonalArgs = "--model openai/o4-mini-high --subtree-only";
 in {

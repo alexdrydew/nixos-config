@@ -13,6 +13,7 @@ in {
     ./k9s.nix
     ./nvf
     ./moonlight.nix
+    ./claude-code.nix
   ];
 
   home = {

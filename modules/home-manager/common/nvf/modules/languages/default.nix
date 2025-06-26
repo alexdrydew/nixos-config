@@ -18,6 +18,7 @@
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(), { bufnr })
         '';
       lsp = {
+        enable = true;
         formatOnSave = true;
       };
       treesitter = {

@@ -70,6 +70,7 @@ in {
 
       # Toloka
       alias tlk='$HOME/source/frontend/shared/infra/cli/bin/entrypoint'
+      alias tlkp='$HOME/.tlk/venv/bin/tlk'
     '';
 
     envExtra = ''

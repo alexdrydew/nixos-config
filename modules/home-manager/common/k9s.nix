@@ -1,6 +1,7 @@
-_: {
+{pkgs-unstable, ...}: {
   programs.k9s = {
     enable = true;
+    package = pkgs-unstable.k9s;
     plugin = {
       plugins = {
         debug = {
@@ -15,7 +16,7 @@ _: {
             ''
               REGISTRY=$([[ $CONTEXT == prod-* ]] && echo "tlkprodregistry" || echo "tlktestregistry");
               kubectl debug -it -n=$NAMESPACE --context=$CONTEXT $POD --target=$NAME \
-                --image=$REGISTRY.azurecr.io/backend/java-debug-light --share-processes -- sh
+                --image=$REGISTRY.azurecr.io/ubuntu:noble --share-processes -- sh
             ''
           ];
         };

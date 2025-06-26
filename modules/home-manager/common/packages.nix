@@ -40,6 +40,8 @@
         pipx
         difftastic
         nmap
+        tokei
+        etcd
 
         # General packages for development and system management
         bash-completion
@@ -105,6 +107,7 @@
         dejavu_fonts
 
         google-chrome
+        brave
       ]
       ++ (with pkgs-unstable; [
         uv
@@ -113,6 +116,8 @@
         nodePackages.npm # globally install npm
         nodePackages.prettier
         nodePackages.node2nix
+
+        codex
       ]);
   };
 }

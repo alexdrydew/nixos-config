@@ -45,6 +45,7 @@
           */
           ''
             require("typescript-tools").setup {
+              on_attach = default_on_attach,
               settings = {
                 expose_as_code_action = "all"
               }

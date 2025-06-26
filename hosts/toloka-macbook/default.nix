@@ -3,7 +3,6 @@
     ../../modules/system/darwin
   ];
 
-  services.nix-daemon.enable = true;
   local.dock.enable = true;
 
   home-manager.sharedModules = [

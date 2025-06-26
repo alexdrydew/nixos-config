@@ -11,6 +11,9 @@ in {
     inputs.home-manager.darwinModules.home-manager
   ];
 
+  system.primaryUser = user;
+  ids.gids.nixbld = 350;
+
   home-manager = {
     useGlobalPkgs = true;
     users.${user} = {...}: {
@@ -34,7 +37,7 @@ in {
     };
   };
 
-  system.activationScripts.postUserActivation.text = ''
+  system.activationScripts.activateSettings.text = ''
     # Following line should allow us to avoid a logout/login cycle
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';

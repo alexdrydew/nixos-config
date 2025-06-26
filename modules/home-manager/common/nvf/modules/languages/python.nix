@@ -28,6 +28,7 @@
               ''
                 lspconfig.basedpyright.setup{
                   capabilities = capabilities;
+                  on_attach = default_on_attach;
                   settings = {
                     basedpyright = {
                       analysis = {
