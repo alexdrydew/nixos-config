@@ -61,20 +61,15 @@ in {
       launchd.daemons.colima-docker-compat = {
         script = ''
           set -euo pipefail
-          # Wait for the docker socket to be created. This is important when
-          # we enabled Colima and Docker compatability at the same time, for
-          # the first time. Colima takes a while creating the VM.
-          until [ -S ${cfg.stateDir}/.colima/default/docker.sock ]
-          do
-            sleep 5
-          done
-
-          chmod g+rw ${cfg.stateDir}/.colima/default/docker.sock
-          ln -sf ${cfg.stateDir}/.colima/default/docker.sock /var/run/docker.sock
+          if [ -S "${cfg.stateDir}/.colima/default/docker.sock" ]; then
+            chmod g+rw "${cfg.stateDir}/.colima/default/docker.sock"
+            ln -sf "${cfg.stateDir}/.colima/default/docker.sock" /var/run/docker.sock
+          fi
         '';
 
         serviceConfig = {
           RunAtLoad = true;
+          StartInterval = 5;
           EnvironmentVariables.PATH = "/usr/bin:/bin:/usr/sbin:/sbin";
         };
       };

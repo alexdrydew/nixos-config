@@ -45,15 +45,6 @@
             telescope.load_extension('ui-select')
           '';
       };
-      nvim-dap-python = {
-        package = pkgs.vimPlugins.nvim-dap-python;
-        event = [
-          {
-            event = "BufEnter";
-            pattern = "*.py";
-          }
-        ];
-      };
     };
   };
 }
