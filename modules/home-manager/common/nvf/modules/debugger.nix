@@ -19,6 +19,13 @@
               pattern = "*.py";
             }
           ];
+          after =
+            /*
+            lua
+            */
+            ''
+              require("dap-python").setup("uv")
+            '';
         };
       };
     };
