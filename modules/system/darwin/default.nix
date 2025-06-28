@@ -17,6 +17,7 @@ in {
     ./aerospace.nix
     ./jankyborders.nix
     ./raycast.nix
+    ./colima.nix
     # ./sketchybar
     ../../home-manager/darwin
   ];
@@ -115,5 +116,11 @@ in {
       };
     };
     power.sleep.display = "never";
+
+    services.colima = {
+      enable = true;
+      enableDockerCompatability = true;
+      groupMembers = [user];
+    };
   };
 }
