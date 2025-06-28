@@ -9,6 +9,9 @@ with lib; let
   cfg = config.services.colima;
   user = config.users.users."colima";
   group = config.users.groups."_colima";
+  colimaEditor = pkgs.writeShellScript "colima-editor" ''
+    cat ${./colima.yaml} > "$1"
+  '';
 in {
   options.services.colima = {
     enable = mkEnableOption "Colima, a macOS container runtime";
@@ -44,42 +47,6 @@ in {
         Only has effect with enableDockerCompatability enabled.
       '';
     };
-
-    runtime = mkOption {
-      type = types.enum [
-        "docker"
-        "containerd"
-        "incus"
-      ];
-      default = "docker";
-      description = "The runtime to use with Colima.";
-    };
-
-    architectue = mkOption {
-      type = types.enum [
-        "x86_64"
-        "aarch64"
-        "host"
-      ];
-      default = "host";
-      description = "The architecture to use for the Colima virtual machine.";
-    };
-
-    extraFlags = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      example = ["--vz-rosetta"];
-      description = "Extra commandline options to pass to the colima start command.";
-    };
-
-    vmType = mkOption {
-      type = types.enum [
-        "qemu"
-        "vz"
-      ];
-      default = "vz";
-      description = "Virtual machine type to use with Colima.";
-    };
   };
 
   config = mkMerge [
@@ -93,6 +60,7 @@ in {
 
       launchd.daemons.colima-docker-compat = {
         script = ''
+          set -euo pipefail
           # Wait for the docker socket to be created. This is important when
           # we enabled Colima and Docker compatability at the same time, for
           # the first time. Colima takes a while creating the VM.
@@ -115,6 +83,7 @@ in {
 
       environment.systemPackages = [
         pkgs.docker
+        pkgs.docker-buildx
       ];
     })
 
@@ -132,17 +101,12 @@ in {
       ];
 
       launchd.daemons.colima = {
-        script =
-          concatStringsSep " " [
-            "exec"
-            (getExe cfg.package)
-            "start"
-            "--foreground"
-            "--runtime ${cfg.runtime}"
-            "--arch ${cfg.architectue}"
-            "--vm-type ${cfg.vmType}"
-          ]
-          + escapeShellArgs cfg.extraFlags;
+        script = ''
+          EDITOR=${colimaEditor} exec ${getExe cfg.package} start \
+            --edit \
+            --foreground \
+            --very-verbose
+        '';
 
         serviceConfig = {
           KeepAlive = true;
@@ -182,6 +146,7 @@ in {
         # The username isn't allowed to have an underscore in the beginning of
         # its name, otherwise the VM will fail to start with the following error
         #   > "[hostagent] identifier \"_colima\" must match ^[A-Za-z0-9]+(?:[._-](?:[A-Za-z0-9]+))*$: invalid argument" fields.level=fatal
+
         name = "colima";
         createHome = true;
         shell = "/bin/bash";
