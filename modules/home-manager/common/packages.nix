@@ -118,6 +118,7 @@
         nodePackages.node2nix
 
         codex
+        gemini-cli
       ]);
   };
 }

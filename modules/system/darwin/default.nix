@@ -37,6 +37,7 @@ in {
       isHidden = false;
       # can't use explicit pkgs-stable here because it is hardcoded in programs.zsh
       shell = pkgs.zsh;
+      uid = 501;
     };
 
     # Fully declarative dock using the latest from Nix Store

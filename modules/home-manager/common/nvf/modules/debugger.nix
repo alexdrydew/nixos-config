@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   config = {
     vim = {
       debugger.nvim-dap.enable = true;

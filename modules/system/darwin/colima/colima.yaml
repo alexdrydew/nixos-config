@@ -10,7 +10,7 @@ disk: 100
 
 # Size of the memory in GiB to be allocated to the virtual machine.
 # Default: 2
-memory: 2
+memory: 8
 
 # Architecture of the virtual machine (x86_64, aarch64, host).
 #
@@ -197,7 +197,11 @@ sshPort: 0
 #
 # Colima default behaviour: $HOME and /tmp/colima are mounted as writable.
 # Default: []
-mounts: []
+mounts:
+  - location: /tmp/k3s
+    mountPoint: /tmp/k3s
+    writable: true
+
 
 # Specify a custom disk image for the virtual machine.
 # When not specified, Colima downloads an appropriate disk image from Github at

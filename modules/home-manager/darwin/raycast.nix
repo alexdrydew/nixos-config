@@ -1,6 +1,28 @@
 {config, ...}: {
   home = {
     file = {
+      "raycast/kitty-agents-local-dev.sh" = {
+        text =
+          /*
+          bash
+          */
+          ''
+            #!/bin/bash
+
+            # Required parameters:
+            # @raycast.schemaVersion 1
+            # @raycast.title kitty agents local dev
+            # @raycast.mode silent
+
+            # Optional parameters:
+            # @raycast.icon 🤖
+            # @raycast.packageName kitty
+
+            ${config.home.profileDirectory}/bin/kitty --session ${config.home.homeDirectory}/.kitty-sessions/agents-local-dev.sh
+          '';
+        executable = true;
+      };
+
       "raycast/kitty-python.sh" = {
         text =
           /*

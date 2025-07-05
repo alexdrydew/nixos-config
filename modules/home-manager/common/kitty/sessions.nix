@@ -146,5 +146,26 @@ in {
         '';
       executable = true;
     };
+
+    ".kitty-sessions/agents-local-dev.sh" = {
+      text =
+        /*
+        bash
+        */
+        ''
+          new_tab agents-integrations
+          cd ~/source/agents-integrations
+          launch zsh -ic "source .venv/bin/activate; PYTHONPATH=''${PYTHONPATH}:''${PWD} python local/run_agent_servers.py; exec zsh -i"
+
+          new_tab backend
+          cd ~/source/backend
+          launch zsh -ic "./gradlew agents:services:agents-local-testing:runtime:bootRun --no-daemon -Dorg.gradle.jvmargs=\"-Xmx2g\"; exec zsh -i"
+
+          new_tab frontend
+          cd ~/source/frontend
+          launch zsh -ic "tlk dev --agents; exec zsh -i"
+        '';
+      executable = true;
+    };
   };
 }
