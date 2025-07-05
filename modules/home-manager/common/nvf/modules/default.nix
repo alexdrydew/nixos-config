@@ -3,7 +3,9 @@
   options,
   neovim-nightly-overlay,
   ...
-}: {
+}: let
+  inherit (pkgs.lib.generators) mkLuaInline;
+in {
   imports = [
     ./languages
     ./keybindings.nix
@@ -51,6 +53,15 @@
         splitright = true;
         splitbelow = true;
         shiftwidth = 4;
+        foldcolumn = "1";
+        foldlevel = 99;
+        # start at everything folded except the first level
+        foldlevelstart = 1;
+        foldenable = true;
+        fillchars = "eob: ,fold: ,foldopen:,foldclose:";
+        foldmethod = "expr";
+        foldexpr = "v:lua.vim.treesitter.foldexpr()";
+        foldtext = "";
       };
       scrollOffset = 10;
       lineNumberMode = "number";
@@ -95,14 +106,13 @@
         nvim-cmp = {
           enable = true;
           sourcePlugins = [
-            "copilot-cmp"
             "cmp-nvim-lsp"
             "luasnip"
             "cmp-path"
           ];
           setupOpts = {
             experimental = {
-              ghost_text = true;
+              # ghost_text = true;
             };
           };
         };
@@ -148,10 +158,13 @@
       };
       assistant.copilot = {
         enable = true;
-        cmp.enable = true;
+        cmp.enable = false;
         setupOpts = {
           panel.enabled = false;
-          suggestion.enabled = false;
+          suggestion = {
+            enabled = true;
+            auto_trigger = true;
+          };
           copilot_node_command = "node";
         };
       };

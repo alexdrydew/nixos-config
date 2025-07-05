@@ -2,7 +2,9 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  inherit (lib.nvim.dag) entryAfter;
+in {
   imports = [
     ./none-ls.nix
     ./rustaceanvim.nix

@@ -1,4 +1,4 @@
-# https://github.com/nix-darwin/nix-darwin/pull/1275
+# https://github.com/nix-darwin/nix-darwin/pull/1275 but use main user instead of separate "colima" user
 {
   config,
   lib,
@@ -84,14 +84,6 @@ in {
     })
 
     (mkIf cfg.enable {
-      # ids.uids = {
-      #   colima = 401;
-      # };
-      #
-      # ids.gids = {
-      #   _colima = 401;
-      # };
-      #
       environment.systemPackages = [
         cfg.package
       ];
@@ -123,37 +115,6 @@ in {
         touch '${cfg.logFile}'
         chown ${toString user.uid}:${toString user.gid} '${cfg.logFile}'
       '';
-
-      # users = {
-      #   knownGroups = [
-      #     "colima"
-      #     "_colima"
-      #   ];
-      #   knownUsers = [
-      #     "colima"
-      #     "_colima"
-      #   ];
-      # };
-
-      # users.users."colima" = {
-      #   uid = config.ids.uids.colima;
-      #   gid = config.ids.gids._colima;
-      #   home = cfg.stateDir;
-      #   # The username isn't allowed to have an underscore in the beginning of
-      #   # its name, otherwise the VM will fail to start with the following error
-      #   #   > "[hostagent] identifier \"_colima\" must match ^[A-Za-z0-9]+(?:[._-](?:[A-Za-z0-9]+))*$: invalid argument" fields.level=fatal
-      #
-      #   name = "colima";
-      #   createHome = true;
-      #   shell = "/bin/bash";
-      #   description = "System user for Colima";
-      # };
-      #
-      # users.groups."_colima" = {
-      #   gid = config.ids.gids._colima;
-      #   name = "_colima";
-      #   description = "System group for Colima";
-      # };
     })
   ];
 }

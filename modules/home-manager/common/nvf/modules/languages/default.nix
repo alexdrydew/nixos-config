@@ -3,7 +3,10 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (lib.generators) mkLuaInline;
+  inherit (lib.nvim.dag) entryAfter;
+in {
   imports = [
     ./python.nix
     ./js.nix
@@ -25,6 +28,7 @@
         enable = true;
         highlight.enable = true;
         indent.enable = true;
+        fold = false;
       };
       languages = {
         enableTreesitter = true;

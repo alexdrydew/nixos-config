@@ -27,7 +27,18 @@
               */
               ''
                 lspconfig.basedpyright.setup{
-                  capabilities = capabilities;
+                  capabilities = vim.tbl_extend(
+                    "force",
+                    capabilities,
+                    {
+                      textDocument = {
+                        foldingRange = {
+                          dynamicRegistration = false;
+                          lineFoldingOnly = true;
+                        };
+                      },
+                    }
+                  );
                   on_attach = default_on_attach;
                   settings = {
                     basedpyright = {

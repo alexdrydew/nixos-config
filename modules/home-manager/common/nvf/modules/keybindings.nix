@@ -1,6 +1,10 @@
-{lib, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib.nvim.binds) mkKeymap;
-  # lspMappings = config.vim.lsp.mappings;
+  inherit (pkgs.lib.generators) mkLuaInline;
 in {
   config = {
     vim = {
@@ -29,7 +33,7 @@ in {
             refresh = null;
           };
           suggestion = {
-            accept = null;
+            accept = "<S-Tab>";
             acceptLine = null;
             acceptWord = null;
             dismiss = null;
