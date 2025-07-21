@@ -9,6 +9,7 @@
 in {
   imports = [
     inputs.home-manager.darwinModules.home-manager
+    ./wallpaper
   ];
 
   system.primaryUser = user;
@@ -37,8 +38,10 @@ in {
     };
   };
 
-  system.activationScripts.activateSettings.text = ''
-    # Following line should allow us to avoid a logout/login cycle
-    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  # TODO: figure out how to do it inside home-manager
+  # WARN: relies on desktoppr being installed in homebrew
+  system.activationScripts.postActivation.text = ''
+    echo >&2 "Switching wallpapers..."
+    /usr/local/bin/desktoppr 0 ${config.wallpaper.file}
   '';
 }

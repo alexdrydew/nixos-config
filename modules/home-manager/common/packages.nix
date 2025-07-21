@@ -43,6 +43,11 @@
         tokei
         etcd
 
+        cmake
+        ninja
+        pkg-config
+        arrow-cpp
+
         # General packages for development and system management
         bash-completion
         bat

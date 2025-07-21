@@ -5,6 +5,7 @@ _: [
   "devpod"
 
   "lunar"
+  "desktoppr"
 
   # Communication Tools
   "discord"
