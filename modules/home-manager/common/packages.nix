@@ -42,6 +42,8 @@
         nmap
         tokei
         etcd
+        flock
+        google-cloud-sdk
 
         cmake
         ninja
