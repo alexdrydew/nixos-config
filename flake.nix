@@ -115,6 +115,14 @@
           ./hosts/htpc
         ];
       };
+      dell = nixpkgs-unstable.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        specialArgs = mkSpecialArgs {inherit system;};
+        modules = [
+          ./modules/users/personal.nix
+          ./hosts/dell
+        ];
+      };
     };
   };
 }
