@@ -195,7 +195,7 @@ in {
           use_repo_map = true;
           use_temperature = false;
           extra_params = {
-            reasoning_effort = "medium";
+            reasoning_effort = "high";
           };
         }
         {

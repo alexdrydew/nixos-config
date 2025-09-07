@@ -8,6 +8,7 @@ in {
   imports = [
     ../../modules/users/personal.nix
     ../../modules/system/nixos
+    ../../modules/system/nixos/pihole.nix
     ./hardware-configuration.nix
   ];
   boot.loader.systemd-boot.enable = true;
@@ -38,6 +39,7 @@ in {
   i18n.defaultLocale = "en_US.UTF-8";
   services = {
     sshd.enable = true;
+    pihole.enable = true;
   };
   ssh-server.enable = true;
   docker.enable = false;

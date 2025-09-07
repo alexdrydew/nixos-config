@@ -44,6 +44,8 @@
         etcd
         flock
         google-cloud-sdk
+        ncdu
+        groovy
 
         cmake
         ninja

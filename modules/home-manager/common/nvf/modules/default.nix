@@ -26,6 +26,9 @@ in {
         tailwind-tools-nvim = {
           package = tailwind-tools-nvim;
         };
+        nvim-lsp-file-operations = {
+          package = nvim-lsp-file-operations;
+        };
       };
       ui = {
         noice = {
