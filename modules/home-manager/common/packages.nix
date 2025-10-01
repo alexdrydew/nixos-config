@@ -46,6 +46,7 @@
         google-cloud-sdk
         ncdu
         groovy
+        mongosh
 
         cmake
         ninja
