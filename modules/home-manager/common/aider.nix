@@ -189,7 +189,7 @@ in {
           use_repo_map = true;
         }
         {
-          name = "openai/gpt-5-2025-08-07";
+          name = "openai/gpt-5";
           edit_format = "diff";
           weak_model_name = "openai/gpt-5-nano";
           use_repo_map = true;
@@ -355,7 +355,7 @@ in {
             "supports_system_messages" = true;
             "supports_tool_choice" = true;
           };
-          "openai/gpt-5-2025-08-07" = {
+          "openai/gpt-5" = {
             "max_tokens" = 128000;
             "max_input_tokens" = 400000;
             "max_output_tokens" = 128000;
