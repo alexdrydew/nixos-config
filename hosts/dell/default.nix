@@ -24,6 +24,12 @@ in {
         prefixLength = 24;
       }
     ];
+    firewall.allowedTCPPorts = [
+      80
+      443
+      8000
+      5173
+    ];
   };
 
   home-manager.sharedModules = [
