@@ -46,6 +46,7 @@
         google-cloud-sdk
         ncdu
         groovy
+        mongosh
 
         cmake
         ninja
@@ -103,6 +104,12 @@
 
         # Go
         go
+
+        # Node.js development tools
+        nodePackages.npm # globally install npm
+        nodePackages.prettier
+        nodePackages.node2nix
+        pnpm_8
       ]
       ++ lib.optionals config.home.packageSets.graphical [
         jetbrains.pycharm-professional
@@ -120,12 +127,6 @@
       ]
       ++ (with pkgs-unstable; [
         uv
-        pnpm_8
-        # Node.js development tools
-        nodePackages.npm # globally install npm
-        nodePackages.prettier
-        nodePackages.node2nix
-
         codex
         gemini-cli
       ]);
