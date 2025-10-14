@@ -25,8 +25,6 @@ in {
       }
     ];
     firewall.allowedTCPPorts = [
-      80
-      443
       8000
       5173
     ];
@@ -46,12 +44,14 @@ in {
   services = {
     sshd.enable = true;
     pihole.enable = true;
+    openwebui.enable = true;
   };
   ssh-server.enable = true;
   docker.enable = false;
 
   users.users.${user} = {
     isNormalUser = true;
+    linger = true;
     extraGroups = ["networkmanager" "wheel" "audio"];
     packages = with pkgs; [];
   };

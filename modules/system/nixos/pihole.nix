@@ -7,6 +7,11 @@
     enable = lib.mkEnableOption "pihole";
   };
   config = lib.mkIf config.services.pihole.enable {
+    networking.firewall.allowedTCPPorts = [
+      53
+      80
+      443
+    ];
     virtualisation.containers.enable = true;
     virtualisation.oci-containers = {
       backend = "podman";

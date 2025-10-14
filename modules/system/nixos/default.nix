@@ -20,6 +20,7 @@ in {
     ./firefox.nix
     ./rustdesk.nix
     ./pihole.nix
+    ./openwebui.nix
   ];
 
   programs = {
