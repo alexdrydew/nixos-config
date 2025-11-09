@@ -21,6 +21,7 @@ in {
     ./rustdesk.nix
     ./pihole.nix
     ./openwebui.nix
+    ./tailscale.nix
   ];
 
   programs = {
