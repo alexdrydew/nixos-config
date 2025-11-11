@@ -99,6 +99,7 @@ in {
         (mkKeymap "n" "<leader>s/" "<cmd>Telescope live_grep grep_open_files=true<cr>" {desc = "[S]earch [/] in Open Files";})
         (mkKeymap "n" "<leader>sn" "<cmd>Telescope find_files cwd=vim.fn.stdpath('config')<cr>" {desc = "[S]earch [N]eovim files";})
         (mkKeymap "n" "<leader>s." "<cmd>Telescope old_files<cr>" {desc = "[S]earch Recent Files ('.' for repeat)";})
+        (mkKeymap "n" "<leader>rs" "<cmd>Spectre<cr>" {desc = "[R]eplace with [S]pectre";})
       ];
     };
   };

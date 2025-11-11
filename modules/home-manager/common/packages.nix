@@ -94,9 +94,6 @@
         nixpkgs-fmt
         nix-index
 
-        # Python packages
-        jdk21
-
         # Rust
         # (rustbin.stable.latest.default.override { extensions = [ "rust-src" ]; })
         rustup
@@ -109,7 +106,8 @@
         nodePackages.npm # globally install npm
         nodePackages.prettier
         nodePackages.node2nix
-        pnpm_8
+        pnpm_9
+        yarn
       ]
       ++ lib.optionals config.home.packageSets.graphical [
         jetbrains.pycharm-professional
@@ -129,6 +127,7 @@
         uv
         codex
         gemini-cli
+        javaPackages.compiler.openjdk25
       ]);
   };
 }
