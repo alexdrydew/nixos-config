@@ -24,6 +24,10 @@ in {
         prefixLength = 24;
       }
     ];
+    firewall.allowedTCPPorts = [
+      8000
+      5173
+    ];
   };
 
   home-manager.sharedModules = [
@@ -40,12 +44,14 @@ in {
   services = {
     sshd.enable = true;
     pihole.enable = true;
+    openwebui.enable = true;
   };
   ssh-server.enable = true;
   docker.enable = false;
 
   users.users.${user} = {
     isNormalUser = true;
+    linger = true;
     extraGroups = ["networkmanager" "wheel" "audio"];
     packages = with pkgs; [];
   };
